@@ -1,0 +1,13 @@
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.csprojResolveAssemblyReference.cache
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\MatGUI.dll.config
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\MatGUI.dll
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\MatGUI.pdb
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI_MarkupCompile.cache
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI_MarkupCompile.lref
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.g.resources
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.dll
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.pdb
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\ResourceDictionaries.baml
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\Themes\Generic.baml
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\ColorTheme.dark-pink.baml
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
