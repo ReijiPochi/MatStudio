@@ -7,6 +7,7 @@
         xmlns:v="clr-namespace:MatStudioROBOT2016.Views"
         xmlns:vm="clr-namespace:MatStudioROBOT2016.ViewModels"
         Title="MainWindow" Height="350" Width="525"
+        UseLayoutRounding="True"
         
         xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI">
     
@@ -35,6 +36,6 @@
     </i:Interaction.Triggers>
     
     <Grid>
-        
+        <matgui:MatButton Margin="160,84,120,107" Content="TEST"/>
     </Grid>
 </Window>
