@@ -46,3 +46,5 @@ F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\MainWindow.baml
 F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\MatStudioROBOT2016.g.resources
 F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\MatStudioROBOT2016.Properties.Resources.resources
 F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\MatStudioROBOT2016.csproj.GenerateResource.Cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\MatStudioROBOT2016.exe
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\MatStudioROBOT2016.pdb
