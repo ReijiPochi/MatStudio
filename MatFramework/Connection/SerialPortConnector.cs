@@ -17,24 +17,37 @@ namespace MatFramework.Connection
         private SerialPort myPort = null;
         private Thread receiveThread = null;
 
-        public string PortName { get; set; }
-        public int BaudRate { get; set; }
-        public Parity Parity { get; set; }
-        public int DataBits { get; set; }
-        public StopBits StopBits { get; set; }
+        public string PortName { get; private set; }
+        public int BaudRate { get; private set; }
+        public Parity Parity { get; private set; }
+        public int DataBits { get; private set; }
+        public StopBits StopBits { get; private set; }
 
         public delegate void DataReceivedHandler(byte[] data);
         public event DataReceivedHandler DataReceived;
 
-        public SerialPortConnector()
+        public SerialPortConnector(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits)
         {
-
+            PortName = portName;
+            BaudRate = baudRate;
+            Parity = parity;
+            DataBits = dataBits;
+            StopBits = stopBits;
         }
 
         public void Start()
         {
             myPort = new SerialPort(PortName, BaudRate, Parity, DataBits, StopBits);
-            myPort.Open();
+
+            try
+            {
+                myPort.Open();
+            }
+            catch(Exception ex)
+            {
+                MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " を開けませんでした", ex);
+            }
+            
             receiveThread = new Thread(ReceiveWork);
             receiveThread.Start(this);
         }
@@ -42,6 +55,7 @@ namespace MatFramework.Connection
         public static void ReceiveWork(object target)
         {
             SerialPortConnector my = target as SerialPortConnector;
+            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + my.PortName + " を開きました", "null"));
             my.ReceiveData();
         }
 
@@ -61,6 +75,7 @@ namespace MatFramework.Connection
             {
                 return;
             }
+
             do
             {
                 try
@@ -68,23 +83,25 @@ namespace MatFramework.Connection
                     int rbyte = myPort.BytesToRead;
                     byte[] buffer = new byte[rbyte];
                     int read = 0;
+
                     while (read < rbyte)
                     {
                         int length = myPort.Read(buffer, read, rbyte - read);
                         read += length;
                     }
+
                     if (rbyte > 0)
                     {
                         DataReceived(buffer);
                     }
                 }
-                catch (IOException ex)
+                catch (Exception ex)
                 {
-                }
-                catch (InvalidOperationException ex)
-                {
+                    MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " でのデータ受信に失敗しました", ex);
                 }
             } while (myPort.IsOpen);
+
+            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + PortName + " がクローズしました", "null"));
         }
 
         public void Close()

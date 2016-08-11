@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MatFramework
 {
-    public class LogData
+    /// <summary>
+    /// 様々な情報を格納します
+    /// </summary>
+    public class LogData : MatObject
     {
         public LogData(string message, string discription)
         {
@@ -30,21 +33,35 @@ namespace MatFramework
         public string Discription { get; protected set; }
     }
 
+    /// <summary>
+    /// ログの状態（注意、警告など）を表します。
+    /// </summary>
     public enum LogCondition
     {
         None,
         Action,
         Attention,
-        Warning
+        Warning,
+        Error
     }
 
-    public class Logger
+    /// <summary>
+    /// ログを記録します。
+    /// </summary>
+    public class Logger : MatObject
     {
         protected List<LogData> _Log = new List<LogData>();
 
         public void Log(LogData log)
         {
             _Log.Add(log);
+        }
+
+        public void LogException(string discription, Exception ex)
+        {
+            _Log.Add(new LogData(LogCondition.Error,
+                                 "例外がスローされました",
+                                 discription + " 例外：" + ex.GetType().Name + " 場所：" + ex.Source + " " + ex.Message));
         }
     }
 }

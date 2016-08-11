@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MatFramework
 {
-    public class MatApp
+    public class MatApp : MatObject
     {
         private static Logger _ApplicationLog;
         public static Logger ApplicationLog

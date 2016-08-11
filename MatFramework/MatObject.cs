@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 
 namespace MatFramework
 {
+    /// <summary>
+    /// MatFrameworkのすべてのオブジェクトはMatObjectから派生します。
+    /// </summary>
     public class MatObject
     {
         public MatObject()
         {
-            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "クラスを生成", "クラス名：" + this.GetType().Name));
-        }
 
-        public MatObject(bool logging)
-        {
-            if(logging)
-            {
-                MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "クラスを生成", "クラス名：" + this.GetType().Name));
-            }
         }
     }
 }
