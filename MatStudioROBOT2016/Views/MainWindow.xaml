@@ -36,6 +36,20 @@
     </i:Interaction.Triggers>
     
     <Grid>
-        <matgui:MatButton Margin="160,84,120,107" Content="TEST"/>
+        <matgui:PhantasmagoriaTabControl>
+            <matgui:PhantasmagoriaTabItem Header="123">
+                <matgui:MatButton Margin="160,84,120,107" Content="TEST1"/>
+            </matgui:PhantasmagoriaTabItem>
+            <matgui:PhantasmagoriaTabItem Header="4">
+                <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
+            </matgui:PhantasmagoriaTabItem>
+            <matgui:PhantasmagoriaTabItem Header="56">
+                <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
+            </matgui:PhantasmagoriaTabItem>
+            <matgui:PhantasmagoriaTabItem Header="78910">
+                <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
+            </matgui:PhantasmagoriaTabItem>
+        </matgui:PhantasmagoriaTabControl>
+        
     </Grid>
 </Window>

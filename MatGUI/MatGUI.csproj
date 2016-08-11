@@ -74,6 +74,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MatButton.cs" />
+    <Compile Include="PhantasmagoriaTabItem.cs" />
+    <Compile Include="PhantasmagoriaTabControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

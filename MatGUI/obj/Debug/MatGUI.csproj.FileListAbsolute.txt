@@ -45,4 +45,3 @@ F:\GitHub\MatStudio\MatGUI\bin\Debug\ko\System.Windows.Interactivity.resources.d
 F:\GitHub\MatStudio\MatGUI\bin\Debug\ru\System.Windows.Interactivity.resources.dll
 F:\GitHub\MatStudio\MatGUI\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 F:\GitHub\MatStudio\MatGUI\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-F:\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.csprojResolveAssemblyReference.cache

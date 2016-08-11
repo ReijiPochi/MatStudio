@@ -57,4 +57,65 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type local:PhantasmagoriaTabControl}">
+        <Setter Property="AllowDrop" Value="True"/>
+        <Setter Property="Background" Value="{DynamicResource MatBackGroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MatBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PhantasmagoriaTabControl}">
+                    <Grid KeyboardNavigation.TabNavigation="Local" Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TabPanel Grid.Row="0" Margin="0" x:Name="HeaderPanel" Background="Transparent" IsItemsHost="True" Panel.ZIndex="102" KeyboardNavigation.TabIndex="1"/>
+
+                        <Border Grid.Row="1" x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.TabIndex="2"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/>
+                        </Border>
+
+                        <Rectangle x:Name="IBPosRect" Grid.RowSpan="2" Visibility="Collapsed" Fill="{DynamicResource MatThemeColorBrush}" Panel.ZIndex="100" Opacity="0.39" Grid.Row="0"/>
+                        <Rectangle x:Name="IBMaskRect" Fill="Transparent" Grid.RowSpan="2" Visibility="Collapsed" AllowDrop="True" Panel.ZIndex="101" Grid.Row="0"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:PhantasmagoriaTabItem}">
+        <Setter Property="AllowDrop" Value="True"/>
+        <Setter Property="Foreground" Value="{DynamicResource MatForeGroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PhantasmagoriaTabItem}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Border Margin="0" x:Name="Border">
+                            <ContentPresenter HorizontalAlignment="Left" Margin="12,3,12,3" x:Name="ContentSite" VerticalAlignment="Center" RecognizesAccessKey="True" ContentSource="Header"/>
+                        </Border>
+                        <Rectangle x:Name="MatMaskRect" AllowDrop="True" Fill="Transparent"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatThemeColorBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsActivePanel" Value="True">
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatThemeColorBrush}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="Selector.IsSelected" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="{DynamicResource MatMouseOverBrush}" TargetName="Border"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

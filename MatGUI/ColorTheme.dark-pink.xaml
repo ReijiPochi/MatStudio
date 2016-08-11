@@ -5,10 +5,12 @@
 
     <SolidColorBrush x:Key="MatBackGroundBrush" Color="#FF383839"/>
     <SolidColorBrush x:Key="MatForeGroundBrush" Color="#FFEEEEEE"/>
+    <SolidColorBrush x:Key="MatBorderBrush" Color="#FF555555"/>
     <SolidColorBrush x:Key="MatThemeColorBrush" Color="#FFE330E7"/>
-    <SolidColorBrush x:Key="MatMouseOverBrush" Color="#FF4D4D4D"/>
+    <SolidColorBrush x:Key="MatMouseOverBrush" Color="#FF4B4B4B"/>
     <SolidColorBrush x:Key="MatPressDownBrush" Color="#FF1F1F1F"/>
     <SolidColorBrush x:Key="MatClickBrush" Color="#FFE330E7"/>
+    <SolidColorBrush x:Key="MatSelectedBrush" Color="#FF555555"/>
 
     <ee:ColorToneEffect x:Key="MonoColorEffect" Desaturation="1" ToneAmount="1" DarkColor="#FFF0F0F0" LightColor="#FFF0F0F0"/>
     <ee:ColorToneEffect x:Key="InvalidMonoColorEffect" Desaturation="1" ToneAmount="1" DarkColor="#FF787878" LightColor="#FF787878"/>
