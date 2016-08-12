@@ -72,15 +72,15 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <TabPanel Grid.Row="0" Margin="0" x:Name="HeaderPanel" Background="Transparent" IsItemsHost="True" Panel.ZIndex="102" KeyboardNavigation.TabIndex="1"/>
+                        <TabPanel Grid.Row="0" Margin="0" x:Name="HeaderPanel" Background="Transparent" IsItemsHost="True" Panel.ZIndex="100" KeyboardNavigation.TabIndex="1"/>
 
                         <Border Grid.Row="1" x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.TabIndex="2"
                                 BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/>
                         </Border>
 
-                        <Rectangle x:Name="IBPosRect" Grid.RowSpan="2" Visibility="Collapsed" Fill="{DynamicResource MatThemeColorBrush}" Panel.ZIndex="100" Opacity="0.39" Grid.Row="0"/>
-                        <Rectangle x:Name="IBMaskRect" Fill="Transparent" Grid.RowSpan="2" Visibility="Collapsed" AllowDrop="True" Panel.ZIndex="101" Grid.Row="0"/>
+                        <Rectangle x:Name="IBPosRect" Grid.RowSpan="2" Visibility="Collapsed" Fill="{DynamicResource MatThemeColorBrush}" Panel.ZIndex="101" Opacity="0.39" Grid.Row="0"/>
+                        <Rectangle x:Name="IBMaskRect" Fill="#4C808080" Grid.RowSpan="2" Visibility="Collapsed" AllowDrop="True" Panel.ZIndex="102" Grid.Row="0"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -114,6 +114,16 @@
                             <Setter Property="Background" Value="{DynamicResource MatMouseOverBrush}" TargetName="Border"/>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:PhantasmagoriaSplitter}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PhantasmagoriaSplitter}">
+                    <Border Background="#4C0281FF"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

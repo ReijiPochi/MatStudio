@@ -8,6 +8,7 @@
         xmlns:vm="clr-namespace:MatStudioROBOT2016.ViewModels"
         Title="MainWindow" Height="350" Width="525"
         UseLayoutRounding="True"
+        Background="{DynamicResource MatBackGroundBrush}"
         
         xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI">
     

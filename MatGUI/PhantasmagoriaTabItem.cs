@@ -62,6 +62,8 @@ namespace MatGUI
         {
             PhantasmagoriaTabItem source = e.Data.GetData(typeof(PhantasmagoriaTabItem)) as PhantasmagoriaTabItem;
 
+            e.Handled = true;
+
             if (source != null && source != this)
             {
                 if(source.Parent == Parent)
