@@ -30,6 +30,9 @@ namespace MatGUI
         Rectangle posRect;
         DragPosition dragTarget;
 
+        const double MIN_WIDTH = 80.0;
+        const double MIN_HEIGHT = 80.0;
+
         static PhantasmagoriaTabControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PhantasmagoriaTabControl), new FrameworkPropertyMetadata(typeof(PhantasmagoriaTabControl)));
@@ -56,11 +59,17 @@ namespace MatGUI
 
         private void PhantasmagoriaTabControl_DragEnter(object sender, DragEventArgs e)
         {
+            PhantasmagoriaTabItem source = e.Data.GetData(typeof(PhantasmagoriaTabItem)) as PhantasmagoriaTabItem;
+            if (source == null) return;
+
             maskRect.Visibility = Visibility.Visible;
         }
 
         private void MaskRect_DragOver(object sender, DragEventArgs e)
         {
+            PhantasmagoriaTabItem source = e.Data.GetData(typeof(PhantasmagoriaTabItem)) as PhantasmagoriaTabItem;
+            if (source == null) return;
+
             posRect.Visibility = Visibility.Visible;
             Point pos = e.GetPosition(maskRect);
 
@@ -186,7 +195,7 @@ namespace MatGUI
             maskRect.Visibility = Visibility.Collapsed;
         }
 
-        private void PutToTop(Grid parent, Grid me, Grid source)
+        public static void PutToTop(Grid parent, Grid me, Grid source)
         {
             parent.ColumnDefinitions.Clear();
             parent.RowDefinitions.Clear();
@@ -199,7 +208,7 @@ namespace MatGUI
                 Width = double.NaN
             };
 
-            parent.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(parent.ActualHeight * 0.5) });
+            parent.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(parent.ActualHeight * 0.5), MinHeight = MIN_HEIGHT });
             parent.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
 
             me.SetValue(Grid.RowProperty, 1);
@@ -217,7 +226,7 @@ namespace MatGUI
             parent.Children.Add(splitter);
         }
 
-        private void PutToBottom(Grid parent, Grid me, Grid source)
+        public static void PutToBottom(Grid parent, Grid me, Grid source)
         {
             parent.ColumnDefinitions.Clear();
             parent.RowDefinitions.Clear();
@@ -231,7 +240,7 @@ namespace MatGUI
             };
 
             parent.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
-            parent.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(parent.ActualHeight * 0.5) });
+            parent.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(parent.ActualHeight * 0.5), MinHeight = MIN_HEIGHT });
 
             me.SetValue(Grid.RowProperty, 0);
             me.SetValue(Grid.RowSpanProperty, 1);
@@ -248,7 +257,7 @@ namespace MatGUI
             parent.Children.Add(splitter);
         }
 
-        private void PutToLeft(Grid parent, Grid me, Grid source)
+        public static void PutToLeft(Grid parent, Grid me, Grid source)
         {
             parent.ColumnDefinitions.Clear();
             parent.RowDefinitions.Clear();
@@ -261,7 +270,7 @@ namespace MatGUI
                 Width = 8
             };
 
-            parent.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(parent.ActualHeight * 0.5) });
+            parent.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(parent.ActualHeight * 0.5), MinWidth = MIN_WIDTH });
             parent.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
             me.SetValue(Grid.ColumnProperty, 1);
@@ -279,7 +288,7 @@ namespace MatGUI
             parent.Children.Add(splitter);
         }
 
-        private void PutToRight(Grid parent, Grid me, Grid source)
+        public static void PutToRight(Grid parent, Grid me, Grid source)
         {
             parent.ColumnDefinitions.Clear();
             parent.RowDefinitions.Clear();
@@ -293,7 +302,7 @@ namespace MatGUI
             };
 
             parent.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
-            parent.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(parent.ActualHeight * 0.5) });
+            parent.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(parent.ActualHeight * 0.5), MinWidth = MIN_WIDTH });
 
             me.SetValue(Grid.ColumnProperty, 0);
             me.SetValue(Grid.ColumnSpanProperty, 1);
@@ -310,7 +319,7 @@ namespace MatGUI
             parent.Children.Add(splitter);
         }
 
-        private static void RemoveSource(PhantasmagoriaTabControl sourcesParent)
+        public static void RemoveSource(PhantasmagoriaTabControl sourcesParent)
         {
             Grid sourcesGrid = sourcesParent.Parent as Grid;
             if (sourcesGrid == null) throw new Exception("MatPhantasmagoriaTabControl のParentが Grid でありません");
@@ -320,6 +329,7 @@ namespace MatGUI
 
             PhantasmagoriaSplitter s = null;
             Grid g = null;
+
             foreach (object o in sourcesGridGrid.Children)
             {
                 if (s == null) s = o as PhantasmagoriaSplitter;
@@ -372,7 +382,7 @@ namespace MatGUI
                             {
                                 if (_g == null) _g = o as Grid;
                             }
-                            if(_g != null)
+                            if (_g != null)
                             {
                                 if ((int)_g.GetValue(Grid.ColumnProperty) == 0)
                                     sourcesGridGrid.SetValue(Grid.ColumnProperty, 1);
@@ -381,21 +391,6 @@ namespace MatGUI
                             }
 
                             ggg.Children.Add(sourcesGridGrid);
-                        }
-                    }
-                    else
-                    {
-                        Window w = gg.Parent as Window;
-                        if (w != null)
-                        {
-                            if (g.Children.Count != 0)
-                            {
-                                w.Content = g;
-                            }
-                            else
-                            {
-                                w.Content = sourcesGridGrid;
-                            }
                         }
                     }
                 }

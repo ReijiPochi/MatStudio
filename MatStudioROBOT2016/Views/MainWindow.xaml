@@ -37,20 +37,35 @@
     </i:Interaction.Triggers>
     
     <Grid>
-        <matgui:PhantasmagoriaTabControl>
-            <matgui:PhantasmagoriaTabItem Header="123">
-                <matgui:MatButton Margin="160,84,120,107" Content="TEST1"/>
-            </matgui:PhantasmagoriaTabItem>
-            <matgui:PhantasmagoriaTabItem Header="4">
-                <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
-            </matgui:PhantasmagoriaTabItem>
-            <matgui:PhantasmagoriaTabItem Header="56">
-                <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
-            </matgui:PhantasmagoriaTabItem>
-            <matgui:PhantasmagoriaTabItem Header="78910">
-                <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
-            </matgui:PhantasmagoriaTabItem>
-        </matgui:PhantasmagoriaTabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        
+
+        <Grid Grid.Row="1">
+            <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Left" Width="3" Panel.ZIndex="114514"/>
+            <matgui:PhantasmagoriaWorkspaceFrame Width="3" Panel.ZIndex="114514" HorizontalAlignment="Right"/>
+            <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Top" Height="3"/>
+            <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Bottom" Height="3"/>
+            <Grid>
+                <matgui:PhantasmagoriaTabControl Grid.Row="1">
+                    <matgui:PhantasmagoriaTabItem Header="123">
+                        <matgui:MatButton Margin="160,84,120,107" Content="TEST1"/>
+                    </matgui:PhantasmagoriaTabItem>
+                    <matgui:PhantasmagoriaTabItem Header="4">
+                        <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
+                    </matgui:PhantasmagoriaTabItem>
+                    <matgui:PhantasmagoriaTabItem Header="56">
+                        <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
+                    </matgui:PhantasmagoriaTabItem>
+                    <matgui:PhantasmagoriaTabItem Header="78910">
+                        <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
+                    </matgui:PhantasmagoriaTabItem>
+                </matgui:PhantasmagoriaTabControl>
+            </Grid>
+        </Grid>
         
     </Grid>
 </Window>

@@ -70,3 +70,6 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\MatStudioROBOT2016.g.resources
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\MatStudioROBOT2016.Properties.Resources.resources
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\MatStudioROBOT2016.csproj.GenerateResource.Cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Themes\Generic.baml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\TerminalCP_Design.baml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\ControlPanelResources.baml

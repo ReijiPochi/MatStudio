@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\App.xaml
-11892971807
+41039557732
 5-609757685
-112023296876
+12-1168419586
 17-1411694039
-Views\MainWindow.xaml;
+Themes\Generic.xaml;Views\ControlPanels\ControlPanelResources.xaml;Views\ControlPanels\TerminalCP_Design.xaml;Views\MainWindow.xaml;
 
-False
+True
 

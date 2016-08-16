@@ -1,0 +1,10 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MatStudioROBOT2016">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/MatStudioROBOT2016;component/Views/ControlPanels/TerminalCP_Design.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>
