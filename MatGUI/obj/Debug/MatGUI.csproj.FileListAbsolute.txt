@@ -80,3 +80,7 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\obj\Debug\Themes\Generic.b
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.g.resources
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.dll
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.pdb
+F:\GitHub\MatStudio\MatGUI\obj\Debug\MatGUI.csprojResolveAssemblyReference.cache
+F:\GitHub\MatStudio\MatGUI\obj\Debug\MatWindow.g.cs
+F:\GitHub\MatStudio\MatGUI\obj\Debug\MatWindow.baml
+F:\GitHub\MatStudio\MatGUI\obj\Debug\Styles.baml

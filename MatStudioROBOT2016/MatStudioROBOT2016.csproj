@@ -92,7 +92,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\GUILayoutM.cs" />
+    <Compile Include="ViewModels\ControlPanelVM.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\ControlPanels\TerminalCP.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

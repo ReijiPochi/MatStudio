@@ -41,8 +41,15 @@
             <RowDefinition Height="26"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
-        
+
+        <Menu Grid.Row="0" Background="{x:Null}" HorizontalAlignment="Left">
+            <matgui:MatMenuItem Header="Panels">
+                <matgui:MatMenuItem.DataContext>
+                    <vm:ControlPanelVM/>
+                </matgui:MatMenuItem.DataContext>
+                <matgui:MatMenuItem Header="Terminal" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource Terminal}"/>
+            </matgui:MatMenuItem>
+        </Menu>
 
         <Grid Grid.Row="1">
             <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Left" Width="3" Panel.ZIndex="114514"/>
@@ -50,7 +57,7 @@
             <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Top" Height="3"/>
             <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Bottom" Height="3"/>
             <Grid>
-                <matgui:PhantasmagoriaTabControl Grid.Row="1">
+                <matgui:PhantasmagoriaTabControl>
                     <matgui:PhantasmagoriaTabItem Header="123">
                         <matgui:MatButton Margin="160,84,120,107" Content="TEST1"/>
                     </matgui:PhantasmagoriaTabItem>

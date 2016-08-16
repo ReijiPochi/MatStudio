@@ -4,7 +4,23 @@
     xmlns:local="clr-namespace:MatGUI">
 
 
-    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/MatGUI;component/ResourceDictionaries.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <Style x:Key="MatFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Stroke="{DynamicResource MatFocusBorderBrush}" StrokeThickness="1"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <Style TargetType="{x:Type local:MatButton}">
         <Setter Property="Background" Value="{DynamicResource MatBackGroundBrush}"/>
@@ -90,6 +106,8 @@
     <Style TargetType="{x:Type local:PhantasmagoriaTabItem}">
         <Setter Property="AllowDrop" Value="True"/>
         <Setter Property="Foreground" Value="{DynamicResource MatForeGroundBrush}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PhantasmagoriaTabItem}">
@@ -150,16 +168,296 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:MatTextBox}">
+    <Style TargetType="{x:Type local:MatScrollViewer}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:MatTextBox}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                    </Border>
+                <ControlTemplate TargetType="{x:Type local:MatScrollViewer}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ScrollContentPresenter x:Name="view" Grid.Column="0" Grid.Row="0" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="{TemplateBinding Padding}" CanVerticallyScroll="True" CanHorizontallyScroll="True"
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <ScrollBar Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Grid.Column="0" Grid.Row="1" x:Name="PART_HorizontalScrollBar" Orientation="Horizontal"
+                                   Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" Minimum="0" Maximum="{TemplateBinding ScrollableWidth}"
+                                   Style="{StaticResource MatScrollBarStyle}" Height="15" MinHeight="15"/>
+                        <ScrollBar Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" x:Name="PART_VerticalScrollBar" Orientation="Vertical" 
+                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Minimum="0" Maximum="{TemplateBinding ScrollableHeight}"
+                                   Style="{StaticResource MatScrollBarStyle}" Width="15" MinWidth="15"/>
+                        <Rectangle x:Name="rectangle" Fill="{DynamicResource MatBackGroundBrush}" Height="15" Width="15" Grid.Row="1" Grid.Column="1" StrokeThickness="0" Visibility="Hidden"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Visibility" Value="Visible" SourceName="PART_VerticalScrollBar">
+                            <Setter Property="Grid.ColumnSpan" TargetName="view" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="Visibility" Value="Visible" SourceName="PART_HorizontalScrollBar">
+                            <Setter Property="Grid.RowSpan" TargetName="view" Value="1"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Visibility" Value="Visible" SourceName="PART_VerticalScrollBar"/>
+                                <Condition Property="Visibility" Value="Visible" SourceName="PART_HorizontalScrollBar"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="rectangle" Value="Visible"/>
+                            <Setter Property="Grid.RowSpan" TargetName="PART_VerticalScrollBar" Value="1"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MatTextBox}">
+        <Setter Property="Background" Value="{DynamicResource MatBackGroundBrush}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource MatFocusVisual}"/>
+        <Setter Property="SelectionBrush" Value="{DynamicResource MatSelectedBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MatEditableForeGroundBruah}"/>
+        <Setter Property="SelectionOpacity" Value="0.5"/>
+        <Setter Property="CaretBrush" Value="{DynamicResource MatThemeColorBrush}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MatTextBox}">
+                    <Grid>
+                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderThickness="1">
+                            <local:MatScrollViewer Padding="10,0" x:Name="PART_ContentHost" Background="{TemplateBinding Background}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                   HorizontalContentAlignment="Stretch"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="AcceptsReturn" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatMouseOverBrush}"/>
+                        </MultiTrigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource MatFocusBorderBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- TopLevelHeader -->
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}"
+		TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" Background="{DynamicResource MatBackGroundBrush}" >
+            <Grid>
+                <ContentPresenter 
+					Margin="10,3" 
+					ContentSource="Header"
+					RecognizesAccessKey="True" VerticalAlignment="Center" />
+                <Popup 
+					x:Name="Popup"
+					Placement="Bottom"
+					IsOpen="{TemplateBinding IsSubmenuOpen}"
+					AllowsTransparency="True" 
+					Focusable="False"
+					PopupAnimation="Fade">
+                    <Border 
+						x:Name="SubmenuBorder"
+						SnapsToDevicePixels="True" >
+                        <StackPanel  
+							IsItemsHost="True" 
+							KeyboardNavigation.DirectionalNavigation="Cycle" />
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSuspendingPopupAnimation" Value="true">
+                <Setter TargetName="Popup" Property="PopupAnimation" Value="None"/>
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatFocusBrush_T}"/>
+            </Trigger>
+            <Trigger Property="IsOpen" Value="True" SourceName="Popup">
+                <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatBackGroundBrush_T}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MatInactiveForeGroundBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!-- TopLevelItem -->
+    <ControlTemplate 
+		x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" 
+		TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" >
+            <Grid>
+                <ContentPresenter 
+					Margin="6,3" 
+					ContentSource="Header"
+					RecognizesAccessKey="True" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter TargetName="Border" Property="Background"
+					Value="{DynamicResource MatBackGroundBrush}"/>
+                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground"
+					Value="{DynamicResource MatInactiveForeGroundBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!-- SubmenuItem -->
+    <ControlTemplate 
+		x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}" 
+		TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" Background="{DynamicResource MatBackGroundBrush_T}" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" SharedSizeGroup="Icon"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut"/>
+                    <ColumnDefinition Width="13"/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter 
+					x:Name="Icon"
+					ContentSource="Icon" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Border 
+					x:Name="Check"  
+					Width="13" Height="13" 
+					Visibility="Collapsed"
+					Margin="6,3,6,3" 
+					BorderThickness="1">
+                    <Path 
+						x:Name="CheckMark"
+						Width="7" Height="7" 
+						Visibility="Hidden" 
+						SnapsToDevicePixels="False" 
+						Stroke="{DynamicResource MatForeGroundBrush}"
+						StrokeThickness="2"
+						Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+                </Border>
+                <ContentPresenter 
+					x:Name="HeaderHost"
+					Grid.Column="1"
+					ContentSource="Header"
+					RecognizesAccessKey="True" VerticalAlignment="Center" Margin="0,3"/>
+                <TextBlock x:Name="InputGestureText"
+					Grid.Column="2"
+					Text="{TemplateBinding InputGestureText}"
+					Margin="23,2,0,2"
+					DockPanel.Dock="Right" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="true">
+                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsCheckable" Value="true">
+                <Setter TargetName="Icon" Property="Visibility" Value="Hidden"/>
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatFocusBrush_T}"/>
+                <Setter Property="Foreground" Value="{DynamicResource MatSelectedForeGroundBrush}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{DynamicResource MatInactiveForeGroundBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!-- SubmenuHeader -->
+    <ControlTemplate 
+		x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}" 
+		TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" >
+            <Grid x:Name="grid" Background="{DynamicResource MatBackGroundBrush_T}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" SharedSizeGroup="Icon"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut"/>
+                    <ColumnDefinition Width="13"/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter 
+					x:Name="Icon"
+					VerticalAlignment="Center"
+					ContentSource="Icon" HorizontalAlignment="Center"/>
+                <ContentPresenter 
+					x:Name="HeaderHost"
+					Grid.Column="1"
+					ContentSource="Header"
+					RecognizesAccessKey="True" VerticalAlignment="Center"/>
+                <TextBlock x:Name="InputGestureText"
+					Grid.Column="2"
+					Text="{TemplateBinding InputGestureText}"
+					Margin="5,2,2,2"
+					DockPanel.Dock="Right"/>
+                <Path 
+					Grid.Column="3"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Data="M 0 0 L 0 7 L 4 3.5 Z" 
+					Fill="{DynamicResource MatForeGroundBrush}" />
+                <Popup 
+					x:Name="Popup"
+					Placement="Right" 
+					IsOpen="{TemplateBinding IsSubmenuOpen}"
+					AllowsTransparency="True" 
+					Focusable="False"
+					PopupAnimation="None" VerticalOffset="7">
+                    <Border 
+						x:Name="SubmenuBorder"
+						SnapsToDevicePixels="True" >
+                        <StackPanel  
+							IsItemsHost="True" 
+							KeyboardNavigation.DirectionalNavigation="Cycle" />
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Background" TargetName="grid" Value="{DynamicResource MatFocusBrush_T}"/>
+                <Setter Property="Foreground" Value="{DynamicResource MatSelectedForeGroundBrush}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{DynamicResource MatInactiveForeGroundBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+    <Style TargetType="{x:Type local:MatMenuItem}">
+        <Setter Property="Foreground" Value="{DynamicResource MatForeGroundBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Template"
+					Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}"/>
+                <Setter Property="Grid.IsSharedSizeScope" Value="true"/>
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template"
+					Value="{StaticResource {x:Static MenuItem.TopLevelItemTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="Template"
+					Value="{StaticResource {x:Static MenuItem.SubmenuHeaderTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuItem">
+                <Setter Property="Template"
+					Value="{StaticResource {x:Static MenuItem.SubmenuItemTemplateKey}}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

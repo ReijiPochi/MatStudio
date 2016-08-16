@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Windows.Markup;
+
 namespace MatGUI
 {
     public class PhantasmagoriaTabItem : TabItem
@@ -77,5 +79,22 @@ namespace MatGUI
             }
         }
 
+        public void RemoveFromParent()
+        {
+            PhantasmagoriaTabControl p = Parent as PhantasmagoriaTabControl;
+
+            if(p != null)
+            {
+                p.Items.Remove(this);
+            }
+        }
+
+        public PhantasmagoriaTabItem Clone()
+        {
+            string data = XamlWriter.Save(this);
+            PhantasmagoriaTabItem i = XamlReader.Parse(data) as PhantasmagoriaTabItem;
+
+            return i;
+        }
     }
 }
