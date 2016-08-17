@@ -45,7 +45,7 @@ namespace MatGUI
                 Height = 8.0;
             }
 
-            Background = new SolidColorBrush(Color.FromArgb(100, 2, 129, 255));
+            Background = new SolidColorBrush(Color.FromArgb(160, 2, 140, 255));
         }
 
         private void PhantasmagoriaWorkspaceFrame_Drop(object sender, DragEventArgs e)

@@ -5,19 +5,18 @@
                     xmlns:vm="clr-namespace:MatStudioROBOT2016.ViewModels.ControlPanels">
 
     <Style TargetType="{x:Type local:TerminalCP}">
-        <Setter Property="DataContext" Value="{StaticResource TerminalVM}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TerminalCP}">
-                    <Grid>
+                    <Grid MinHeight="100" MinWidth="200">
                         <Grid.DataContext>
                             <vm:TerminalVM/>
                         </Grid.DataContext>
 
                         <TextBlock Text="接続先" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <ComboBox Margin="55,6,6,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="23"
-                                 ItemsSource="{Binding PortsList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPort}"/>
-                        
+                        <ComboBox Margin="49,6,102,0" VerticalAlignment="Top" Height="23"
+                                 ItemsSource="{Binding PortsList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPort}" Width="Auto"/>
+
                         <matgui:MatTextBox Margin="6,33,6,30" FontFamily="Consolas" FontSize="14" TextOptions.TextFormattingMode="Display" AcceptsReturn="True" AutoWordSelection="True"
                                            HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top"
                                            Background="{DynamicResource MatEditableAreaBrush}" Foreground="{DynamicResource MatForeGroundBrush}"

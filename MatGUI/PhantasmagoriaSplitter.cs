@@ -36,7 +36,7 @@ namespace MatGUI
             PhantasmagoriaTabItem source = e.Data.GetData(typeof(PhantasmagoriaTabItem)) as PhantasmagoriaTabItem;
             if (source == null) return;
 
-            Background = new SolidColorBrush(Color.FromArgb(100, 2, 129, 255));
+            Background = new SolidColorBrush(Color.FromArgb(160, 2, 140, 255));
         }
 
         private void PhantasmagoriaSplitter_Drop(object sender, DragEventArgs e)
