@@ -19,3 +19,14 @@ F:\GitHub\MatStudio\MatFramework\obj\Debug\MainWindow.baml
 F:\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.g.resources
 F:\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.dll
 F:\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\bin\Debug\MatFramework.dll.config
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\bin\Debug\MatFramework.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\bin\Debug\MatFramework.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.csprojResolveAssemblyReference.cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MainWindow.g.cs
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework_MarkupCompile.cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework_MarkupCompile.lref
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MainWindow.baml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.g.resources
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.pdb

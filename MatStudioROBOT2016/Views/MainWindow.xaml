@@ -43,7 +43,7 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" Background="{x:Null}" HorizontalAlignment="Left">
-            <matgui:MatMenuItem Header="Panels">
+            <matgui:MatMenuItem Header="パネル">
                 <matgui:MatMenuItem.DataContext>
                     <vm:ControlPanelVM/>
                 </matgui:MatMenuItem.DataContext>

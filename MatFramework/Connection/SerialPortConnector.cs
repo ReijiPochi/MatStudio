@@ -12,7 +12,7 @@ namespace MatFramework.Connection
     /// <summary>
     /// シリアルポートでの通信を別スレッドで行います。
     /// </summary>
-    class SerialPortConnector : MatObject
+    public class SerialPortConnector : MatObject
     {
         private SerialPort myPort = null;
         private Thread receiveThread = null;
@@ -22,6 +22,7 @@ namespace MatFramework.Connection
         public Parity Parity { get; private set; }
         public int DataBits { get; private set; }
         public StopBits StopBits { get; private set; }
+        public bool IsOpen { get; private set; }
 
         public delegate void DataReceivedHandler(byte[] data);
         public event DataReceivedHandler DataReceived;
@@ -33,6 +34,17 @@ namespace MatFramework.Connection
             Parity = parity;
             DataBits = dataBits;
             StopBits = stopBits;
+            IsOpen = false;
+        }
+
+        ~SerialPortConnector()
+        {
+            Close();
+        }
+
+        public static string[] GetPortsList()
+        {
+            return SerialPort.GetPortNames();
         }
 
         public void Start()
@@ -42,14 +54,15 @@ namespace MatFramework.Connection
             try
             {
                 myPort.Open();
+                IsOpen = true;
+
+                receiveThread = new Thread(ReceiveWork);
+                receiveThread.Start(this);
             }
             catch(Exception ex)
             {
                 MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " を開けませんでした", ex);
             }
-            
-            receiveThread = new Thread(ReceiveWork);
-            receiveThread.Start(this);
         }
 
         public static void ReceiveWork(object target)
@@ -100,8 +113,6 @@ namespace MatFramework.Connection
                     MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " でのデータ受信に失敗しました", ex);
                 }
             } while (myPort.IsOpen);
-
-            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + PortName + " がクローズしました", "null"));
         }
 
         public void Close()
@@ -109,6 +120,10 @@ namespace MatFramework.Connection
             if (receiveThread != null && myPort != null)
             {
                 myPort.Close();
+
+                IsOpen = false;
+                MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + PortName + " が閉じました", "null"));
+
                 receiveThread.Join();
             }
         }
