@@ -11,7 +11,6 @@ C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.pd
 F:\GitHub\MatStudio\MatFramework\bin\Debug\MatFramework.dll.config
 F:\GitHub\MatStudio\MatFramework\bin\Debug\MatFramework.dll
 F:\GitHub\MatStudio\MatFramework\bin\Debug\MatFramework.pdb
-F:\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.csprojResolveAssemblyReference.cache
 F:\GitHub\MatStudio\MatFramework\obj\Debug\MainWindow.g.cs
 F:\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework_MarkupCompile.cache
 F:\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework_MarkupCompile.lref
@@ -30,3 +29,4 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MainWindow
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.g.resources
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.dll
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.pdb
+F:\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.csprojResolveAssemblyReference.cache

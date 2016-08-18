@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MatStudioROBOT2016.Views.ControlPanels">
+
+    <Style x:Key="ListViewItemStyleForLog" TargetType="ListViewItem">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Foreground" Value="{DynamicResource MatForeGroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource MatBackGroundBrush}"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="Border" Padding="2" SnapsToDevicePixels="true"
+                            Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <!--<i:Interaction.Behaviors>
+                            <local:LayerBehavior/>
+                        </i:Interaction.Behaviors>-->
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource MatBorderBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="LogConditionCell">
+        <Border/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MessageCell">
+        <TextBlock Text="{Binding Message}" ToolTip="{Binding Message}" TextTrimming="CharacterEllipsis"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DescriptionCell">
+        <TextBlock Text="{Binding Description}" ToolTip="{Binding Description}" TextTrimming="CharacterEllipsis"/>
+    </DataTemplate>
+
+</ResourceDictionary>

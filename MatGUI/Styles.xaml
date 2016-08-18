@@ -120,7 +120,7 @@
                                 </Grid.ColumnDefinitions>
                                 <RepeatButton Command="{x:Static ScrollBar.LineLeftCommand}" Style="{StaticResource ScrollBarButton}">
                                     <RepeatButton.Content>
-                                        <Path Data="M-3,0 L3,-3 3,3 z" Fill="{DynamicResource IBInactiveForeGroundBrush}" Height="8" Stretch="Fill" StrokeThickness="0" Width="8"/>
+                                        <Path Data="M-3,0 L3,-3 3,3 z" Fill="{DynamicResource MatInactiveForeGroundBrush}" Height="8" Stretch="Fill" StrokeThickness="0" Width="8"/>
                                     </RepeatButton.Content>
                                 </RepeatButton>
                                 <Track x:Name="PART_Track" Grid.Column="1" IsEnabled="{TemplateBinding IsMouseOver}">
@@ -203,7 +203,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Border Padding="{TemplateBinding Padding}" Background="Transparent">
-                        <Rectangle HorizontalAlignment="Center" Width="1" Fill="{DynamicResource IBBorderBrush}" />
+                        <Rectangle HorizontalAlignment="Center" Width="1" Fill="{DynamicResource MatBorderBrush}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

@@ -65,7 +65,7 @@ namespace MatFramework
         {
             LogList.Add(new LogData(LogCondition.Error,
                                  "例外がスローされました",
-                                 description + " -> 例外：" + ex.GetType().Name + " 場所：" + ex.Source + " " + ex.Message));
+                                 description + "  ...\n例外：" + ex.GetType().Name + "\nスタックトレース：\n" + ex.StackTrace + "\nメッセージ：" + ex.Message));
         }
     }
 }
