@@ -7,5 +7,9 @@
     <matgui:PhantasmagoriaTabItem x:Key="Terminal" Header="ターミナル">
         <local:TerminalCP/>
     </matgui:PhantasmagoriaTabItem>
-    
+
+    <matgui:PhantasmagoriaTabItem x:Key="ApplicationLog" Header="アプリケーションログ">
+        <local:ApplicationLogCP/>
+    </matgui:PhantasmagoriaTabItem>
+
 </ResourceDictionary>

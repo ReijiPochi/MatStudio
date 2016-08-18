@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MatFramework
 {
@@ -11,26 +14,26 @@ namespace MatFramework
     /// </summary>
     public class LogData : MatObject
     {
-        public LogData(string message, string discription)
+        public LogData(string message, string description)
         {
             Time = DateTime.Now;
             Condition = LogCondition.None;
             Message = message;
-            Discription = discription;
+            Description = description;
         }
 
-        public LogData(LogCondition condition, string message, string discription)
+        public LogData(LogCondition condition, string message, string description)
         {
             Time = DateTime.Now;
             Condition = condition;
             Message = message;
-            Discription = discription;
+            Description = description;
         }
 
         public DateTime Time { get; protected set; }
         public LogCondition Condition { get; protected set; }
         public string Message { get; protected set; }
-        public string Discription { get; protected set; }
+        public string Description { get; protected set; }
     }
 
     /// <summary>
@@ -45,23 +48,24 @@ namespace MatFramework
         Error
     }
 
+
     /// <summary>
     /// ログを記録します。
     /// </summary>
     public class Logger : MatObject
     {
-        protected List<LogData> _Log = new List<LogData>();
+        public ObservableCollection<LogData> LogList { get; private set; } = new ObservableCollection<LogData>();
 
         public void Log(LogData log)
         {
-            _Log.Add(log);
+            LogList.Add(log);
         }
 
-        public void LogException(string discription, Exception ex)
+        public void LogException(string description, Exception ex)
         {
-            _Log.Add(new LogData(LogCondition.Error,
+            LogList.Add(new LogData(LogCondition.Error,
                                  "例外がスローされました",
-                                 discription + " -> 例外：" + ex.GetType().Name + " 場所：" + ex.Source + " " + ex.Message));
+                                 description + " -> 例外：" + ex.GetType().Name + " 場所：" + ex.Source + " " + ex.Message));
         }
     }
 }

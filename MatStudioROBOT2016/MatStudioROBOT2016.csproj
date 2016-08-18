@@ -72,9 +72,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Design\ImageResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ControlPanels\ApplicationLog_Design.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ControlPanels\ControlPanelResources.xaml">
       <SubType>Designer</SubType>
@@ -94,9 +102,11 @@
     </Compile>
     <Compile Include="Models\GUILayoutM.cs" />
     <Compile Include="Models\SerialPortsM.cs" />
+    <Compile Include="ViewModels\ControlPanels\ApplicationLogVM.cs" />
     <Compile Include="ViewModels\ControlPanels\TerminalVM.cs" />
     <Compile Include="ViewModels\ControlPanelVM.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\ControlPanels\ApplicationLogCP.cs" />
     <Compile Include="Views\ControlPanels\TerminalCP.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -128,6 +138,8 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Design\pause.png" />
+    <Resource Include="Design\play.png" />
     <Content Include="InfrastructureAssemblies\Design\Livet.Design.dll" />
     <Content Include="InfrastructureAssemblies\Livet.dll" />
     <Content Include="InfrastructureAssemblies\Livet.XML" />

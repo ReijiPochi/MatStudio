@@ -55,6 +55,7 @@ namespace MatFramework.Connection
             {
                 myPort.Open();
                 IsOpen = true;
+                MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + myPort.PortName + " を開きました", "null"));
 
                 receiveThread = new Thread(ReceiveWork);
                 receiveThread.Start(this);
@@ -68,7 +69,6 @@ namespace MatFramework.Connection
         public static void ReceiveWork(object target)
         {
             SerialPortConnector my = target as SerialPortConnector;
-            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + my.PortName + " を開きました", "null"));
             my.ReceiveData();
         }
 
@@ -110,7 +110,10 @@ namespace MatFramework.Connection
                 }
                 catch (Exception ex)
                 {
-                    MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " でのデータ受信に失敗しました", ex);
+                    this.Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " でのデータ受信に失敗しました", ex);
+                    }));
                 }
             } while (myPort.IsOpen);
         }
@@ -122,7 +125,10 @@ namespace MatFramework.Connection
                 myPort.Close();
 
                 IsOpen = false;
-                MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + PortName + " が閉じました", "null"));
+                this.Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + PortName + " が閉じました", "null"));
+                }));
 
                 receiveThread.Join();
             }

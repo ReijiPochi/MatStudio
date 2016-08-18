@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MatGUI"
         mc:Ignorable="d"
+        SnapsToDevicePixels="True"
         Title="MatWindow" Height="300" Width="300" Background="{DynamicResource MatBackGroundBrush}" Closing="Window_Closing">
     
     <Grid>

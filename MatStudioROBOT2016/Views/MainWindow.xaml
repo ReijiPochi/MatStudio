@@ -48,6 +48,7 @@
                     <vm:ControlPanelVM/>
                 </matgui:MatMenuItem.DataContext>
                 <matgui:MatMenuItem Header="Terminal" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource Terminal}"/>
+                <matgui:MatMenuItem Header="ApplicationLog" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource ApplicationLog}"/>
             </matgui:MatMenuItem>
         </Menu>
 

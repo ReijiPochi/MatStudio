@@ -106,8 +106,6 @@ namespace MatStudioROBOT2016.Models
 
         private void CurrentPort_DataReceived(byte[] data)
         {
-            RecievedData = null;
-
             foreach(char d in data)
             {
                 RecievedData += d;

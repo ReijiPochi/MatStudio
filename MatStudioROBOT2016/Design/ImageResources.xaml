@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MatStudioROBOT2016.Design">
+
+    <BitmapImage x:Key="PauseIcon" UriSource="pause.png"/>
+    <BitmapImage x:Key="PlayIcon" UriSource="play.png"/>
+
+</ResourceDictionary>

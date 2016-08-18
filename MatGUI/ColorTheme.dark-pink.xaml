@@ -6,6 +6,7 @@
     <SolidColorBrush x:Key="MatBackGroundBrush" Color="#FF383839"/>
     <SolidColorBrush x:Key="MatBackGroundBrush_T" Color="#D80A0A0A"/>
     <SolidColorBrush x:Key="MatEditableAreaBrush" Color="#FF1F1F1F"/>
+    <SolidColorBrush x:Key="MatWorkAreaBrush" Color="#FF252525"/>
     <SolidColorBrush x:Key="MatForeGroundBrush" Color="#FFEEEEEE"/>
     <SolidColorBrush x:Key="MatInactiveForeGroundBrush" Color="#FF7E7E7E"/>
     <SolidColorBrush x:Key="MatSelectedForeGroundBrush" Color="#FFEEEEEE"/>

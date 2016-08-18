@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:MatStudioROBOT2016.Views.ControlPanels"
                     xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI"
-                    xmlns:vm="clr-namespace:MatStudioROBOT2016.ViewModels.ControlPanels">
+                    xmlns:vm="clr-namespace:MatStudioROBOT2016.ViewModels.ControlPanels" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
 
     <Style TargetType="{x:Type local:TerminalCP}">
         <Setter Property="Template">
@@ -15,12 +15,26 @@
 
                         <TextBlock Text="接続先" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <ComboBox Margin="49,6,102,0" VerticalAlignment="Top" Height="23"
-                                 ItemsSource="{Binding PortsList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPort}" Width="Auto"/>
+							ItemsSource="{Binding PortsList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPort}" Width="Auto"/>
+                        <StackPanel VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="97" Margin="0" Orientation="Horizontal">
+                            <matgui:MatButton Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                              Command="{Binding PlayCommand, Mode=OneWay}">
+                                <matgui:MatButton.Content>
+                                    <Image Source="{DynamicResource PlayIcon}" Width="25" Height="25"/>
+                                </matgui:MatButton.Content>
+                            </matgui:MatButton>
+                            <matgui:MatButton Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                              Command="{Binding PauseCommand, Mode=OneWay}">
+                                <matgui:MatButton.Content>
+                                    <Image Source="{DynamicResource PauseIcon}" Width="25" Height="25"/>
+                                </matgui:MatButton.Content>
+                            </matgui:MatButton>
+                        </StackPanel>
 
                         <matgui:MatTextBox Margin="6,33,6,30" FontFamily="Consolas" FontSize="14" TextOptions.TextFormattingMode="Display" AcceptsReturn="True" AutoWordSelection="True"
-                                           HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top"
-                                           Background="{DynamicResource MatEditableAreaBrush}" Foreground="{DynamicResource MatForeGroundBrush}"
-                                           Text="{Binding RecievedText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+							HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top"
+							Background="{DynamicResource MatEditableAreaBrush}" Foreground="{DynamicResource MatForeGroundBrush}"
+							Text="{Binding RecievedText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowNewAllways="True"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

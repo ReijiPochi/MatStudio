@@ -10,6 +10,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MatGUI;component/ResourceDictionaries.xaml"/>
                 <ResourceDictionary Source="Views/ControlPanels/ControlPanelResources.xaml"/>
+                <ResourceDictionary Source="Design/ImageResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         

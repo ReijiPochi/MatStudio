@@ -22,6 +22,8 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             myPort = new SerialPortsM();
             myPort.PropertyChanged += MyPort_PropertyChanged; ;
             myPort.RefreshPortsList();
+
+            IsPause = true;
         }
 
         private SerialPortsM myPort;
@@ -35,7 +37,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
                     break;
 
                 case "RecievedData":
-                    RecievedText += myPort.RecievedData;
+                    RecievedText = myPort.RecievedData;
                     break;
 
                 default:
@@ -85,7 +87,9 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
                 if (_SelectedPort != null)
                 {
                     // 新しいCOMポートに接続
+                    IsPause = false;
                     RecievedText = null;
+                    IsPause = true;
                     myPort.Connect(_SelectedPort);
                 }
 
@@ -102,12 +106,88 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             get
             { return _RecievedText; }
             set
-            { 
+            {
+                if (IsPause)
+                    return;
+
                 if (_RecievedText == value)
                     return;
                 _RecievedText = value;
                 RaisePropertyChanged();
             }
+        }
+        #endregion
+
+        #region IsPause変更通知プロパティ
+        private bool _IsPause;
+
+        public bool IsPause
+        {
+            get
+            { return _IsPause; }
+            set
+            { 
+                if (_IsPause == value)
+                    return;
+                _IsPause = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region PlayCommand
+        private ViewModelCommand _PlayCommand;
+
+        public ViewModelCommand PlayCommand
+        {
+            get
+            {
+                if (_PlayCommand == null)
+                {
+                    _PlayCommand = new ViewModelCommand(Play, CanPlay);
+                }
+                return _PlayCommand;
+            }
+        }
+
+        public bool CanPlay()
+        {
+            return IsPause;
+        }
+
+        public void Play()
+        {
+            IsPause = false;
+            PlayCommand.RaiseCanExecuteChanged();
+            PauseCommand.RaiseCanExecuteChanged();
+        }
+        #endregion
+
+        #region PauseCommand
+        private ViewModelCommand _PauseCommand;
+
+        public ViewModelCommand PauseCommand
+        {
+            get
+            {
+                if (_PauseCommand == null)
+                {
+                    _PauseCommand = new ViewModelCommand(Pause, CanPause);
+                }
+                return _PauseCommand;
+            }
+        }
+
+        public bool CanPause()
+        {
+            return !IsPause;
+        }
+
+        public void Pause()
+        {
+            IsPause = true;
+            PlayCommand.RaiseCanExecuteChanged();
+            PauseCommand.RaiseCanExecuteChanged();
         }
         #endregion
     }
