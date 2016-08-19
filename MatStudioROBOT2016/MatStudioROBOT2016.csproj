@@ -109,7 +109,7 @@
     <Compile Include="ViewModels\ControlPanels\ApplicationLogVM.cs" />
     <Compile Include="ViewModels\ControlPanels\TerminalVM.cs" />
     <Compile Include="ViewModels\ControlPanelVM.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="Views\ControlPanels\ApplicationLogCP.cs" />
     <Compile Include="Views\ControlPanels\TerminalCP.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

@@ -22,10 +22,12 @@
                                   ItemsSource="{Binding Log, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource MatListViewStyle}" ItemContainerStyle="{DynamicResource ListViewItemStyleForLog}">
                             <ListView.View>
                                 <GridView ColumnHeaderContainerStyle="{DynamicResource MatGridViewColumnHeaderStyle}">
-                                    <GridViewColumn Header="" Width="30" CellTemplate="{DynamicResource LogConditionCell}"/>
+                                    <GridViewColumn Header="" Width="40" CellTemplate="{DynamicResource LogConditionCell}"/>
                                     <GridViewColumn Header="メッセージ" Width="250" CellTemplate="{DynamicResource MessageCell}"/>
                                     <GridViewColumn Header="説明" Width="500" CellTemplate="{DynamicResource DescriptionCell}"/>
                                     <GridViewColumn Header="時間" Width="200" DisplayMemberBinding="{Binding Time}"/>
+                                    <GridViewColumn Header="ソース" Width="200" DisplayMemberBinding="{Binding Source}"/>
+                                    <GridViewColumn Header="アセンブリ" Width="150" DisplayMemberBinding="{Binding Assembly}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>

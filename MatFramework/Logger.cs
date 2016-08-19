@@ -14,26 +14,32 @@ namespace MatFramework
     /// </summary>
     public class LogData : MatObject
     {
-        public LogData(string message, string description)
-        {
-            Time = DateTime.Now;
-            Condition = LogCondition.None;
-            Message = message;
-            Description = description;
-        }
-
-        public LogData(LogCondition condition, string message, string description)
+        public LogData(LogCondition condition, string message, string description, object source)
         {
             Time = DateTime.Now;
             Condition = condition;
             Message = message;
             Description = description;
+            Assembly = source.GetType().Assembly.GetName().Name;
+            Source = source.GetType().Name;
+        }
+
+        public LogData(LogCondition condition, string message, string description, string source, string assembly)
+        {
+            Time = DateTime.Now;
+            Condition = condition;
+            Message = message;
+            Description = description;
+            Assembly = assembly;
+            Source = source;
         }
 
         public DateTime Time { get; protected set; }
         public LogCondition Condition { get; protected set; }
         public string Message { get; protected set; }
         public string Description { get; protected set; }
+        public string Assembly { get; protected set; }
+        public string Source { get; protected set; }
     }
 
     /// <summary>
@@ -54,18 +60,24 @@ namespace MatFramework
     /// </summary>
     public class Logger : MatObject
     {
+        public Logger()
+        {
+            Log(new LogData(LogCondition.Action, "ロギングを開始しました", "", this));
+        }
+
         public ObservableCollection<LogData> LogList { get; private set; } = new ObservableCollection<LogData>();
 
         public void Log(LogData log)
         {
-            LogList.Add(log);
+            LogList.Insert(0, log);
         }
 
-        public void LogException(string description, Exception ex)
+        public void LogException(string description, Exception ex, object source)
         {
-            LogList.Add(new LogData(LogCondition.Error,
+            LogList.Insert(0, new LogData(LogCondition.Error,
                                  "例外がスローされました",
-                                 description + "  ...\n例外：" + ex.GetType().Name + "\nスタックトレース：\n" + ex.StackTrace + "\nメッセージ：" + ex.Message));
+                                 description + "  ...\n例外：" + ex.GetType().Name + "\nスタックトレース：\n" + ex.StackTrace + "\nメッセージ：" + ex.Message,
+                                 source));
         }
     }
 }

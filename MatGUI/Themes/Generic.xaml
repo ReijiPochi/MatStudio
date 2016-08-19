@@ -460,4 +460,33 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="{x:Type local:MatWorkspace}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MatWorkspace}">
+                    <Grid x:Name="contentsParent">
+
+                        <ContentPresenter/>
+
+                        <local:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Left" Width="3" Panel.ZIndex="114514"/>
+                        <local:PhantasmagoriaWorkspaceFrame Width="3" Panel.ZIndex="114514" HorizontalAlignment="Right"/>
+                        <local:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Top" Height="3"/>
+                        <local:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Bottom" Height="3"/>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MatControlPanelBase}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MatControlPanelBase}">
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

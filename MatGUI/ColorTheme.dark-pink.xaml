@@ -5,6 +5,7 @@
 
     <SolidColorBrush x:Key="MatBackGroundBrush" Color="#FF383839"/>
     <SolidColorBrush x:Key="MatBackGroundBrush_T" Color="#D80A0A0A"/>
+    <SolidColorBrush x:Key="MatItemsBackGroundBrush" Color="#FF2E2E2E"/>
     <SolidColorBrush x:Key="MatEditableAreaBrush" Color="#FF1F1F1F"/>
     <SolidColorBrush x:Key="MatWorkAreaBrush" Color="#FF252525"/>
     <SolidColorBrush x:Key="MatForeGroundBrush" Color="#FFEEEEEE"/>
@@ -12,7 +13,7 @@
     <SolidColorBrush x:Key="MatSelectedForeGroundBrush" Color="#FFEEEEEE"/>
     <SolidColorBrush x:Key="MatEditableForeGroundBruah" Color="#FFEEEEAE"/>
     <SolidColorBrush x:Key="MatBorderBrush" Color="#FF555555"/>
-    <SolidColorBrush x:Key="MatBrightBorderBrush" Color="#FF999999"/>
+    <SolidColorBrush x:Key="MatBrightBorderBrush" Color="#FFCF96B7"/>
     <SolidColorBrush x:Key="MatThemeColorBrush" Color="#FFE330E7"/>
     <SolidColorBrush x:Key="MatFocusBrush_T" Color="#CC0090F3"/>
     <SolidColorBrush x:Key="MatFocusBorderBrush" Color="#FF830091"/>

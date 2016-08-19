@@ -55,14 +55,14 @@ namespace MatFramework.Connection
             {
                 myPort.Open();
                 IsOpen = true;
-                MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + myPort.PortName + " を開きました", "null"));
+                MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + myPort.PortName + " を開きました", "", this));
 
                 receiveThread = new Thread(ReceiveWork);
                 receiveThread.Start(this);
             }
             catch(Exception ex)
             {
-                MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " を開けませんでした", ex);
+                MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " を開けませんでした", ex, this);
             }
         }
 
@@ -112,7 +112,7 @@ namespace MatFramework.Connection
                 {
                     this.Dispatcher.BeginInvoke((Action)(() =>
                     {
-                        MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " でのデータ受信に失敗しました", ex);
+                        MatApp.ApplicationLog.LogException("シリアルポート" + PortName + " でのデータ受信に失敗しました", ex, this);
                     }));
                 }
             } while (myPort.IsOpen);
@@ -127,7 +127,7 @@ namespace MatFramework.Connection
                 IsOpen = false;
                 this.Dispatcher.BeginInvoke((Action)(() =>
                 {
-                    MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + PortName + " が閉じました", "null"));
+                    MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "シリアルポート" + PortName + " を閉じました", "", this));
                 }));
 
                 receiveThread.Join();

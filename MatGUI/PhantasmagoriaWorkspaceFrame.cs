@@ -74,11 +74,13 @@ namespace MatGUI
             }
 
             Grid myParent = Parent as Grid;
-            if (myParent == null)
-            {
-                sourcesParent.Items.Add(source);
-                return;
-            }
+            MatWorkspace matW = myParent.TemplatedParent as MatWorkspace;
+
+            //if (myParent == null)
+            //{
+            //    sourcesParent.Items.Add(source);
+            //    return;
+            //}
 
             Grid targetGrid, g1, g2;
 
@@ -91,7 +93,7 @@ namespace MatGUI
 
             if (HorizontalAlignment == HorizontalAlignment.Left)
             {
-                targetGrid = PhantasmagoriaSplitter.SearchGridInGridsChildren(myParent, 0, 1);
+                targetGrid = PhantasmagoriaSplitter.SearchGridInGridsChildren((Grid)matW.Content, 0, 1);
                 if (targetGrid != null)
                 {
                     PhantasmagoriaSplitter.GridCopyToGrid(targetGrid, g1);
@@ -100,7 +102,7 @@ namespace MatGUI
             }
             else if (HorizontalAlignment == HorizontalAlignment.Right)
             {
-                targetGrid = PhantasmagoriaSplitter.SearchGridInGridsChildren(myParent, 0, 0);
+                targetGrid = PhantasmagoriaSplitter.SearchGridInGridsChildren((Grid)matW.Content, 0, 0);
                 if (targetGrid != null)
                 {
                     PhantasmagoriaSplitter.GridCopyToGrid(targetGrid, g1);
@@ -109,7 +111,7 @@ namespace MatGUI
             }
             else if (VerticalAlignment == VerticalAlignment.Top)
             {
-                targetGrid = PhantasmagoriaSplitter.SearchGridInGridsChildren(myParent, 1, 0);
+                targetGrid = PhantasmagoriaSplitter.SearchGridInGridsChildren((Grid)matW.Content, 1, 0);
                 if (targetGrid != null)
                 {
                     PhantasmagoriaSplitter.GridCopyToGrid(targetGrid, g1);
@@ -118,7 +120,7 @@ namespace MatGUI
             }
             else if (VerticalAlignment == VerticalAlignment.Bottom)
             {
-                targetGrid = PhantasmagoriaSplitter.SearchGridInGridsChildren(myParent, 0, 0);
+                targetGrid = PhantasmagoriaSplitter.SearchGridInGridsChildren((Grid)matW.Content, 0, 0);
                 if (targetGrid != null)
                 {
                     PhantasmagoriaSplitter.GridCopyToGrid(targetGrid, g1);

@@ -234,7 +234,7 @@
                 <ControlTemplate TargetType="ListView">
                     <Border Name="Border" BorderThickness="0">
                         <ScrollViewer Style="{DynamicResource GridViewScrollViewerStyle}">
-                            <ItemsPresenter />
+                            <ItemsPresenter/>
                         </ScrollViewer>
                     </Border>
                 </ControlTemplate>

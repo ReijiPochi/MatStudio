@@ -17,6 +17,13 @@ using System.Windows.Markup;
 
 namespace MatGUI
 {
+    public class MatPanelActivatedEventArgs : RoutedEventArgs
+    {
+        public MatPanelActivatedEventArgs(RoutedEvent routedEvent) : base(routedEvent)
+        {
+        }
+    }
+
     public class PhantasmagoriaTabItem : TabItem
     {
         static PhantasmagoriaTabItem()
@@ -26,7 +33,10 @@ namespace MatGUI
 
         public PhantasmagoriaTabItem()
         {
+            AllPhantasmagoriaTabItem.Add(this);
         }
+
+        public static List<PhantasmagoriaTabItem> AllPhantasmagoriaTabItem = new List<PhantasmagoriaTabItem>();
 
         public override void OnApplyTemplate()
         {
@@ -44,6 +54,16 @@ namespace MatGUI
         }
         public static readonly DependencyProperty IsActivePanelProperty =
             DependencyProperty.Register("IsActivePanel", typeof(bool), typeof(PhantasmagoriaTabItem), new PropertyMetadata(false));
+
+
+        public delegate void MatPanelActivatedEventHandler(object sender, MatPanelActivatedEventArgs e);
+        public static RoutedEvent MatPanelActivatedEvent = EventManager.RegisterRoutedEvent(
+            "PanelActivated", RoutingStrategy.Bubble, typeof(MatPanelActivatedEventHandler), typeof(PhantasmagoriaTabItem));
+        public event MatPanelActivatedEventHandler MatPanelActivated
+        {
+            add { AddHandler(MatPanelActivatedEvent, value); }
+            remove { RemoveHandler(MatPanelActivatedEvent, value); }
+        }
 
         /// <summary>
         /// ドラッグ、ドロップ用のマスク
@@ -95,6 +115,32 @@ namespace MatGUI
             PhantasmagoriaTabItem i = XamlReader.Parse(data) as PhantasmagoriaTabItem;
 
             return i;
+        }
+
+        public virtual void PanelActivate()
+        {
+            foreach (PhantasmagoriaTabItem i in AllPhantasmagoriaTabItem)
+            {
+                i.IsActivePanel = false;
+            }
+
+            Window owner = Window.GetWindow(this);
+            if (owner != null && owner.IsActive)
+            {
+                IsActivePanel = true;
+                FrameworkElement child = Content as FrameworkElement;
+                if (child != null)
+                {
+                    child.Focus();
+
+                    if (child as MatControlPanelBase != null)
+                    {
+                        ((MatControlPanelBase)child).IsActivePanel = true;
+                    }
+                }
+            }
+
+            RaiseEvent(new MatPanelActivatedEventArgs(MatPanelActivatedEvent));
         }
     }
 }

@@ -6,14 +6,15 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:MatStudioROBOT2016.Views"
         xmlns:vm="clr-namespace:MatStudioROBOT2016.ViewModels"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="600" Width="1000"
         UseLayoutRounding="True"
         Background="{DynamicResource MatBackGroundBrush}"
         
-        xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI">
+        xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI"
+        Activated="Window_Activated" Deactivated="Window_Deactivated" Closing="Window_Closing" WindowState="Maximized">
     
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowVM/>
     </Window.DataContext>
     
     <i:Interaction.Triggers>
@@ -47,33 +48,26 @@
                 <matgui:MatMenuItem.DataContext>
                     <vm:ControlPanelVM/>
                 </matgui:MatMenuItem.DataContext>
-                <matgui:MatMenuItem Header="Terminal" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource Terminal}"/>
-                <matgui:MatMenuItem Header="ApplicationLog" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource ApplicationLog}"/>
+                <matgui:MatMenuItem Header="ターミナル" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource Terminal}"/>
+                <matgui:MatMenuItem Header="アプリケーションログ" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource ApplicationLog}"/>
+            </matgui:MatMenuItem>
+            
+            <matgui:MatMenuItem Header="ワークスペース">
+                <matgui:MatMenuItem Header="読み込み" Click="LoadLayout_Click"/>
+                <matgui:MatMenuItem Header="名前をつけて保存" Click="SaveLayoutAs_Click" />
+                <matgui:MatMenuItem Header="初期設定として保存" Click="SaveLayoutToInitial"/>
             </matgui:MatMenuItem>
         </Menu>
 
-        <Grid Grid.Row="1">
-            <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Left" Width="3" Panel.ZIndex="114514"/>
-            <matgui:PhantasmagoriaWorkspaceFrame Width="3" Panel.ZIndex="114514" HorizontalAlignment="Right"/>
-            <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Top" Height="3"/>
-            <matgui:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Bottom" Height="3"/>
+        <matgui:MatWorkspace Grid.Row="1">
             <Grid>
-                <matgui:PhantasmagoriaTabControl>
-                    <matgui:PhantasmagoriaTabItem Header="123">
-                        <matgui:MatButton Margin="160,84,120,107" Content="TEST1"/>
-                    </matgui:PhantasmagoriaTabItem>
-                    <matgui:PhantasmagoriaTabItem Header="4">
-                        <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
-                    </matgui:PhantasmagoriaTabItem>
-                    <matgui:PhantasmagoriaTabItem Header="56">
-                        <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
-                    </matgui:PhantasmagoriaTabItem>
-                    <matgui:PhantasmagoriaTabItem Header="78910">
-                        <matgui:MatButton Margin="50,84,0,107" Content="TEST2"/>
-                    </matgui:PhantasmagoriaTabItem>
-                </matgui:PhantasmagoriaTabControl>
+                <Grid>
+                    <matgui:PhantasmagoriaTabControl>
+
+                    </matgui:PhantasmagoriaTabControl>
+                </Grid>
             </Grid>
-        </Grid>
-        
+        </matgui:MatWorkspace>
+
     </Grid>
 </Window>

@@ -6,17 +6,15 @@
         xmlns:local="clr-namespace:MatGUI"
         mc:Ignorable="d"
         SnapsToDevicePixels="True"
-        Title="MatWindow" Height="300" Width="300" Background="{DynamicResource MatBackGroundBrush}" Closing="Window_Closing">
-    
-    <Grid>
-        <local:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Left" Width="3" Panel.ZIndex="114514"/>
-        <local:PhantasmagoriaWorkspaceFrame Width="3" Panel.ZIndex="114514" HorizontalAlignment="Right"/>
-        <local:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Top" Height="3"/>
-        <local:PhantasmagoriaWorkspaceFrame HorizontalAlignment="Stretch" Panel.ZIndex="114514" VerticalAlignment="Bottom" Height="3"/>
-        <Grid>
-            <local:PhantasmagoriaTabControl x:Name="MainTabControl">
+        Title="MatWindow" Height="300" Width="300" Background="{DynamicResource MatBackGroundBrush}" Closing="Window_Closing" WindowStyle="ToolWindow">
 
-            </local:PhantasmagoriaTabControl>
+    <local:MatWorkspace>
+        <Grid>
+            <Grid>
+                <local:PhantasmagoriaTabControl x:Name="MainTabControl">
+
+                </local:PhantasmagoriaTabControl>
+            </Grid>
         </Grid>
-    </Grid>
+    </local:MatWorkspace>
 </Window>

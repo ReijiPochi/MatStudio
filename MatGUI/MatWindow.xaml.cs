@@ -38,17 +38,17 @@ namespace MatGUI
 
         public static void AllWindowTopmostOn()
         {
-            foreach (MatWindow ibw in AllMatWindows)
+            foreach (MatWindow mw in AllMatWindows)
             {
-                ibw.Topmost = true;
+                mw.Topmost = true;
             }
         }
 
         public static void AllWindowTopmostOff()
         {
-            foreach (MatWindow ibw in AllMatWindows)
+            foreach (MatWindow mw in AllMatWindows)
             {
-                ibw.Topmost = false;
+                mw.Topmost = false;
             }
         }
 

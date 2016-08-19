@@ -12,10 +12,11 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using MatStudioROBOT2016.Models;
+using MatFramework;
 
 namespace MatStudioROBOT2016.ViewModels
 {
-    public class MainWindowViewModel : ViewModel
+    public class MainWindowVM : ViewModel
     {
         /* コマンド、プロパティの定義にはそれぞれ 
          * 
@@ -61,6 +62,7 @@ namespace MatStudioROBOT2016.ViewModels
 
         public void Initialize()
         {
+            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "メインウインドウを表示しました", "", this));
         }
     }
 }

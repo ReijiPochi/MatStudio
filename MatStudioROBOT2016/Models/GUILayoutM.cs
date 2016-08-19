@@ -6,6 +6,7 @@ using System.Text;
 using Livet;
 
 using MatGUI;
+using MatFramework;
 using System.Windows;
 
 namespace MatStudioROBOT2016.Models
@@ -21,6 +22,8 @@ namespace MatStudioROBOT2016.Models
             //ibw.InputBindings.AddRange(Application.Current.MainWindow.InputBindings);
             w.SetTabItem(trg.Clone());
             w.Show();
+
+            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, trg.Content.GetType().Name + "を表示しました", "", "GUILayoutM", "MatStudioROBOT2016"));
         }
     }
 }

@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace MatStudioROBOT2016.Views.ControlPanels
 {
-    public class ApplicationLogCP : Control
+    public class ApplicationLogCP : MatGUI.MatControlPanelBase
     {
         static ApplicationLogCP()
         {

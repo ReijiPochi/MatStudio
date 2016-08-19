@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace MatStudioROBOT2016.Views.ControlPanels
 {
-    public class TerminalCP : Control
+    public class TerminalCP : MatGUI.MatControlPanelBase
     {
         static TerminalCP()
         {

@@ -81,6 +81,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MatControlPanelBase.cs" />
     <Compile Include="MatButton.cs" />
     <Compile Include="MatMenuItem.cs" />
     <Compile Include="MatScrollViewer.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="MatWindow.xaml.cs">
       <DependentUpon>MatWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MatWorkspace.cs" />
     <Compile Include="PhantasmagoriaSplitter.cs" />
     <Compile Include="PhantasmagoriaTabItem.cs" />
     <Compile Include="PhantasmagoriaTabControl.cs" />
