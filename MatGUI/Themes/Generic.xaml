@@ -119,7 +119,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatThemeColorBrush}"/>
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatBorderBrush}"/>
                         </Trigger>
                         <Trigger Property="IsActivePanel" Value="True">
                             <Setter Property="Background" TargetName="Border" Value="{DynamicResource MatThemeColorBrush}"/>

@@ -42,9 +42,14 @@ namespace MatGUI
         {
             base.OnApplyTemplate();
 
+            PreviewMouseDown += PhantasmagoriaTabItem_PreviewMouseDown;
+
             MaskRect = GetTemplateChild("MatMaskRect") as Rectangle;
+            MaskRect.MouseDown += MaskRect_MouseDown;
             MaskRect.MouseLeave += MatPhantasmagoriaTabItem_MouseLeave;
             MaskRect.DragEnter += MatPhantasmagoriaTabItem_DragEnter;
+
+            PanelActivate();
         }
 
         public bool IsActivePanel
@@ -70,6 +75,17 @@ namespace MatGUI
         /// </summary>
         protected Rectangle MaskRect;
 
+
+
+        private void PhantasmagoriaTabItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PanelActivate();
+        }
+
+        private void MaskRect_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //PanelActivate();
+        }
 
         private void MatPhantasmagoriaTabItem_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -131,7 +147,7 @@ namespace MatGUI
                 FrameworkElement child = Content as FrameworkElement;
                 if (child != null)
                 {
-                    child.Focus();
+                    //child.Focus();
 
                     if (child as MatControlPanelBase != null)
                     {

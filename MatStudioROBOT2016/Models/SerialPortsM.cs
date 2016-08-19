@@ -115,6 +115,30 @@ namespace MatStudioROBOT2016.Models
         }
 
         /// <summary>
+        /// 指定された数の新規受信データを取得します
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public string GetRecieveData(int count)
+        {
+            if (RecievedData == null)
+                return null;
+
+            int length = RecievedData.Length;
+            string data = null;
+
+            if (count > length)
+                length = count;
+
+            for(int c = count; c > 0; c--)
+            {
+                data += RecievedData[length - c];
+            }
+
+            return data;
+        }
+
+        /// <summary>
         /// 指定されたCOMポートを閉じます。
         /// </summary>
         /// <param name="portName"></param>

@@ -37,7 +37,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
                     break;
 
                 case "RecievedData":
-                    RecievedText = myPort.RecievedData;
+                    RecievedText = myPort.GetRecieveData(5);
                     break;
 
                 default:
@@ -89,7 +89,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
                     // 新しいCOMポートに接続
                     IsPause = false;
                     RecievedText = null;
-                    IsPause = true;
+                    PlayCommand.Execute();
                     myPort.Connect(_SelectedPort);
                 }
 
@@ -160,6 +160,8 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             IsPause = false;
             PlayCommand.RaiseCanExecuteChanged();
             PauseCommand.RaiseCanExecuteChanged();
+
+            RecievedText = myPort.GetRecieveData(5);
         }
         #endregion
 

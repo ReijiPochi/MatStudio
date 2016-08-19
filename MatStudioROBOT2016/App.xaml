@@ -38,7 +38,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ToolTip}">
-                            <Border BorderThickness="0" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" 
+                            <Border BorderThickness="1" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" 
 						            Background="{DynamicResource MatBackGroundBrush_T}" BorderBrush="{DynamicResource MatBrightBorderBrush}">
                                 <ContentPresenter Margin="15,4,15,4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             </Border>
