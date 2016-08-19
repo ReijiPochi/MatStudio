@@ -12,6 +12,7 @@
     <SolidColorBrush x:Key="MatSelectedForeGroundBrush" Color="#FFEEEEEE"/>
     <SolidColorBrush x:Key="MatEditableForeGroundBruah" Color="#FFEEEEAE"/>
     <SolidColorBrush x:Key="MatBorderBrush" Color="#FF555555"/>
+    <SolidColorBrush x:Key="MatBrightBorderBrush" Color="#FF999999"/>
     <SolidColorBrush x:Key="MatThemeColorBrush" Color="#FFE330E7"/>
     <SolidColorBrush x:Key="MatFocusBrush_T" Color="#CC0090F3"/>
     <SolidColorBrush x:Key="MatFocusBorderBrush" Color="#FF830091"/>

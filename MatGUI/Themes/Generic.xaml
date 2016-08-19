@@ -138,7 +138,7 @@
         <Setter Property="ContextMenu">
             <Setter.Value>
                 <ContextMenu>
-                    <MenuItem Header="Close"/>
+                    <local:MatMenuItem Header="Close"/>
                 </ContextMenu>
             </Setter.Value>
         </Setter>

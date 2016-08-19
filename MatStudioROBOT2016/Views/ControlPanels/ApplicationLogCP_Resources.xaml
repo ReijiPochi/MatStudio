@@ -32,11 +32,11 @@
     </DataTemplate>
 
     <DataTemplate x:Key="MessageCell">
-        <TextBlock Text="{Binding Message}" ToolTip="{Binding Message}" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Text="{Binding Message}" ToolTip="{Binding Message}" ToolTipService.ShowDuration="10000" TextTrimming="CharacterEllipsis"/>
     </DataTemplate>
 
     <DataTemplate x:Key="DescriptionCell">
-        <TextBlock Text="{Binding Description}" ToolTip="{Binding Description}" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Text="{Binding Description}" ToolTip="{Binding Description}" ToolTipService.ShowDuration="20000" TextTrimming="CharacterEllipsis"/>
     </DataTemplate>
 
 </ResourceDictionary>

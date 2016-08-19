@@ -5,7 +5,7 @@
              Startup="Application_Startup">
     
     <Application.Resources>
-        
+
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MatGUI;component/ResourceDictionaries.xaml"/>
@@ -13,8 +13,41 @@
                 <ResourceDictionary Source="Design/ImageResources.xaml"/>
                 <ResourceDictionary Source="Views/ControlPanels/ApplicationLogCP_Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <PopupAnimation x:Key="{x:Static SystemParameters.MenuPopupAnimationKey}">None</PopupAnimation>
+
+            <Style TargetType="{x:Type ContextMenu}">
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="Grid.IsSharedSizeScope" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ContextMenu}">
+                            <Border BorderBrush="{DynamicResource MatFocusBrush_T}">
+                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="{x:Type ToolTip}">
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="Foreground" Value="{DynamicResource MatForeGroundBrush}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToolTip}">
+                            <Border BorderThickness="1" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" 
+						            Background="{DynamicResource MatBackGroundBrush_T}">
+                                <ContentPresenter Margin="15,2,15,3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
-        
+
     </Application.Resources>
     
 </Application>
