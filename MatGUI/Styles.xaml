@@ -178,7 +178,8 @@
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </ScrollViewer>
                             <ScrollContentPresenter Name="PART_ScrollContentPresenter" KeyboardNavigation.DirectionalNavigation="Local"
-                                                    CanContentScroll="True" CanHorizontallyScroll="False" CanVerticallyScroll="False" VerticalAlignment="Bottom" />
+                                                    CanHorizontallyScroll="False" CanVerticallyScroll="False" VerticalAlignment="Bottom"
+                                                    CanContentScroll="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"/>
                         </DockPanel>
 
                         <ScrollBar Name="PART_HorizontalScrollBar"
