@@ -128,7 +128,7 @@ namespace MatStudioROBOT2016.Models
             string data = null;
 
             if (count > length)
-                length = count;
+                count = length;
 
             for(int c = count; c > 0; c--)
             {

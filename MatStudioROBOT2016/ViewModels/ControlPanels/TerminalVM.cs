@@ -23,6 +23,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             myPort.PropertyChanged += MyPort_PropertyChanged; ;
             myPort.RefreshPortsList();
 
+            TextCount = 500;
             IsPause = true;
         }
 
@@ -37,7 +38,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
                     break;
 
                 case "RecievedData":
-                    RecievedText = myPort.GetRecieveData(5);
+                    RecievedText = myPort.GetRecieveData(TextCount);
                     break;
 
                 default:
@@ -118,6 +119,23 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
         }
         #endregion
 
+        #region TextCount変更通知プロパティ
+        private int _TextCount;
+
+        public int TextCount
+        {
+            get
+            { return _TextCount; }
+            set
+            { 
+                if (_TextCount == value)
+                    return;
+                _TextCount = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
         #region IsPause変更通知プロパティ
         private bool _IsPause;
 
@@ -161,7 +179,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             PlayCommand.RaiseCanExecuteChanged();
             PauseCommand.RaiseCanExecuteChanged();
 
-            RecievedText = myPort.GetRecieveData(5);
+            RecievedText = myPort.GetRecieveData(TextCount);
         }
         #endregion
 
