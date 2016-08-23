@@ -1,0 +1,17 @@
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\RobotCore1.dll.config
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\RobotCore1.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\RobotCore1.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\MatGUI.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\RobotCoreBase.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\MatGUI.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\RobotCoreBase.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.csprojResolveAssemblyReference.cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1_MarkupCompile.cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1_MarkupCompile.lref
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\Themes\Generic.baml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.g.resources
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.Properties.Resources.resources
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.csproj.GenerateResource.Cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.pdb

@@ -1,0 +1,10 @@
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.csprojResolveAssemblyReference.cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\RobotCoreBase.dll.config
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\RobotCoreBase.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\RobotCoreBase.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.Properties.Resources.resources
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.csproj.GenerateResource.Cache
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatGUI.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatGUI.pdb

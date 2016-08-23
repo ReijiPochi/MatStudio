@@ -12,4 +12,8 @@
         <local:ApplicationLogCP/>
     </matgui:PhantasmagoriaTabItem>
 
+    <matgui:PhantasmagoriaTabItem x:Key="RobotCore" Header="ロボットコア">
+        <local:RobotCoreCP/>
+    </matgui:PhantasmagoriaTabItem>
+
 </ResourceDictionary>

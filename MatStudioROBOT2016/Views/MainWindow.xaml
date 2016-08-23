@@ -50,6 +50,7 @@
                 </matgui:MatMenuItem.DataContext>
                 <matgui:MatMenuItem Header="ターミナル" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource Terminal}"/>
                 <matgui:MatMenuItem Header="アプリケーションログ" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource ApplicationLog}"/>
+                <matgui:MatMenuItem Header="ロボットコア" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource RobotCore}"/>
             </matgui:MatMenuItem>
             
             <matgui:MatMenuItem Header="ワークスペース">

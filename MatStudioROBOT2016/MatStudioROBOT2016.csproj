@@ -49,6 +49,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>InfrastructureAssemblies\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="RobotCore1">
+      <HintPath>bin\Debug\RobotCores\RobotCore1.dll</HintPath>
+    </Reference>
+    <Reference Include="RobotCoreBase">
+      <HintPath>..\RobotCoreBase\bin\Debug\RobotCoreBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity">
@@ -92,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ControlPanels\RobotCoreCP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ControlPanels\TerminalCP_Design.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,12 +115,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\GUILayoutM.cs" />
+    <Compile Include="Models\RobotCoreM.cs" />
     <Compile Include="Models\SerialPortsM.cs" />
     <Compile Include="ViewModels\ControlPanels\ApplicationLogVM.cs" />
     <Compile Include="ViewModels\ControlPanels\TerminalVM.cs" />
     <Compile Include="ViewModels\ControlPanelVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="ViewModels\ControlPanels\RobotCoreVM.cs" />
     <Compile Include="Views\ControlPanels\ApplicationLogCP.cs" />
+    <Compile Include="Views\ControlPanels\RobotCoreCP.cs" />
     <Compile Include="Views\ControlPanels\TerminalCP.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

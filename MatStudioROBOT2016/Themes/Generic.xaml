@@ -6,7 +6,10 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/MatStudioROBOT2016;component/Views/ControlPanels/TerminalCP_Design.xaml"/>
         <ResourceDictionary Source="/MatStudioROBOT2016;component/Views/ControlPanels/ApplicationLogCP_Design.xaml"/>
+        <ResourceDictionary Source="/MatStudioROBOT2016;component/Views/ControlPanels/RobotCoreCP.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+
 
 
 

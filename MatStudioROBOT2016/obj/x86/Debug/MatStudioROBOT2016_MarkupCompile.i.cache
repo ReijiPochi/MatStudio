@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\
 MatStudioROBOT2016
 none
 false
 DEBUG;TRACE
-F:\GitHub\MatStudio\MatStudioROBOT2016\App.xaml
-7-2014372654
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\App.xaml
+81630232763
 5-609757685
-171233542929
-17-1667165273
-Design\ImageResources.xaml;Themes\Generic.xaml;Views\ControlPanels\ApplicationLogCP_Design.xaml;Views\ControlPanels\ApplicationLogCP_Resources.xaml;Views\ControlPanels\ControlPanelResources.xaml;Views\ControlPanels\TerminalCP_Design.xaml;Views\MainWindow.xaml;
+20-1965389629
+19-632167520
+Design\ImageResources.xaml;Themes\Generic.xaml;Views\ControlPanels\ApplicationLogCP_Design.xaml;Views\ControlPanels\ApplicationLogCP_Resources.xaml;Views\ControlPanels\ControlPanelResources.xaml;Views\ControlPanels\RobotCoreCP.xaml;Views\ControlPanels\TerminalCP_Design.xaml;Views\MainWindow.xaml;
 
-False
+True
 
