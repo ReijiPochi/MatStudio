@@ -16,8 +16,6 @@ namespace RobotCore1
             set { }
         }
 
-        public bool IsOpen { get; set; }
-
         RobotCoreInfo IRobotCore.GetBordInfo()
         {
             return new RobotCoreInfo("RobotCore1");

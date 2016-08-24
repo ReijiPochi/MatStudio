@@ -22,7 +22,25 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
     {
         public RobotCoreVM()
         {
+            if (RobotCoreM.Current == null) return;
+
             BoardsList = RobotCoreM.Current.BoardList;
+            if (RobotCoreM.Current.CurrentRobotCore != null)
+            {
+                SelectedBoard = RobotCoreM.Current.CurrentRobotCore;
+            }
+
+            RobotCoreM.Current.PropertyChanged += Current_PropertyChanged;
+        }
+
+        private void Current_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+
+                default:
+                    break;
+            }
         }
 
         #region BoardsList変更通知プロパティ
@@ -78,7 +96,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
 
         public bool CanShowMainCP()
         {
-            if (SelectedBoard != null && !SelectedBoard.IsOpen)
+            if (SelectedBoard != null && SelectedBoard != RobotCoreM.Current.CurrentRobotCore)
                 return true;
             else
                 return false;
@@ -86,15 +104,8 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
 
         public void ShowMainCP()
         {
-            PhantasmagoriaTabItem ti = new PhantasmagoriaTabItem()
-            {
-                Header = SelectedBoard.Name,
-                Content = SelectedBoard.GetMainControlPanel()
-            };
+            RobotCoreM.Current.CurrentRobotCore = SelectedBoard;
 
-            GUILayoutM.ShowControlPanel(ti);
-
-            SelectedBoard.IsOpen = true;
             ShowMainCPCommand.RaiseCanExecuteChanged();
         }
         #endregion

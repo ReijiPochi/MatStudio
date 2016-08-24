@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace MatGUI
 {
-    public class MatControlPanelBase : Control
+    public class MatControlPanelBase : ContentControl
     {
         static MatControlPanelBase()
         {

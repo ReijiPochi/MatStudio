@@ -11,7 +11,6 @@ namespace RobotCoreBase
     public interface IRobotCore
     {
         string Name { get; set; }
-        bool IsOpen { get; set; }
         RobotCoreInfo GetBordInfo();
         MatControlPanelBase GetMainControlPanel();
     }

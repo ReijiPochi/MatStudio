@@ -71,6 +71,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MatData\MatDataSource.cs" />
     <Compile Include="MatObject.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MatApp.cs" />

@@ -81,15 +81,21 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\MatCommands.cs" />
+    <Compile Include="Command\MatCompositeDisposable.cs" />
+    <Compile Include="MatButton_T.cs" />
     <Compile Include="MatControlPanelBase.cs" />
     <Compile Include="MatButton.cs" />
     <Compile Include="MatMenuItem.cs" />
+    <Compile Include="MatMenuSeparator.cs" />
     <Compile Include="MatScrollViewer.cs" />
     <Compile Include="MatTextBox.cs" />
+    <Compile Include="Command\MatUIDispatcher.cs" />
     <Compile Include="MatWindow.xaml.cs">
       <DependentUpon>MatWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MatWorkspace.cs" />
+    <Compile Include="Command\MatNotificationObject.cs" />
     <Compile Include="PhantasmagoriaSplitter.cs" />
     <Compile Include="PhantasmagoriaTabItem.cs" />
     <Compile Include="PhantasmagoriaTabControl.cs" />
@@ -98,6 +104,7 @@
       <SubType>Code</SubType>
     </Compile>
     <AppDesigner Include="Properties\" />
+    <Compile Include="MatViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

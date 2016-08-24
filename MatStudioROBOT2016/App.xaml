@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Views/ControlPanels/ControlPanelResources.xaml"/>
                 <ResourceDictionary Source="Design/ImageResources.xaml"/>
                 <ResourceDictionary Source="Views/ControlPanels/ApplicationLogCP_Resources.xaml"/>
+                <ResourceDictionary Source="Views/ControlPanels/RobotCoreCP_Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <PopupAnimation x:Key="{x:Static SystemParameters.MenuPopupAnimationKey}">None</PopupAnimation>

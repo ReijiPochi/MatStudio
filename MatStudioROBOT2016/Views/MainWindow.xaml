@@ -50,12 +50,16 @@
                 </matgui:MatMenuItem.DataContext>
                 <matgui:MatMenuItem Header="ターミナル" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource Terminal}"/>
                 <matgui:MatMenuItem Header="アプリケーションログ" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource ApplicationLog}"/>
-                <matgui:MatMenuItem Header="ロボットコア" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource RobotCore}"/>
+                <matgui:MatMenuItem Header="ロボットコア">
+                    <matgui:MatMenuItem Header="設定" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource RobotCore}"/>
+                    <matgui:MatMenuItem Header="ロボットコア コントロール" Command="{Binding ShowControlPanelCommand,Mode=OneWay}" CommandParameter="{DynamicResource RobotCoreMain}"/>
+                </matgui:MatMenuItem>
             </matgui:MatMenuItem>
             
             <matgui:MatMenuItem Header="ワークスペース">
                 <matgui:MatMenuItem Header="読み込み" Click="LoadLayout_Click"/>
                 <matgui:MatMenuItem Header="名前をつけて保存" Click="SaveLayoutAs_Click" />
+                <matgui:MatMenuSeparator/>
                 <matgui:MatMenuItem Header="初期設定として保存" Click="SaveLayoutToInitial"/>
             </matgui:MatMenuItem>
         </Menu>

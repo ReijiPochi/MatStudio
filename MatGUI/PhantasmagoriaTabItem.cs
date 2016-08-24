@@ -159,4 +159,51 @@ namespace MatGUI
             RaiseEvent(new MatPanelActivatedEventArgs(MatPanelActivatedEvent));
         }
     }
+
+    public class TabItemVM : MatViewModelBase
+    {
+        #region CloseCommand
+        private MatListenerCommand<object> _CloseCommand;
+
+        public MatListenerCommand<object> CloseCommand
+        {
+            get
+            {
+                if (_CloseCommand == null)
+                {
+                    _CloseCommand = new MatListenerCommand<object>(Close);
+                }
+                return _CloseCommand;
+            }
+        }
+
+        public void Close(object parameter)
+        {
+            MatMenuItem from = parameter as MatMenuItem;
+            if (from == null)
+                throw new Exception("コマンドターゲットが不正、または取得できません");
+            ContextMenu cm = from.Parent as ContextMenu;
+            if (cm == null)
+                throw new Exception("コマンドターゲットが不正、または取得できません");
+            PhantasmagoriaTabItem trg = cm.PlacementTarget as PhantasmagoriaTabItem;
+            if (trg == null)
+                throw new Exception("コマンドターゲットが不正、または取得できません");
+
+            PhantasmagoriaTabControl tc = trg.Parent as PhantasmagoriaTabControl;
+            if (tc == null)
+                throw new Exception("コマンドターゲットが不正、または取得できません");
+            //IBPanel panel = tc.Parent as IBPanel;
+            //if (panel == null)
+            //    throw new IBDisableCommandException("コマンドターゲットが不正、または取得できません");
+
+
+            trg.RemoveFromParent();
+
+            if (tc.Items.Count == 0)
+            {
+                PhantasmagoriaTabControl.RemoveSource(tc);
+            }
+        }
+        #endregion
+    }
 }

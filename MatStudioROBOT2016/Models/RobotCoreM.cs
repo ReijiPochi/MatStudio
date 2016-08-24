@@ -21,6 +21,27 @@ namespace MatStudioROBOT2016.Models
 
         public static RobotCoreM Current { get; } = new RobotCoreM();
 
+        #region CurrentRobotCore変更通知プロパティ
+        private IRobotCore _CurrentRobotCore;
+
+        public IRobotCore CurrentRobotCore
+        {
+            get
+            { return _CurrentRobotCore; }
+            set
+            { 
+                if (_CurrentRobotCore == value)
+                    return;
+                _CurrentRobotCore = value;
+                RaisePropertyChanged();
+
+                ProjectM.Current.ProjectRobotCore = value;
+            }
+        }
+        #endregion
+
+        public ObservableCollection<IRobotCore> BoardList { get; private set; } = new ObservableCollection<IRobotCore>();
+
         //private void UpdateBordList()
         //{
         //    string[] dlls = Directory.GetFiles("RobotCores", "*.dll");
@@ -44,7 +65,5 @@ namespace MatStudioROBOT2016.Models
         //        }
         //    }
         //}
-
-        public ObservableCollection<IRobotCore> BoardList { get; private set; } = new ObservableCollection<IRobotCore>();
     }
 }

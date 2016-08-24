@@ -14,11 +14,11 @@
                             <vm:RobotCoreVM/>
                         </Grid.DataContext>
 
-                        <matgui:MatButton Content="メインコントロールパネルを表示" Height="26" Width="200" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"
+                        <matgui:MatButton Content="選択を現在のロボットコアに設定" Height="26" Width="200" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"
                                           Command="{Binding ShowMainCPCommand, Mode=OneWay}"/>
 
                         <ListView Margin="0,36,0,0" Grid.Row="1" ItemsSource="{Binding BoardsList, UpdateSourceTrigger=PropertyChanged}"
-                                  Style="{DynamicResource MatListViewStyle}" ItemContainerStyle="{DynamicResource ListViewItemStyleForLog}"
+                                  Style="{DynamicResource MatListViewStyle}" ItemContainerStyle="{DynamicResource ListViewItemStyleForRobotCore}"
                                   SelectedItem="{Binding SelectedBoard}">
                             <ListView.View>
                                 <GridView ColumnHeaderContainerStyle="{DynamicResource MatGridViewColumnHeaderStyle}">

@@ -16,4 +16,8 @@
         <local:RobotCoreCP/>
     </matgui:PhantasmagoriaTabItem>
 
+    <matgui:PhantasmagoriaTabItem x:Key="RobotCoreMain" Header="ロボットコア コントロール">
+        <local:RobotCoreMainCP/>
+    </matgui:PhantasmagoriaTabItem>
+
 </ResourceDictionary>
