@@ -5,17 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MatFramework.MatData
+namespace MatFramework.MatDataFlow
 {
-    class MatDataSource<T> : MatObject, INotifyPropertyChanged
+    public abstract class MatDataObject : INotifyPropertyChanged
     {
+        public MatDataObject(string name)
+        {
+            _Name = name;
+        }
+
         private string _Name;
         public string Name
         {
             get
             { return _Name; }
             set
-            { 
+            {
                 if (_Name == value)
                     return;
                 _Name = value;
@@ -23,16 +28,6 @@ namespace MatFramework.MatData
             }
         }
 
-        private T _Value;
-        public T Value
-        {
-            get { return _Value; }
-            set
-            {
-                _Value = value;
-                RaisePropertyChanged("Value");
-            }
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
