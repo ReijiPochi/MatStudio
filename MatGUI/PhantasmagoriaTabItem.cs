@@ -50,6 +50,7 @@ namespace MatGUI
             MaskRect.DragEnter += MatPhantasmagoriaTabItem_DragEnter;
 
             PanelActivate();
+            IsSelected = true;
         }
 
         public bool IsActivePanel

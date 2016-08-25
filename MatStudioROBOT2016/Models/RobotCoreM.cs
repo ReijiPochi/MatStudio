@@ -7,7 +7,6 @@ using System.IO;
 using Livet;
 using System.Collections.ObjectModel;
 using RobotCoreBase;
-using System.Reflection;
 
 namespace MatStudioROBOT2016.Models
 {
@@ -20,6 +19,8 @@ namespace MatStudioROBOT2016.Models
         }
 
         public static RobotCoreM Current { get; } = new RobotCoreM();
+
+        public ObservableCollection<IRobotCore> BoardList { get; private set; } = new ObservableCollection<IRobotCore>();
 
         #region CurrentRobotCore変更通知プロパティ
         private IRobotCore _CurrentRobotCore;
@@ -39,8 +40,6 @@ namespace MatStudioROBOT2016.Models
             }
         }
         #endregion
-
-        public ObservableCollection<IRobotCore> BoardList { get; private set; } = new ObservableCollection<IRobotCore>();
 
         //private void UpdateBordList()
         //{

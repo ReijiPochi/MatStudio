@@ -19,7 +19,7 @@ namespace MatStudioROBOT2016.Models
             if (trg == null) return;
 
             MatWindow w = new MatWindow();
-            //ibw.InputBindings.AddRange(Application.Current.MainWindow.InputBindings);
+            w.InputBindings.AddRange(Application.Current.MainWindow.InputBindings);
             w.SetTabItem(trg.Clone());
             w.Show();
 

@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Controls\LogConditionIndicator.cs" />
+    <Compile Include="DataFlow\MatDataPort.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -71,7 +72,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MatDataFlow\MatDataObject.cs" />
+    <Compile Include="DataFlow\MatDataInputEvent.cs" />
+    <Compile Include="DataFlow\MatDataObject.cs" />
+    <Compile Include="DataFlow\MatDataInputPort.cs" />
+    <Compile Include="DataFlow\MatData.cs" />
+    <Compile Include="DataFlow\MatDataOutputPort.cs" />
     <Compile Include="MatObject.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MatApp.cs" />
@@ -83,6 +88,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

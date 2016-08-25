@@ -32,3 +32,5 @@ F:\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.Properties.Resources.resourc
 F:\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.csproj.GenerateResource.Cache
 F:\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.dll
 F:\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\MatFramework.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\MatFramework.pdb

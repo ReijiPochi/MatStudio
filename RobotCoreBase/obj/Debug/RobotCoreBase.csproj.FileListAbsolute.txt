@@ -8,3 +8,5 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCore
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.pdb
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatGUI.dll
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatGUI.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatFramework.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatFramework.pdb

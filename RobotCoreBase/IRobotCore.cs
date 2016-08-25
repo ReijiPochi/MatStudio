@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MatGUI;
+using MatFramework.DataFlow;
+using System.Collections.ObjectModel;
 
 namespace RobotCoreBase
 {
@@ -13,6 +15,8 @@ namespace RobotCoreBase
         string Name { get; set; }
         RobotCoreInfo GetBordInfo();
         MatControlPanelBase GetMainControlPanel();
+
+        ObservableCollection<Module> GetModules();
     }
 
     public class RobotCoreInfo

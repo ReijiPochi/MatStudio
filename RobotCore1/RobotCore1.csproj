@@ -39,6 +39,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MatFramework">
+      <HintPath>..\MatFramework\bin\Debug\MatFramework.dll</HintPath>
+    </Reference>
     <Reference Include="MatGUI">
       <HintPath>..\MatGUI\bin\Debug\MatGUI.dll</HintPath>
     </Reference>
@@ -62,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainCP.cs" />
+    <Compile Include="Modules\Motor.cs" />
+    <Compile Include="Modules\Motor1.cs" />
     <Compile Include="RobotCore1.cs" />
   </ItemGroup>
   <ItemGroup>

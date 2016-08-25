@@ -20,4 +20,8 @@
         <local:RobotCoreMainCP/>
     </matgui:PhantasmagoriaTabItem>
 
+    <matgui:PhantasmagoriaTabItem x:Key="DataFlow" Header="データフロー">
+        <local:DataFlowCP/>
+    </matgui:PhantasmagoriaTabItem>
+
 </ResourceDictionary>
