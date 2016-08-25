@@ -13,8 +13,6 @@ namespace MatFramework.DataFlow
             Name = name;
         }
 
-        public string Name { get; private set; }
-
         private MatData<T> _Value;
         public MatData<T> Value
         {

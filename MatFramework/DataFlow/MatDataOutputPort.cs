@@ -9,6 +9,11 @@ namespace MatFramework.DataFlow
 {
     public class MatDataOutputPort<T> : MatDataPort
     {
+        public MatDataOutputPort(string name)
+        {
+            Name = name;
+        }
+
         public ObservableCollection<MatDataInputPort<T>> SendTo = new ObservableCollection<MatDataInputPort<T>>();
 
         public void Output(MatData<T> data)

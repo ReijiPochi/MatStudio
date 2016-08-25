@@ -16,6 +16,20 @@ namespace RobotCoreBase
             IsUsing = false;
         }
 
-        public bool IsUsing { get; set; }
+
+        private bool _IsUsing;
+        public bool IsUsing
+        {
+            get
+            { return _IsUsing; }
+            set
+            { 
+                if (_IsUsing == value)
+                    return;
+                _IsUsing = value;
+                RaisePropertyChanged("IsUsing");
+            }
+        }
+
     }
 }

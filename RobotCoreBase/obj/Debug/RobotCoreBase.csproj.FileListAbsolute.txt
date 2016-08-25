@@ -10,3 +10,15 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatGUI.dl
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatGUI.pdb
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatFramework.dll
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatFramework.pdb
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\RobotCoreBase.dll.config
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\RobotCoreBase.dll
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\RobotCoreBase.pdb
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatFramework.dll
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatGUI.dll
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatFramework.pdb
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\MatGUI.pdb
+F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.csprojResolveAssemblyReference.cache
+F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.Properties.Resources.resources
+F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.csproj.GenerateResource.Cache
+F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.dll
+F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.pdb

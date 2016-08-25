@@ -1,13 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:MatStudioROBOT2016.Views.ControlPanels"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:cv="clr-namespace:MatFramework.Converters;assembly=MatFramework">
+
+    <cv:BoolReverseConverter x:Key="Reverse"/>
 
     <Style x:Key="ListBoxItemStyleForModule" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Background" Value="{DynamicResource MatItemsBackGroundBrush}"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Height" Value="26"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="IsEnabled" Value="{Binding IsUsing,Converter={StaticResource Reverse}}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -21,9 +25,13 @@
                                           HorizontalAlignment="Left" Margin="10,0,0,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="true">
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="IsEnabled" Value="True"/>
+                            </MultiTrigger.Conditions>
                             <Setter Property="Background" TargetName="Bd" Value="{DynamicResource MatFocusBorderBrush}"/>
-                        </Trigger>
+                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected" Value="true"/>

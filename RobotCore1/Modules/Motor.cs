@@ -15,20 +15,30 @@ namespace RobotCore1.Modules
         {
         }
 
-        public MatDataOutputPort<MatData<double>> Duty { get; private set; }
+        public MatDataInputPort<MatData<double>> DutyIn { get; private set; } = new MatDataInputPort<MatData<double>>("Duty");
+        public MatDataOutputPort<MatData<double>> DutyOut { get; private set; } = new MatDataOutputPort<MatData<double>>("Duty");
 
         public override ObservableCollection<MatDataPort> GetInputPorts()
         {
-            return new ObservableCollection<MatDataPort>();
+            ObservableCollection<MatDataPort> inputs = new ObservableCollection<MatDataPort>();
+
+            inputs.Add(DutyIn);
+
+            return inputs;
         }
 
         public override ObservableCollection<MatDataPort> GetOutputPorts()
         {
             ObservableCollection<MatDataPort> outputs = new ObservableCollection<MatDataPort>();
 
-            outputs.Add(Duty);
+            outputs.Add(DutyOut);
 
             return outputs;
+        }
+
+        public override MatDataObject GetNewInstance()
+        {
+            return null;
         }
     }
 }

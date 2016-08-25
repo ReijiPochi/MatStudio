@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Controls\LogConditionIndicator.cs" />
+    <Compile Include="Converters\BoolReverseConverter.cs" />
     <Compile Include="DataFlow\MatDataPort.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -77,6 +78,7 @@
     <Compile Include="DataFlow\MatDataInputPort.cs" />
     <Compile Include="DataFlow\MatData.cs" />
     <Compile Include="DataFlow\MatDataOutputPort.cs" />
+    <Compile Include="MatNotificationObject.cs" />
     <Compile Include="MatObject.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MatApp.cs" />

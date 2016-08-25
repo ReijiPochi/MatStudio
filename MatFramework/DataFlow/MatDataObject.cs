@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MatFramework.DataFlow
 {
-    public abstract class MatDataObject : MatObject, INotifyPropertyChanged
+    public abstract class MatDataObject : MatNotificationObject
     {
         public MatDataObject(string name)
         {
@@ -32,6 +32,8 @@ namespace MatFramework.DataFlow
         public abstract ObservableCollection<MatDataPort> GetInputPorts();
 
         public abstract ObservableCollection<MatDataPort> GetOutputPorts();
+
+        public abstract MatDataObject GetNewInstance();
 
 
         private double _PositionX;
@@ -62,11 +64,5 @@ namespace MatFramework.DataFlow
             }
         }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

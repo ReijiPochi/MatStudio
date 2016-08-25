@@ -132,8 +132,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\MatDataInputPortControl.cs" />
     <Compile Include="Controls\MatDataObjectControl.cs" />
     <Compile Include="Controls\MatDataObjectPresenter.cs" />
+    <Compile Include="Controls\MatDataOutputPortControl.cs" />
+    <Compile Include="Models\DataFlow\Indicator\MatDataIndicator.cs" />
     <Compile Include="Models\GUILayoutM.cs" />
     <Compile Include="Models\ProjectM.cs" />
     <Compile Include="Models\RobotCoreM.cs" />

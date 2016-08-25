@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace MatFramework.DataFlow
 {
-    public abstract class MatDataPort : MatObject
+    public abstract class MatDataPort : MatNotificationObject
     {
+
+        private string _Name;
+        public string Name
+        {
+            get
+            { return _Name; }
+            set
+            { 
+                if (_Name == value)
+                    return;
+                _Name = value;
+                RaisePropertyChanged("Name");
+            }
+        }
 
     }
 }

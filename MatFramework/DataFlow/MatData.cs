@@ -16,6 +16,10 @@ namespace MatFramework.DataFlow
 
         public DateTime Time { get; protected set; }
         public T DataValue { get; protected set; }
+        public Type DataType
+        {
+            get { return DataValue.GetType(); }
+        }
     }
 
     public abstract class MatData : MatObject

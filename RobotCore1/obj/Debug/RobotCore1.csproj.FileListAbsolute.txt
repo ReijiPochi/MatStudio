@@ -34,3 +34,5 @@ F:\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.dll
 F:\GitHub\MatStudio\RobotCore1\obj\Debug\RobotCore1.pdb
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\MatFramework.dll
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCore1\bin\Debug\MatFramework.pdb
+F:\GitHub\MatStudio\RobotCore1\bin\Debug\MatFramework.dll
+F:\GitHub\MatStudio\RobotCore1\bin\Debug\MatFramework.pdb
