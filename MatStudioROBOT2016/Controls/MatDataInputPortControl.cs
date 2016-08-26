@@ -29,23 +29,73 @@ namespace MatStudioROBOT2016.Controls
 
             PART_Bd = GetTemplateChild("PART_Bd") as Border;
 
-            PART_Bd.DragOver += PART_Bd_DragOver;
+            PART_Bd.DragEnter += PART_Bd_DragEnter;
+            PART_Bd.DragLeave += PART_Bd_DragLeave;
+            PART_Bd.Drop += PART_Bd_Drop;
+
+            bgBrush = PART_Bd.Background;
+            borderBrush = PART_Bd.BorderBrush;
         }
 
         public Border PART_Bd;
+        public Brush bgBrush;
+        public Brush borderBrush;
 
-        public MatDataPort InputPort
+        public Point PositionOfPART_Bd
         {
-            get { return (MatDataPort)GetValue(InputPortProperty); }
+            get { return PART_Bd.PointToScreen(new Point(PART_Bd.ActualWidth / 2, PART_Bd.ActualHeight / 2)); }
+        }
+
+        public MatDataInputPort InputPort
+        {
+            get { return (MatDataInputPort)GetValue(InputPortProperty); }
             set { SetValue(InputPortProperty, value); }
         }
         public static readonly DependencyProperty InputPortProperty =
-            DependencyProperty.Register("InputPort", typeof(MatDataPort), typeof(MatDataOutputPortControl), new PropertyMetadata(null));
+            DependencyProperty.Register("InputPort", typeof(MatDataInputPort), typeof(MatDataInputPortControl), new PropertyMetadata(null, OnInputPortChanged));
 
-
-        private void PART_Bd_DragOver(object sender, DragEventArgs e)
+        private static void OnInputPortChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+            MatDataInputPortControl trg = d as MatDataInputPortControl;
+
+            if (trg != null)
+            {
+                if (e.NewValue != null)
+                    trg.InputPort.Owner = trg;
+                else
+                    ((MatDataInputPort)(e.OldValue)).Owner = null;
+            }
+        }
+
+
+
+        private void PART_Bd_DragEnter(object sender, DragEventArgs e)
+        {
+            string[] type = e.Data.GetFormats();
+            MatDataOutputPortControl outp = e.Data.GetData(type[0]) as MatDataOutputPortControl;
+
+            if (outp != null && InputPort.CanConnectTo(outp.OutputPort))
+            {
+                PART_Bd.Background = new SolidColorBrush(Color.FromArgb(255, 50, 150, 255));
+            }
+        }
+
+        private void PART_Bd_Drop(object sender, DragEventArgs e)
+        {
+            PART_Bd.Background = bgBrush;
+
+            string[] type = e.Data.GetFormats();
+            MatDataOutputPortControl outp = e.Data.GetData(type[0]) as MatDataOutputPortControl;
+
+            if (outp != null && InputPort.CanConnectTo(outp.OutputPort))
+            {
+                outp.OutputPort.SendTo.Add(InputPort);
+            }
+        }
+
+        private void PART_Bd_DragLeave(object sender, DragEventArgs e)
+        {
+            PART_Bd.Background = bgBrush;
         }
 
     }

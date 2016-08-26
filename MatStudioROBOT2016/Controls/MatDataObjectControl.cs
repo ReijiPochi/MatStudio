@@ -26,8 +26,8 @@ namespace MatStudioROBOT2016.Controls
         }
 
         private Thumb PART_Thumb;
-        private StackPanel PART_Outputs;
-        private StackPanel PART_Inputs;
+        public StackPanel PART_Outputs;
+        public StackPanel PART_Inputs;
 
         public override void OnApplyTemplate()
         {
@@ -60,6 +60,12 @@ namespace MatStudioROBOT2016.Controls
             }
         }
 
+        public event StateChangedEventHandler StateChanged;
+        protected void RaiseStateChanged(StateChangedEventArgs e)
+        {
+            StateChanged?.Invoke(this, e);
+        }
+
 
         private void PART_Thumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
@@ -67,6 +73,7 @@ namespace MatStudioROBOT2016.Controls
             MyMatDataObject.PositionY += e.VerticalChange;
 
             SetDataValues();
+            RaiseStateChanged(new StateChangedEventArgs());
         }
 
         public void Initialize()
@@ -80,17 +87,32 @@ namespace MatStudioROBOT2016.Controls
 
             SetDataValues();
 
-            ObservableCollection<MatDataPort> outputs = MyMatDataObject.GetOutputPorts();
-            foreach (MatDataPort outp in outputs)
+            ObservableCollection<MatDataOutputPort> outputs = MyMatDataObject.GetOutputPorts();
+            foreach (MatDataOutputPort outp in outputs)
             {
-                PART_Outputs.Children.Add(new MatDataOutputPortControl() { OutputPort = outp });
+                MatDataOutputPortControl outpc = new MatDataOutputPortControl();
+                outpc.OutputPort = outp;
+                outpc.Drop += Ports_Drop;
+
+                PART_Outputs.Children.Add(outpc);
             }
 
-            ObservableCollection<MatDataPort> inputs = MyMatDataObject.GetInputPorts();
-            foreach (MatDataPort inp in inputs)
+            ObservableCollection<MatDataInputPort> inputs = MyMatDataObject.GetInputPorts();
+            foreach (MatDataInputPort inp in inputs)
             {
-                PART_Inputs.Children.Add(new MatDataInputPortControl() { InputPort = inp });
+                MatDataInputPortControl inpc = new MatDataInputPortControl();
+                inpc.InputPort = inp;
+                inpc.Drop += Ports_Drop;
+
+                PART_Inputs.Children.Add(inpc);
             }
+
+            RaiseStateChanged(new StateChangedEventArgs());
+        }
+
+        private void Ports_Drop(object sender, DragEventArgs e)
+        {
+            RaiseStateChanged(new StateChangedEventArgs());
         }
 
         public void SetDataValues()

@@ -17,10 +17,10 @@
 
 
 
-    <Style TargetType="{x:Type ctrls:MatDataObjectPresenter}">
+    <Style TargetType="{x:Type ctrls:MatDataObjectsPresenter}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ctrls:MatDataObjectPresenter}">
+                <ControlTemplate TargetType="{x:Type ctrls:MatDataObjectsPresenter}">
                     <Grid>
                         <matgui:MatScrollViewer x:Name="PART_Viewer"
                                                 HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
@@ -97,7 +97,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ctrls:MatDataInputPortControl}">
                     <Grid>
-                        <Border x:Name="PART_Bd" Background="{DynamicResource MatEditableAreaBrush}"
+                        <Border x:Name="PART_Bd" Background="{DynamicResource MatEditableAreaBrush}" BorderBrush="{DynamicResource MatEditableAreaBrush}" BorderThickness="1"
                                 CornerRadius="6" Width="12" Height="12" Margin="2,0,0,0" HorizontalAlignment="Left"/>
                         <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=InputPort.Name}" Margin="18,0,0,0" HorizontalAlignment="Left"/>
                     </Grid>

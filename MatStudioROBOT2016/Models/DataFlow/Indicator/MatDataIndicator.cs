@@ -14,33 +14,20 @@ namespace MatStudioROBOT2016.Models.DataFlow.Indicator
         public MatDataIndicator(string name) : base(name)
         {
             ValueIn.MatDataInput += ValueIn_MatDataInput;
-        }
-
-        public MatDataInputPort<MatData<object>> ValueIn = new MatDataInputPort<MatData<object>>("Value");
-        private void ValueIn_MatDataInput(object sender, MatDataInputEventArgs e)
-        {
-            Name = ((MatData<object>)e.NewValue).DataValue.ToString();
-        }
-
-        public override ObservableCollection<MatDataPort> GetInputPorts()
-        {
-            ObservableCollection<MatDataPort> inputs = new ObservableCollection<MatDataPort>();
+            ValueIn.CanConnectToAnything = true;
 
             inputs.Add(ValueIn);
+        }
 
-            return inputs;
+        public MatDataInputPort ValueIn = new MatDataInputPort(typeof(object), "Value");
+        private void ValueIn_MatDataInput(object sender, MatDataInputEventArgs e)
+        {
+            Name = e.NewValue.DataValue.ToString();
         }
 
         public override MatDataObject GetNewInstance()
         {
             return new MatDataIndicator(Name);
-        }
-
-        public override ObservableCollection<MatDataPort> GetOutputPorts()
-        {
-            ObservableCollection<MatDataPort> outputs = new ObservableCollection<MatDataPort>();
-
-            return outputs;
         }
     }
 }

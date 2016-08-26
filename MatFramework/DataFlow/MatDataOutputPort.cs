@@ -7,21 +7,31 @@ using System.Threading.Tasks;
 
 namespace MatFramework.DataFlow
 {
-    public class MatDataOutputPort<T> : MatDataPort
+    public class MatDataOutputPort : MatDataPort
     {
-        public MatDataOutputPort(string name)
+        public MatDataOutputPort(Type t, string name)
         {
             Name = name;
+            MatDataType = t;
         }
 
-        public ObservableCollection<MatDataInputPort<T>> SendTo = new ObservableCollection<MatDataInputPort<T>>();
+        public ObservableCollection<MatDataInputPort> SendTo = new ObservableCollection<MatDataInputPort>();
 
-        public void Output(MatData<T> data)
+        public void Output(MatData data)
         {
-            foreach(MatDataInputPort<T> port in SendTo)
+            foreach(MatDataInputPort port in SendTo)
             {
                 port.Value = data;
             }
+        }
+
+
+        public override bool CanConnectTo(MatDataPort port)
+        {
+            MatDataInputPort trg = port as MatDataInputPort;
+            if (trg == null) return false;
+
+            return CanConnectToAnything || trg.MatDataType == MatDataType;
         }
     }
 }

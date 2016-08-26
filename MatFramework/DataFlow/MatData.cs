@@ -6,26 +6,17 @@ using System.Threading.Tasks;
 
 namespace MatFramework.DataFlow
 {
-    public class MatData<T> : MatData
+    public class MatData : MatObject
     {
-        public MatData(T value, DateTime time)
+        public MatData(Type t, object value, DateTime time)
         {
             DataValue = value;
             Time = time;
+            DataType = t;
         }
 
         public DateTime Time { get; protected set; }
-        public T DataValue { get; protected set; }
-        public Type DataType
-        {
-            get { return DataValue.GetType(); }
-        }
-    }
-
-    public abstract class MatData : MatObject
-    {
-        public MatData()
-        {
-        }
+        public object DataValue { get; protected set; }
+        public Type DataType { get; protected set; }
     }
 }

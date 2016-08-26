@@ -24,11 +24,11 @@
 
                         <GridSplitter Background="Transparent" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.Column="1"/>
 
-                        <ctrls:MatDataObjectPresenter Grid.Column="1" Margin="5,36,0,0" MatDataObjects="{Binding DataObjects,Mode=TwoWay}"/>
+                        <ctrls:MatDataObjectsPresenter Grid.Column="1" Margin="5,36,0,0" MatDataObjects="{Binding DataObjects,Mode=TwoWay}"/>
 
                         <GridSplitter Background="Transparent" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.Column="2"/>
 
-                        <matgui:MatListBox Margin="0,36,0,0" ItemsSource="{Binding Indicators}" ItemContainerStyle="{DynamicResource ListBoxItemStyleForModule}"
+                        <matgui:MatListBox Margin="5,36,0,0" ItemsSource="{Binding Indicators}" ItemContainerStyle="{DynamicResource ListBoxItemStyleForModule}"
                                            Grid.Column="2"/>
                     </Grid>
                 </ControlTemplate>

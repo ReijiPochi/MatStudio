@@ -107,6 +107,7 @@
     </Compile>
     <AppDesigner Include="Properties\" />
     <Compile Include="MatViewModelBase.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

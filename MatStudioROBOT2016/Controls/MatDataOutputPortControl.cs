@@ -35,14 +35,31 @@ namespace MatStudioROBOT2016.Controls
 
         public Border PART_Bd;
 
-        public MatDataPort OutputPort
+        public Point PositionOfPART_Bd
         {
-            get { return (MatDataPort)GetValue(OutputPortProperty); }
+            get { return PART_Bd.PointToScreen(new Point(PART_Bd.ActualWidth / 2, PART_Bd.ActualHeight / 2)); }
+        }
+
+        public MatDataOutputPort OutputPort
+        {
+            get { return (MatDataOutputPort)GetValue(OutputPortProperty); }
             set { SetValue(OutputPortProperty, value); }
         }
         public static readonly DependencyProperty OutputPortProperty =
-            DependencyProperty.Register("OutputPort", typeof(MatDataPort), typeof(MatDataOutputPortControl), new PropertyMetadata(null));
+            DependencyProperty.Register("OutputPort", typeof(MatDataOutputPort), typeof(MatDataOutputPortControl), new PropertyMetadata(null, OnOutputPortChanged));
 
+        private static void OnOutputPortChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MatDataOutputPortControl trg = d as MatDataOutputPortControl;
+
+            if (trg != null)
+            {
+                if (e.NewValue != null)
+                    trg.OutputPort.Owner = trg;
+                else
+                    ((MatDataInputPort)(e.OldValue)).Owner = null;
+            }
+        }
 
         private void PART_Bd_MouseLeave(object sender, MouseEventArgs e)
         {

@@ -29,9 +29,19 @@ namespace MatFramework.DataFlow
             }
         }
 
-        public abstract ObservableCollection<MatDataPort> GetInputPorts();
+        public ObservableCollection<MatDataInputPort> inputs = new ObservableCollection<MatDataInputPort>();
 
-        public abstract ObservableCollection<MatDataPort> GetOutputPorts();
+        public virtual ObservableCollection<MatDataInputPort> GetInputPorts()
+        {
+            return inputs;
+        }
+
+        public ObservableCollection<MatDataOutputPort> outputs = new ObservableCollection<MatDataOutputPort>();
+
+        public virtual ObservableCollection<MatDataOutputPort> GetOutputPorts()
+        {
+            return outputs;
+        }
 
         public abstract MatDataObject GetNewInstance();
 

@@ -134,8 +134,9 @@
     </Compile>
     <Compile Include="Controls\MatDataInputPortControl.cs" />
     <Compile Include="Controls\MatDataObjectControl.cs" />
-    <Compile Include="Controls\MatDataObjectPresenter.cs" />
+    <Compile Include="Controls\MatDataObjectsPresenter.cs" />
     <Compile Include="Controls\MatDataOutputPortControl.cs" />
+    <Compile Include="Controls\StateChangedEvent.cs" />
     <Compile Include="Models\DataFlow\Indicator\MatDataIndicator.cs" />
     <Compile Include="Models\GUILayoutM.cs" />
     <Compile Include="Models\ProjectM.cs" />
