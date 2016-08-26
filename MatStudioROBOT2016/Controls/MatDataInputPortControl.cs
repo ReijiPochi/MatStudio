@@ -32,6 +32,7 @@ namespace MatStudioROBOT2016.Controls
             PART_Bd.DragEnter += PART_Bd_DragEnter;
             PART_Bd.DragLeave += PART_Bd_DragLeave;
             PART_Bd.Drop += PART_Bd_Drop;
+            PART_Bd.MouseLeave += PART_Bd_MouseLeave;
 
             bgBrush = PART_Bd.Background;
             borderBrush = PART_Bd.BorderBrush;
@@ -61,13 +62,15 @@ namespace MatStudioROBOT2016.Controls
             if (trg != null)
             {
                 if (e.NewValue != null)
+                {
                     trg.InputPort.Owner = trg;
+                }
                 else
+                {
                     ((MatDataInputPort)(e.OldValue)).Owner = null;
+                }
             }
         }
-
-
 
         private void PART_Bd_DragEnter(object sender, DragEventArgs e)
         {
@@ -90,12 +93,25 @@ namespace MatStudioROBOT2016.Controls
             if (outp != null && InputPort.CanConnectTo(outp.OutputPort))
             {
                 outp.OutputPort.SendTo.Add(InputPort);
+                InputPort.SendFrom = outp.OutputPort;
             }
         }
 
         private void PART_Bd_DragLeave(object sender, DragEventArgs e)
         {
             PART_Bd.Background = bgBrush;
+        }
+
+        private void PART_Bd_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if(e.LeftButton== MouseButtonState.Pressed && InputPort.SendFrom != null)
+            {
+                InputPort.SendFrom.SendTo.Remove(InputPort);
+                MatDataOutputPortControl outpc = InputPort.SendFrom.Owner as MatDataOutputPortControl;
+                InputPort.SendFrom = null;
+
+                DragDrop.DoDragDrop(this, outpc, DragDropEffects.Move);
+            }
         }
 
     }

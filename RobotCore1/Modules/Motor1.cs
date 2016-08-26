@@ -12,5 +12,20 @@ namespace RobotCore1.Modules
         public Motor1(string name) : base(name)
         {
         }
+
+        public override void SetRecievedData(string data)
+        {
+            string[] s = data.Split(':');
+
+            switch (s[0])
+            {
+                case "Aa":
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

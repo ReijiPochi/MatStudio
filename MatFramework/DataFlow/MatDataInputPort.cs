@@ -14,18 +14,41 @@ namespace MatFramework.DataFlow
             MatDataType = t;
         }
 
+        public bool AllowHardwareConnection { get; protected set; }
+
         private MatData _Value;
         public MatData Value
         {
             get { return _Value; }
             set
             {
+                if (SendFrom == null)
+                    MatApp.ApplicationLog.Log(new LogData(LogCondition.Warning, "SendFromプロパティを設定してください", Name + " MatDataInputPortのSendFromが設定されていません", this));
+
                 MatData old = null;
                 if (_Value != null) old = new MatData(_Value.DataType, _Value.DataValue, _Value.Time);
 
                 _Value = value;
 
                 RaiseMatDataInput(new MatDataInputEventArgs(value, old));
+            }
+        }
+
+        private MatDataOutputPort _SendFrom;
+        public MatDataOutputPort SendFrom
+        {
+            get { return _SendFrom; }
+            set
+            {
+                if (_SendFrom == value)
+                    return;
+
+                if (value == null) RaiseMatPortDisconnectEvent(new MatPortDisconnectEventArgs() { DisconnectTo = _SendFrom });
+
+                _SendFrom = value;
+                RaisePropertyChanged("SendFrom");
+
+                if (value != null) RaiseMatPortConnectEvent(new MatPortConnectEventArgs() { ConnectTo = value });
             }
         }
 
@@ -38,7 +61,7 @@ namespace MatFramework.DataFlow
         public override bool CanConnectTo(MatDataPort port)
         {
             MatDataOutputPort trg = port as MatDataOutputPort;
-            if (trg == null) return false;
+            if (trg == null || SendFrom != null) return false;
 
             return CanConnectToAnything || trg.MatDataType == MatDataType;
         }

@@ -63,6 +63,8 @@
     <Compile Include="Controls\LogConditionIndicator.cs" />
     <Compile Include="Converters\BoolReverseConverter.cs" />
     <Compile Include="DataFlow\MatDataPort.cs" />
+    <Compile Include="DataFlow\MatPortConnectEvent.cs" />
+    <Compile Include="DataFlow\MatPortDisconnectEvent.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

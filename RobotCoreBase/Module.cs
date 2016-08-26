@@ -31,5 +31,6 @@ namespace RobotCoreBase
             }
         }
 
+        public abstract void SetRecievedData(string data);
     }
 }

@@ -45,6 +45,7 @@ namespace MatStudioROBOT2016.Controls
 
             Loaded += MatDataObjectPresenter_Loaded;
 
+            PART_Canvas.DragEnter += PART_Canvas_DragEnter;
             PART_Canvas.Drop += PART_Canvas_Drop;
             PART_Canvas.DragOver += PART_Canvas_DragOver;
         }
@@ -71,6 +72,12 @@ namespace MatStudioROBOT2016.Controls
         {
             PART_Viewer.ScrollToHorizontalOffset(PART_Viewer.ScrollableWidth / 2.0);
             PART_Viewer.ScrollToVerticalOffset(PART_Viewer.ScrollableHeight / 2.0);
+        }
+
+
+        private void PART_Canvas_DragEnter(object sender, DragEventArgs e)
+        {
+            RefreshLines();
         }
 
         private void PART_Canvas_DragOver(object sender, DragEventArgs e)
