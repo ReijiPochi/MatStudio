@@ -18,6 +18,7 @@ using MatFramework.DataFlow;
 using MatGUI;
 using RobotCoreBase;
 using System.Windows.Threading;
+using MatFramework;
 
 namespace MatStudioROBOT2016.Controls
 {
@@ -63,8 +64,23 @@ namespace MatStudioROBOT2016.Controls
             MatDataObjectsPresenter trg = d as MatDataObjectsPresenter;
             if (trg != null)
             {
+                if (e.NewValue != null)
+                {
+                    ((ObservableCollection<MatDataObject>)e.NewValue).CollectionChanged += trg.MatDataObjects_CollectionChanged;
+                }
+
+                if (e.OldValue != null)
+                {
+                    ((ObservableCollection<MatDataObject>)e.OldValue).CollectionChanged -= trg.MatDataObjects_CollectionChanged;
+                }
+
                 trg.RefreshCanvas();
             }
+        }
+
+        private void MatDataObjects_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            RefreshCanvas();
         }
 
 
@@ -72,6 +88,8 @@ namespace MatStudioROBOT2016.Controls
         {
             PART_Viewer.ScrollToHorizontalOffset(PART_Viewer.ScrollableWidth / 2.0);
             PART_Viewer.ScrollToVerticalOffset(PART_Viewer.ScrollableHeight / 2.0);
+
+            RefreshCanvas();
         }
 
 
@@ -94,7 +112,7 @@ namespace MatStudioROBOT2016.Controls
 
                 PART_Line.X1 = outp.PositionOfPART_Bd.X - zero.X;
                 PART_Line.Y1 = outp.PositionOfPART_Bd.Y - zero.Y;
-                PART_Line.X2 = to.X - 1;
+                PART_Line.X2 = to.X - 2;
                 PART_Line.Y2 = to.Y - 1;
             }
         }
@@ -133,7 +151,7 @@ namespace MatStudioROBOT2016.Controls
 
         public void RefreshCanvas()
         {
-            if (PART_Canvas == null || rockRefresh) return;
+            if (PART_Canvas == null || rockRefresh || MatDataObjects == null) return;
 
             rockRefresh = true;
 
@@ -222,12 +240,15 @@ namespace MatStudioROBOT2016.Controls
                         Line line = new Line();
                         line.Stroke = FindResource("MatForeGroundBrush") as SolidColorBrush;
 
-                        if (!(outp.Owner is MatDataOutputPortControl) || !(inp.Owner is MatDataInputPortControl)) break;
+                        MatDataOutputPortControl outpc = SearchOutputPortControl(outp, ctrl);
+                        MatDataInputPortControl inpc = SearchInputPortControl(inp);
 
-                        line.X1 = ((MatDataOutputPortControl)outp.Owner).PositionOfPART_Bd.X - zero.X;
-                        line.Y1 = ((MatDataOutputPortControl)outp.Owner).PositionOfPART_Bd.Y - zero.Y;
-                        line.X2 = ((MatDataInputPortControl)inp.Owner).PositionOfPART_Bd.X - zero.X;
-                        line.Y2 = ((MatDataInputPortControl)inp.Owner).PositionOfPART_Bd.Y - zero.Y;
+                        if (outpc == null || inpc == null) break;
+
+                        line.X1 = outpc.PositionOfPART_Bd.X - zero.X;
+                        line.Y1 = outpc.PositionOfPART_Bd.Y - zero.Y;
+                        line.X2 = inpc.PositionOfPART_Bd.X - zero.X;
+                        line.Y2 = inpc.PositionOfPART_Bd.Y - zero.Y;
 
                         PART_Canvas.Children.Add(line);
                     }
@@ -238,6 +259,51 @@ namespace MatStudioROBOT2016.Controls
         private void Ctrl_StateChanged(object sender, StateChangedEventArgs e)
         {
             RefreshLines();
+        }
+
+        private MatDataOutputPortControl SearchOutputPortControl(MatDataOutputPort port, MatDataObjectControl portIn)
+        {
+            foreach(UIElement uie in portIn.PART_Outputs.Children)
+            {
+                MatDataOutputPortControl outpc = uie as MatDataOutputPortControl;
+
+                if (outpc != null && outpc.OutputPort == port)
+                    return outpc;
+            }
+
+            return null;
+        }
+
+        public MatDataOutputPortControl SearchOutputPortControl(MatDataOutputPort port)
+        {
+            foreach (MatDataObjectControl oc in ctrls)
+            {
+                foreach (UIElement uie in oc.PART_Outputs.Children)
+                {
+                    MatDataOutputPortControl outpc = uie as MatDataOutputPortControl;
+
+                    if (outpc != null && outpc.OutputPort == port)
+                        return outpc;
+                }
+            }
+
+            return null;
+        }
+
+        private MatDataInputPortControl SearchInputPortControl(MatDataInputPort port)
+        {
+            foreach(MatDataObjectControl oc in ctrls)
+            {
+                foreach (UIElement uie in oc.PART_Inputs.Children)
+                {
+                    MatDataInputPortControl inpc = uie as MatDataInputPortControl;
+
+                    if (inpc != null && inpc.InputPort == port)
+                        return inpc;
+                }
+            }
+
+            return null;
         }
     }
 }

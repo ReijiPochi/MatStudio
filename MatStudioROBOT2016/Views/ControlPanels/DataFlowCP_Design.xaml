@@ -24,7 +24,7 @@
 
                         <GridSplitter Background="Transparent" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.Column="1"/>
 
-                        <ctrls:MatDataObjectsPresenter Grid.Column="1" Margin="5,36,0,0" MatDataObjects="{Binding DataObjects,Mode=TwoWay}"/>
+                        <ctrls:MatDataObjectsPresenter Grid.Column="1" Margin="5,36,0,0" MatDataObjects="{Binding DataObjects,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
                         <GridSplitter Background="Transparent" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.Column="2"/>
 

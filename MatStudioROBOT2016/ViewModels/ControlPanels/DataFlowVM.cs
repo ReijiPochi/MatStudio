@@ -33,6 +33,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             if(ProjectM.Current.DataFlow != null)
             {
                 DataObjects = ProjectM.Current.DataFlow;
+                ProjectM.Current.DataFlow.CollectionChanged += DataFlow_CollectionChanged;
             }
 
             RobotCoreM.Current.PropertyChanged += Current_PropertyChanged;
@@ -66,6 +67,11 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
                 default:
                     break;
             }
+        }
+
+        private void DataFlow_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            //RaisePropertyChanged("DataObjects");
         }
 
         #region Modules変更通知プロパティ

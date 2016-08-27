@@ -11,7 +11,7 @@
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Height" Value="26"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="IsEnabled" Value="{Binding IsUsing,Converter={StaticResource Reverse}}"/>
+        <Setter Property="IsEnabled" Value="{Binding IsUsing, Converter={StaticResource Reverse}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">

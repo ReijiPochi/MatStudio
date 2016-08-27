@@ -13,11 +13,18 @@ namespace RobotCore1
 {
     public class RobotCore1 : IRobotCore
     {
+        public RobotCore1()
+        {
+            list.Add(new Motor1("Motor1"));
+        }
+
         public string Name
         {
             get { return "RobotCore1"; }
             set { }
         }
+
+        ObservableCollection<Module> list = new ObservableCollection<Module>();
 
         RobotCoreInfo IRobotCore.GetBordInfo()
         {
@@ -31,10 +38,6 @@ namespace RobotCore1
 
         ObservableCollection<Module> IRobotCore.GetModules()
         {
-            ObservableCollection<Module> list = new ObservableCollection<Module>();
-
-            list.Add(new Motor1("Motor1"));
-
             return list;
         }
     }

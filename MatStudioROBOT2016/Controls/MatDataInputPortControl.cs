@@ -61,14 +61,6 @@ namespace MatStudioROBOT2016.Controls
 
             if (trg != null)
             {
-                if (e.NewValue != null)
-                {
-                    trg.InputPort.Owner = trg;
-                }
-                else
-                {
-                    ((MatDataInputPort)(e.OldValue)).Owner = null;
-                }
             }
         }
 
@@ -107,12 +99,31 @@ namespace MatStudioROBOT2016.Controls
             if(e.LeftButton== MouseButtonState.Pressed && InputPort.SendFrom != null)
             {
                 InputPort.SendFrom.SendTo.Remove(InputPort);
-                MatDataOutputPortControl outpc = InputPort.SendFrom.Owner as MatDataOutputPortControl;
+                MatDataObjectsPresenter presenter = GetParentPresenter(Parent);
+                if (presenter == null) return;
+
+                MatDataOutputPortControl outpc = presenter.SearchOutputPortControl(InputPort.SendFrom);
                 InputPort.SendFrom = null;
 
                 DragDrop.DoDragDrop(this, outpc, DragDropEffects.Move);
             }
         }
 
+        private MatDataObjectsPresenter GetParentPresenter(DependencyObject parent)
+        {
+            if (parent is MatDataObjectsPresenter) return parent as MatDataObjectsPresenter;
+            else
+            {
+                if (parent is FrameworkElement)
+                {
+                    if(((FrameworkElement)parent).TemplatedParent != null)
+                        return GetParentPresenter(((FrameworkElement)parent).TemplatedParent);
+                    else if(((FrameworkElement)parent).Parent != null)
+                        return GetParentPresenter(((FrameworkElement)parent).Parent);
+                }
+            }
+
+            return null;
+        }
     }
 }

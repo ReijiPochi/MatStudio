@@ -18,8 +18,8 @@ namespace RobotCore1.Modules
             outputs.Add(DutyOut);
         }
 
-        public MatDataInputPort DutyIn { get; private set; } = new MatDataInputPort(typeof(double), "Duty");
-        public MatDataOutputPort DutyOut { get; private set; } = new MatDataOutputPort(typeof(double), "Duty");
+        public MatDataInputPort DutyIn { get; private set; } = new MatDataInputPort(typeof(double), "Duty") { IsHardwarePort = true };
+        public MatDataOutputPort DutyOut { get; private set; } = new MatDataOutputPort(typeof(double), "Duty") { IsHardwarePort = true };
 
         public override MatDataObject GetNewInstance()
         {

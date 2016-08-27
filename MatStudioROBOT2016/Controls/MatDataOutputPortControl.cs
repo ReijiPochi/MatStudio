@@ -54,10 +54,6 @@ namespace MatStudioROBOT2016.Controls
 
             if (trg != null)
             {
-                if (e.NewValue != null)
-                    trg.OutputPort.Owner = trg;
-                else
-                    ((MatDataInputPort)(e.OldValue)).Owner = null;
             }
         }
 

@@ -89,7 +89,6 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\RobotCoreCP_Design.baml
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\RobotCoreCP_Resources.baml
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\DataFlowCP_Design.baml
-F:\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\RobotCore1.dll
 F:\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\RobotCoreBase.dll
 F:\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\RobotCoreBase.pdb
 F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\DataFlowCP_Design.baml

@@ -62,7 +62,7 @@ namespace MatStudioROBOT2016.ViewModels
 
         public void Initialize()
         {
-            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "メインウインドウを表示しました", "", this));
+            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "メインウインドウを表示しました", "Welcome to MatStudio !", this));
         }
     }
 }

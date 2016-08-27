@@ -39,6 +39,9 @@ namespace MatStudioROBOT2016.Controls
 
             PART_Thumb.DragDelta += PART_Thumb_DragDelta;
 
+            PART_Inputs.Drop += Ports_Drop;
+            PART_Outputs.Drop += Ports_Drop;
+
             Initialize();
         }
 
@@ -57,8 +60,27 @@ namespace MatStudioROBOT2016.Controls
             if (trg != null)
             {
                 trg.Initialize();
+
+                if (e.NewValue != null)
+                {
+                    trg.MyMatDataObject.PropertyChanged += trg.MyMatDataObject_PropertyChanged;
+                }
+
+                if (e.OldValue != null)
+                {
+                    ((MatDataObject)e.OldValue).PropertyChanged -= trg.MyMatDataObject_PropertyChanged;
+                }
             }
         }
+
+        private void MyMatDataObject_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "PositionX" || e.PropertyName == "PositionY")
+            {
+                SetDataValues();
+            }
+        }
+
 
         public event StateChangedEventHandler StateChanged;
         protected void RaiseStateChanged(StateChangedEventArgs e)
@@ -66,14 +88,10 @@ namespace MatStudioROBOT2016.Controls
             StateChanged?.Invoke(this, e);
         }
 
-
         private void PART_Thumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
             MyMatDataObject.PositionX += e.HorizontalChange;
             MyMatDataObject.PositionY += e.VerticalChange;
-
-            SetDataValues();
-            RaiseStateChanged(new StateChangedEventArgs());
         }
 
         public void Initialize()
@@ -92,7 +110,7 @@ namespace MatStudioROBOT2016.Controls
             {
                 MatDataOutputPortControl outpc = new MatDataOutputPortControl();
                 outpc.OutputPort = outp;
-                outpc.Drop += Ports_Drop;
+                //outpc.Drop += Ports_Drop;
 
                 PART_Outputs.Children.Add(outpc);
             }
@@ -102,7 +120,7 @@ namespace MatStudioROBOT2016.Controls
             {
                 MatDataInputPortControl inpc = new MatDataInputPortControl();
                 inpc.InputPort = inp;
-                inpc.Drop += Ports_Drop;
+                //inpc.Drop += Ports_Drop;
 
                 PART_Inputs.Children.Add(inpc);
             }
@@ -121,6 +139,8 @@ namespace MatStudioROBOT2016.Controls
 
             SetValue(Canvas.LeftProperty, MyMatDataObject.PositionX);
             SetValue(Canvas.TopProperty, MyMatDataObject.PositionY);
+
+            RaiseStateChanged(new StateChangedEventArgs());
         }
     }
 }

@@ -49,9 +49,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>InfrastructureAssemblies\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
-    <Reference Include="RobotCore1">
-      <HintPath>bin\Debug\RobotCores\RobotCore1.dll</HintPath>
-    </Reference>
     <Reference Include="RobotCoreBase">
       <HintPath>..\RobotCoreBase\bin\Debug\RobotCoreBase.dll</HintPath>
     </Reference>

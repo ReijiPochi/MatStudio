@@ -30,8 +30,6 @@ namespace MatFramework.DataFlow
 
         public Type MatDataType { get; protected set; }
 
-        public Control Owner { get; set; }
-
         public abstract bool CanConnectTo(MatDataPort port);
 
         public event MatPortConnectEvent MatPortConnect;

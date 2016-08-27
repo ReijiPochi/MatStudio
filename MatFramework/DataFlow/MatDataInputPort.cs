@@ -63,6 +63,8 @@ namespace MatFramework.DataFlow
             MatDataOutputPort trg = port as MatDataOutputPort;
             if (trg == null || SendFrom != null) return false;
 
+            if (IsHardwarePort && trg.IsHardwarePort && !AllowHardwareConnection) return false;
+
             return CanConnectToAnything || trg.MatDataType == MatDataType;
         }
     }
