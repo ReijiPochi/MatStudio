@@ -41,5 +41,9 @@ namespace RobotCoreBase
         public IRobotCoreHost Host { get; set; }
 
         public abstract void SetRecievedData(string data);
+
+        public abstract void DownloadValues();
+
+        public abstract void RequestUploadValues();
     }
 }

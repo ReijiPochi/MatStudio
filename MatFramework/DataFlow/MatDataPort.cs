@@ -26,6 +26,8 @@ namespace MatFramework.DataFlow
 
         public bool IsHardwarePort { get; set; }
 
+        public bool IsConnecting { get; protected set; }
+
         public Type MatDataType { get; protected set; }
 
         public abstract bool CanConnectTo(MatDataPort port);
@@ -34,12 +36,14 @@ namespace MatFramework.DataFlow
         protected void RaiseMatPortConnectEvent(MatPortConnectEventArgs e)
         {
             MatPortConnect?.Invoke(this, e);
+            IsConnecting = true;
         }
 
         public event MatPortDisconnectEvent MatPortDisconnect;
         protected void RaiseMatPortDisconnectEvent(MatPortDisconnectEventArgs e)
         {
             MatPortDisconnect?.Invoke(this, e);
+            IsConnecting = false;
         }
     }
 }

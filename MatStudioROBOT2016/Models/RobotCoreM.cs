@@ -7,7 +7,7 @@ using System.IO;
 using Livet;
 using System.Collections.ObjectModel;
 using RobotCoreBase;
-using System.Reflection;
+using MatFramework.DataFlow;
 
 namespace MatStudioROBOT2016.Models
 {
@@ -83,7 +83,7 @@ namespace MatStudioROBOT2016.Models
             {
                 try
                 {
-                    Assembly plugin = Assembly.LoadFrom(dll);
+                    System.Reflection.Assembly plugin = System.Reflection.Assembly.LoadFrom(dll);
                     foreach (Type t in plugin.GetTypes())
                     {
                         if (t.IsClass && !t.IsAbstract && t.GetInterface(typeof(IRobotCore).FullName) != null)
@@ -96,6 +96,14 @@ namespace MatStudioROBOT2016.Models
                 {
                     MatFramework.MatApp.ApplicationLog.LogException("ロボットコアの読み込みに失敗しました", ex, typeof(RobotCoreM));
                 }
+            }
+        }
+
+        public void DownloadAndUploadSettings()
+        {
+            foreach(Module m in CurrentRobotCore.GetModules())
+            {
+                m.DownloadValues();
             }
         }
 
