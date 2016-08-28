@@ -14,6 +14,8 @@ namespace MatFramework.DataFlow
             MatDataType = t;
         }
 
+        public bool CanConnectToAnything { get; set; }
+
         public bool AllowHardwareConnection { get; protected set; }
 
         private MatData _Value;
@@ -26,7 +28,7 @@ namespace MatFramework.DataFlow
                     MatApp.ApplicationLog.Log(new LogData(LogCondition.Warning, "SendFromプロパティを設定してください", Name + " MatDataInputPortのSendFromが設定されていません", this));
 
                 MatData old = null;
-                if (_Value != null) old = new MatData(_Value.DataType, _Value.DataValue, _Value.Time);
+                if (_Value != null) old = new MatData(_Value.DataType, _Value.DataValue);
 
                 _Value = value;
 

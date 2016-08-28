@@ -170,8 +170,12 @@ namespace MatStudioROBOT2016.Controls
 
                     if (!exist)
                     {
+                        objc.MyMatDataObject.DisconnectAll();
+
                         PART_Canvas.Children.Remove(objc);
                         ctrls.Remove(objc);
+                        if (objc.MyMatDataObject is Module)
+                            ((Module)objc.MyMatDataObject).IsUsing = false;
                     }
                 }
             }
@@ -189,7 +193,7 @@ namespace MatStudioROBOT2016.Controls
 
                 if (!exist)
                 {
-                    MatDataObjectControl ctrl = new MatDataObjectControl()
+                    MatDataObjectControl ctrl = new MatDataObjectControl(this)
                     {
                         MyMatDataObject = o
                     };
@@ -229,7 +233,17 @@ namespace MatStudioROBOT2016.Controls
 
             PART_Canvas.Children.Add(PART_Line);
 
-            Point zero = PART_Canvas.PointToScreen(new Point(0, 0));
+            Point zero = new Point(0, 0);
+
+            try
+            {
+                zero = PART_Canvas.PointToScreen(new Point(0, 0));
+            }
+            catch(Exception ex)
+            {
+                MatApp.ApplicationLog.LogException("データフローの線の描画に失敗しました", ex, this);
+                return;
+            }
 
             foreach (MatDataObjectControl ctrl in ctrls)
             {
@@ -258,7 +272,7 @@ namespace MatStudioROBOT2016.Controls
 
         private void Ctrl_StateChanged(object sender, StateChangedEventArgs e)
         {
-            RefreshLines();
+            RefreshCanvas();
         }
 
         private MatDataOutputPortControl SearchOutputPortControl(MatDataOutputPort port, MatDataObjectControl portIn)

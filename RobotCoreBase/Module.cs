@@ -16,6 +16,13 @@ namespace RobotCoreBase
             IsUsing = false;
         }
 
+        public Module(string name, int modNum) : base(name)
+        {
+            IsUsing = false;
+            ModuleNumber = modNum;
+        }
+
+        public int ModuleNumber { get; private set; }
 
         private bool _IsUsing;
         public bool IsUsing
@@ -30,6 +37,8 @@ namespace RobotCoreBase
                 RaisePropertyChanged("IsUsing");
             }
         }
+
+        public IRobotCoreHost Host { get; set; }
 
         public abstract void SetRecievedData(string data);
     }

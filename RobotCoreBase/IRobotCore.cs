@@ -15,8 +15,9 @@ namespace RobotCoreBase
         string Name { get; set; }
         RobotCoreInfo GetBordInfo();
         MatControlPanelBase GetMainControlPanel();
-
         ObservableCollection<Module> GetModules();
+        void SetRecievedData(string data);
+        void SetHost(IRobotCoreHost host);
     }
 
     public class RobotCoreInfo

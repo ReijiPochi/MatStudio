@@ -82,10 +82,11 @@ namespace MatStudioROBOT2016.Controls
             string[] type = e.Data.GetFormats();
             MatDataOutputPortControl outp = e.Data.GetData(type[0]) as MatDataOutputPortControl;
 
-            if (outp != null && InputPort.CanConnectTo(outp.OutputPort))
+            if (outp != null && InputPort.CanConnectTo(outp.OutputPort) && outp.OutputPort.CanConnectTo(InputPort))
             {
-                outp.OutputPort.SendTo.Add(InputPort);
+                // SendFrom から設定しましょう
                 InputPort.SendFrom = outp.OutputPort;
+                outp.OutputPort.SendTo.Add(InputPort);
             }
         }
 

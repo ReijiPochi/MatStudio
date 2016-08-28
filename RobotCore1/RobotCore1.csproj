@@ -66,7 +66,6 @@
   <ItemGroup>
     <Compile Include="MainCP.cs" />
     <Compile Include="Modules\Motor.cs" />
-    <Compile Include="Modules\Motor1.cs" />
     <Compile Include="RobotCore1.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,7 @@
-﻿using MatFramework.DataFlow;
+﻿using Livet;
+using Livet.Commands;
+using MatFramework.DataFlow;
+using MatGUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,9 +28,15 @@ namespace MatStudioROBOT2016.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MatDataObjectControl), new FrameworkPropertyMetadata(typeof(MatDataObjectControl)));
         }
 
+        public MatDataObjectControl(MatDataObjectsPresenter owner)
+        {
+            Owner = owner;
+        }
+
         private Thumb PART_Thumb;
         public StackPanel PART_Outputs;
         public StackPanel PART_Inputs;
+        public MatDataObjectsPresenter Owner { get; private set; }
 
         public override void OnApplyTemplate()
         {
@@ -110,7 +119,6 @@ namespace MatStudioROBOT2016.Controls
             {
                 MatDataOutputPortControl outpc = new MatDataOutputPortControl();
                 outpc.OutputPort = outp;
-                //outpc.Drop += Ports_Drop;
 
                 PART_Outputs.Children.Add(outpc);
             }
@@ -120,7 +128,6 @@ namespace MatStudioROBOT2016.Controls
             {
                 MatDataInputPortControl inpc = new MatDataInputPortControl();
                 inpc.InputPort = inp;
-                //inpc.Drop += Ports_Drop;
 
                 PART_Inputs.Children.Add(inpc);
             }
@@ -142,5 +149,39 @@ namespace MatStudioROBOT2016.Controls
 
             RaiseStateChanged(new StateChangedEventArgs());
         }
+    }
+
+    public class MatDataObjectControlVM : ViewModel
+    {
+        #region CloseCommand
+        private ListenerCommand<object> _CloseCommand;
+
+        public ListenerCommand<object> CloseCommand
+        {
+            get
+            {
+                if (_CloseCommand == null)
+                {
+                    _CloseCommand = new ListenerCommand<object>(Close);
+                }
+                return _CloseCommand;
+            }
+        }
+
+        public void Close(object parameter)
+        {
+            MatMenuItem from = parameter as MatMenuItem;
+            if (from == null)
+                throw new Exception("コマンドターゲットが不正、または取得できません");
+            ContextMenu cm = from.Parent as ContextMenu;
+            if (cm == null)
+                throw new Exception("コマンドターゲットが不正、または取得できません");
+            MatDataObjectControl trg = cm.PlacementTarget as MatDataObjectControl;
+            if (trg == null)
+                throw new Exception("コマンドターゲットが不正、または取得できません");
+
+            trg.Owner.MatDataObjects.Remove(trg.MyMatDataObject);
+        }
+        #endregion
     }
 }

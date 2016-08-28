@@ -85,7 +85,7 @@ namespace MatGUI
 
         private void MaskRect_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //PanelActivate();
+            PanelActivate();
         }
 
         private void MatPhantasmagoriaTabItem_MouseLeave(object sender, MouseEventArgs e)

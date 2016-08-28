@@ -61,7 +61,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IHostApp.cs" />
+    <Compile Include="IRobotCoreHost.cs" />
     <Compile Include="IRobotCore.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

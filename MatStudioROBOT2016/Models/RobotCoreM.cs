@@ -11,7 +11,7 @@ using System.Reflection;
 
 namespace MatStudioROBOT2016.Models
 {
-    public class RobotCoreM : NotificationObject
+    public class RobotCoreM : NotificationObject, IRobotCoreHost
     {
         public RobotCoreM()
         {
@@ -21,6 +21,38 @@ namespace MatStudioROBOT2016.Models
         public static RobotCoreM Current { get; } = new RobotCoreM();
 
         public ObservableCollection<IRobotCore> BoardList { get; private set; } = new ObservableCollection<IRobotCore>();
+
+        #region CurrentSerialPort変更通知プロパティ
+        private SerialPortsM _CurrentSerialPort;
+
+        public SerialPortsM CurrentSerialPort
+        {
+            get
+            { return _CurrentSerialPort; }
+            set
+            { 
+                if (_CurrentSerialPort == value)
+                    return;
+
+                if (_CurrentSerialPort != null)
+                    _CurrentSerialPort.RecievedALine -= Value_RecievedALine;
+
+                _CurrentSerialPort = value;
+
+                value.RecievedALine += Value_RecievedALine;
+
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        private void Value_RecievedALine(object sender, RecievedALineEventArgs e)
+        {
+            while (CurrentSerialPort.RecievedDataLines.Count != 0)
+            {
+                CurrentRobotCore.SetRecievedData(CurrentSerialPort.RecievedDataLines.Dequeue());
+            }
+        }
 
         #region CurrentRobotCore変更通知プロパティ
         private IRobotCore _CurrentRobotCore;
@@ -37,6 +69,7 @@ namespace MatStudioROBOT2016.Models
                 RaisePropertyChanged();
 
                 ProjectM.Current.ProjectRobotCore = value;
+                value.SetHost(Current);
             }
         }
         #endregion
@@ -64,6 +97,12 @@ namespace MatStudioROBOT2016.Models
                     MatFramework.MatApp.ApplicationLog.LogException("ロボットコアの読み込みに失敗しました", ex, typeof(RobotCoreM));
                 }
             }
+        }
+
+        void IRobotCoreHost.SendToBoad(string data)
+        {
+            if (CurrentSerialPort != null)
+                CurrentSerialPort.Send(data);
         }
     }
 }

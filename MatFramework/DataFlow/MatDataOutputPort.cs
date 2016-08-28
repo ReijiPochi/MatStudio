@@ -60,7 +60,7 @@ namespace MatFramework.DataFlow
 
             if (IsHardwarePort && trg.IsHardwarePort && !trg.AllowHardwareConnection) return false;
 
-            return CanConnectToAnything || trg.MatDataType == MatDataType;
+            return trg.CanConnectToAnything || trg.MatDataType == MatDataType;
         }
     }
 }

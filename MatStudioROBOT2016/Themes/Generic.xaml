@@ -72,6 +72,16 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu>
+                    <ContextMenu.DataContext>
+                        <ctrls:MatDataObjectControlVM/>
+                    </ContextMenu.DataContext>
+                    <matgui:MatMenuItem Header="Remove" Command="{Binding CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="{x:Type ctrls:MatDataOutputPortControl}">

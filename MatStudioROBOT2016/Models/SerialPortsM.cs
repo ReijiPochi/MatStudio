@@ -10,6 +10,13 @@ using System.Windows;
 
 namespace MatStudioROBOT2016.Models
 {
+    public delegate void RecievedALineEventHandler(object sender, RecievedALineEventArgs e);
+
+    public class RecievedALineEventArgs
+    {
+        public string NewLine { get; set; }
+    }
+
     public class SerialPortsM : NotificationObject
     {
         public SerialPortsM()
@@ -34,7 +41,15 @@ namespace MatStudioROBOT2016.Models
 
         public SerialPortConnector CurrentPort { get; private set; }
 
+        public Queue<string> RecievedDataLines { get; private set; }
+
         public string RecievedData { get; private set; }
+
+        public event RecievedALineEventHandler RecievedALine;
+        private void RaiseRecievedALineEvent(RecievedALineEventArgs e)
+        {
+            RecievedALine?.Invoke(this, e);
+        }
 
         /// <summary>
         /// PortListを更新し、Portsを更新します。
@@ -104,12 +119,23 @@ namespace MatStudioROBOT2016.Models
             CurrentPort.DataReceived += CurrentPort_DataReceived;
         }
 
+        private string line;
+
         private void CurrentPort_DataReceived(byte[] data)
         {
             foreach(char d in data)
             {
-                RecievedData += d;
+                line += d;
+
+                if(d == '\n')
+                {
+                    RecievedDataLines.Enqueue(line);
+                    RaiseRecievedALineEvent(new RecievedALineEventArgs() { NewLine = line });
+                    line = null;
+                }
             }
+
+            RecievedData += line;
 
             RaisePropertyChanged("RecievedData");
         }
@@ -136,6 +162,15 @@ namespace MatStudioROBOT2016.Models
             }
 
             return data;
+        }
+
+        /// <summary>
+        /// データを送信します
+        /// </summary>
+        /// <param name="data"></param>
+        public void Send(string data)
+        {
+            CurrentPort.WriteData(data);
         }
 
         /// <summary>

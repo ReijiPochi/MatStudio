@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using MatFramework.DataFlow;
 using RobotCoreBase;
 using MatStudioROBOT2016.Models.DataFlow.Indicator;
+using MatStudioROBOT2016.Models.DataFlow.Generator;
 
 namespace MatStudioROBOT2016.ViewModels.ControlPanels
 {
@@ -39,8 +40,9 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             RobotCoreM.Current.PropertyChanged += Current_PropertyChanged;
             ProjectM.Current.PropertyChanged += Current_PropertyChanged1;
 
-            Indicators = new ObservableCollection<MatDataIndicator>();
+            Indicators = new ObservableCollection<MatDataObject>();
             Indicators.Add(new MatDataIndicator("Indicator"));
+            Indicators.Add(new MatDataConstant("Constant"));
         }
 
         private void Current_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -92,9 +94,9 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
         #endregion
 
         #region Indicators変更通知プロパティ
-        private ObservableCollection<MatDataIndicator> _Indicators;
+        private ObservableCollection<MatDataObject> _Indicators;
 
-        public ObservableCollection<MatDataIndicator> Indicators
+        public ObservableCollection<MatDataObject> Indicators
         {
             get
             { return _Indicators; }

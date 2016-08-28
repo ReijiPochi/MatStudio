@@ -74,5 +74,26 @@ namespace MatFramework.DataFlow
             }
         }
 
+        public void DisconnectAll()
+        {
+            foreach(MatDataInputPort inp in inputs)
+            {
+                if (inp.SendFrom != null)
+                {
+                    inp.SendFrom.SendTo.Remove(inp);
+                    inp.SendFrom = null;
+                }
+            }
+
+            foreach(MatDataOutputPort outp in outputs)
+            {
+                foreach(MatDataInputPort to in outp.SendTo)
+                {
+                    to.SendFrom = null;
+                }
+
+                outp.SendTo.Clear();
+            }
+        }
     }
 }

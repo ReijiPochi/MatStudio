@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RobotCoreBase
 {
-    public interface IHostApp
+    public interface IRobotCoreHost
     {
         void SendToBoad(string data);
     }
