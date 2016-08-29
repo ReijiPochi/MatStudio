@@ -24,6 +24,20 @@
 
                         <GridSplitter Background="Transparent" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.Column="1"/>
 
+                        <StackPanel Orientation="Horizontal" Margin="6" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <matgui:MatButton Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                              Command="{Binding RobotCoreStartCommand, Mode=OneWay}" ToolTip="設定をダウンロードして開始">
+                                <matgui:MatButton.Content>
+                                    <Image Source="{DynamicResource PlayIcon}" Width="25" Height="25"/>
+                                </matgui:MatButton.Content>
+                            </matgui:MatButton>
+                            <matgui:MatButton Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                              Command="{Binding RobotCoreCloseCommand, Mode=OneWay}" ToolTip="接続を切断">
+                                <matgui:MatButton.Content>
+                                    <Image Source="{DynamicResource DisconnectIcon}" Width="25" Height="25"/>
+                                </matgui:MatButton.Content>
+                            </matgui:MatButton>
+                        </StackPanel>
                         <ctrls:MatDataObjectsPresenter Grid.Column="1" Margin="5,36,0,0" MatDataObjects="{Binding DataObjects,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
                         <GridSplitter Background="Transparent" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.Column="2"/>

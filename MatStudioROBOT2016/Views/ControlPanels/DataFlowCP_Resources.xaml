@@ -20,9 +20,9 @@
                         <i:Interaction.Behaviors>
                             <local:ModulesBehaviors/>
                         </i:Interaction.Behaviors>
-                        
+
                         <TextBlock Text="{Binding Name}"
-                                          HorizontalAlignment="Left" Margin="10,0,0,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                                   HorizontalAlignment="Left" Margin="10,0,0,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>

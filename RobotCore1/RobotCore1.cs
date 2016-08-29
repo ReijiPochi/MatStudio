@@ -37,7 +37,25 @@ namespace RobotCore1
             set { }
         }
 
+        public bool IsOpen { get; set; }
+
         ObservableCollection<Module> list = new ObservableCollection<Module>();
+
+        void IRobotCore.RobotCoreStart()
+        {
+            foreach (Module m in list)
+            {
+                m.DownloadValues();
+                m.RequestUploadValues();
+            }
+
+            IsOpen = true;
+        }
+
+        void IRobotCore.RobotCoreClose()
+        {
+            IsOpen = false;
+        }
 
         RobotCoreInfo IRobotCore.GetBordInfo()
         {
@@ -64,6 +82,8 @@ namespace RobotCore1
 
         void IRobotCore.SetRecievedData(string data)
         {
+            if (!IsOpen) return;
+
             string[] s = data.Split(';');
 
             switch (s[0])

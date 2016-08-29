@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace RobotCore1.Modules
 {
-    public enum ModulePortState
+    public enum ModuleState
     {
-        ForceByHost     = 0x0,
-        LookByHost      = 0x1,
-        Free            = 0x2
+        Active      = 0x0,
+        Deactive    = 0x1
     }
 }

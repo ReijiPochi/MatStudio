@@ -38,7 +38,24 @@ namespace RobotCoreBase
             }
         }
 
+        private bool _IsHardwareActivated;
+        public bool IsHardwareActivated
+        {
+            get { return _IsHardwareActivated; }
+            set
+            {
+                if (_IsHardwareActivated == value)
+                    return;
+                _IsHardwareActivated = value;
+                RaisePropertyChanged("IsHardwareActivated");
+            }
+        }
+
         public IRobotCoreHost Host { get; set; }
+
+        public abstract void Activate();
+
+        public abstract void Deactivate();
 
         public abstract void SetRecievedData(string data);
 

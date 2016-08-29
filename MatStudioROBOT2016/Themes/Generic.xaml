@@ -50,8 +50,8 @@
                             </Grid.ColumnDefinitions>
                             
                             <Rectangle Height="17" Fill="{DynamicResource MatBackGroundBrush}" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                            <TextBlock Height="17" VerticalAlignment="Top"  HorizontalAlignment="Center" Grid.ColumnSpan="2"
-                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MyMatDataObject.Name}"/>
+                            <TextBlock x:Name="NameTb" Height="17" VerticalAlignment="Top"  HorizontalAlignment="Center" Grid.ColumnSpan="2"
+                                       IsEnabled="{Binding IsHardwareActivated}" Text="{Binding Name}"/>
                             <Thumb x:Name="PART_Thumb" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2">
                                 <Thumb.Template>
                                     <ControlTemplate TargetType="{x:Type Thumb}">
@@ -69,6 +69,11 @@
                             </StackPanel>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False" SourceName="NameTb">
+                            <Setter Property="Foreground" Value="{DynamicResource MatInactiveForeGroundBrush}" TargetName="NameTb"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

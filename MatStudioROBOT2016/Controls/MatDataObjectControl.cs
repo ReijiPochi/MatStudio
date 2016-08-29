@@ -73,6 +73,11 @@ namespace MatStudioROBOT2016.Controls
                 if (e.NewValue != null)
                 {
                     trg.MyMatDataObject.PropertyChanged += trg.MyMatDataObject_PropertyChanged;
+                    trg.DataContext = trg.MyMatDataObject;
+                }
+                else
+                {
+                    trg.DataContext = null;
                 }
 
                 if (e.OldValue != null)

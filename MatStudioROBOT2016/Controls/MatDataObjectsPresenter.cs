@@ -45,10 +45,20 @@ namespace MatStudioROBOT2016.Controls
             PART_Line = GetTemplateChild("PART_Line") as Line;
 
             Loaded += MatDataObjectPresenter_Loaded;
+            Unloaded += MatDataObjectsPresenter_Unloaded;
 
             PART_Canvas.DragEnter += PART_Canvas_DragEnter;
             PART_Canvas.Drop += PART_Canvas_Drop;
             PART_Canvas.DragOver += PART_Canvas_DragOver;
+        }
+
+        private void MatDataObjectsPresenter_Unloaded(object sender, RoutedEventArgs e)
+        {
+            foreach (MatDataObjectControl ctrl in ctrls)
+            {
+                MatDataObjects = null;
+                ctrl.StateChanged -= Ctrl_StateChanged;
+            }
         }
 
         public ObservableCollection<MatDataObject> MatDataObjects

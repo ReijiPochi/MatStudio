@@ -185,6 +185,7 @@
   <ItemGroup>
     <Resource Include="Design\pause.png" />
     <Resource Include="Design\play.png" />
+    <Resource Include="Design\disconnect.png" />
     <Content Include="InfrastructureAssemblies\Design\Livet.Design.dll" />
     <Content Include="InfrastructureAssemblies\Livet.dll" />
     <Content Include="InfrastructureAssemblies\Livet.XML" />

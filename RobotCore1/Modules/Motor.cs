@@ -12,10 +12,12 @@ namespace RobotCore1.Modules
 {
     public enum MotorCommand
     {
-        DutyIn_DL_State,
-        DutyIn_DL_Value,
-        DutyOut_DL_State,
-        DutyOut_UP_Value
+        Module_DL_Activation    = 0x0,
+        Module_UP_Activation    = 0x1,
+        DutyIn_DL_State         = 0x2,
+        DutyIn_DL_Value         = 0x3,
+        DutyOut_DL_State        = 0x4,
+        DutyOut_UP_Value        = 0x5
     }
 
     public class Motor : Module
@@ -28,9 +30,21 @@ namespace RobotCore1.Modules
             DutyIn.MatDataInput += DutyIn_MatDataInput;
         }
 
+        public override void Activate()
+        {
+            SendCommand(MotorCommand.Module_DL_Activation, (int)ModuleState.Active);
+            IsHardwareActivated = true;
+        }
+
+        public override void Deactivate()
+        {
+            SendCommand(MotorCommand.Module_DL_Activation, (int)ModuleState.Deactive);
+            IsHardwareActivated = false;
+        }
+
         public override void DownloadValues()
         {
-            if (Host == null) return;
+            if (Host == null || !IsHardwareActivated) return;
 
             if (DutyIn.IsConnecting)
             {
@@ -41,21 +55,24 @@ namespace RobotCore1.Modules
             {
                 SendCommand(MotorCommand.DutyIn_DL_State, (int)ModulePortState.Free);
             }
+
+            if (DutyOut.IsConnecting)
+            {
+                SendCommand(MotorCommand.DutyOut_DL_State, (int)ModulePortState.LookByHost);
+            }
+            else
+            {
+                SendCommand(MotorCommand.DutyOut_DL_State, (int)ModulePortState.Free);
+            }
         }
 
         public override void RequestUploadValues()
         {
             if (Host == null) return;
 
-            if (DutyOut.IsConnecting)
-            {
-                SendCommand(MotorCommand.DutyOut_DL_State, (int)ModulePortState.LookByHost);
-                SendCommand(MotorCommand.DutyOut_UP_Value);
-            }
-            else
-            {
-                SendCommand(MotorCommand.DutyOut_DL_State, (int)ModulePortState.Free);
-            }
+            SendCommand(MotorCommand.Module_UP_Activation);
+
+            if (DutyOut.IsConnecting) SendCommand(MotorCommand.DutyOut_UP_Value);
         }
 
         public MatDataInputPort DutyIn { get; private set; } = new MatDataInputPort(typeof(double), "Duty") { IsHardwarePort = true };

@@ -74,6 +74,23 @@ namespace MatStudioROBOT2016.Models
         }
         #endregion
 
+        #region CurrentRobotCoreIsOpen変更通知プロパティ
+        private bool _CurrentRobotCoreIsOpen;
+
+        public bool CurrentRobotCoreIsOpen
+        {
+            get
+            { return _CurrentRobotCoreIsOpen; }
+            set
+            { 
+                if (_CurrentRobotCoreIsOpen == value)
+                    return;
+                _CurrentRobotCoreIsOpen = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
         private void UpdateBordList()
         {
             string[] dlls = Directory.GetFiles("RobotCores", "*.dll");
@@ -99,17 +116,9 @@ namespace MatStudioROBOT2016.Models
             }
         }
 
-        public void DownloadAndUploadSettings()
-        {
-            foreach(Module m in CurrentRobotCore.GetModules())
-            {
-                m.DownloadValues();
-            }
-        }
-
         void IRobotCoreHost.SendToBoad(string data)
         {
-            if (CurrentSerialPort != null)
+            if (CurrentSerialPort != null || CurrentRobotCore.IsOpen)
                 CurrentSerialPort.Send(data);
         }
     }
