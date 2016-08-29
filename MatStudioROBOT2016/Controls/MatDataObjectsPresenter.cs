@@ -52,14 +52,6 @@ namespace MatStudioROBOT2016.Controls
             PART_Canvas.DragOver += PART_Canvas_DragOver;
         }
 
-        private void MatDataObjectsPresenter_Unloaded(object sender, RoutedEventArgs e)
-        {
-            foreach (MatDataObjectControl ctrl in ctrls)
-            {
-                MatDataObjects = null;
-                ctrl.StateChanged -= Ctrl_StateChanged;
-            }
-        }
 
         public ObservableCollection<MatDataObject> MatDataObjects
         {
@@ -99,9 +91,33 @@ namespace MatStudioROBOT2016.Controls
             PART_Viewer.ScrollToHorizontalOffset(PART_Viewer.ScrollableWidth / 2.0);
             PART_Viewer.ScrollToVerticalOffset(PART_Viewer.ScrollableHeight / 2.0);
 
+            if (ctrls != null)
+            {
+                foreach (MatDataObjectControl ctrl in ctrls)
+                {
+                    ctrl.StateChanged += Ctrl_StateChanged;
+                }
+            }
+
+            if (MatDataObjects != null)
+            {
+                MatDataObjects.CollectionChanged -= MatDataObjects_CollectionChanged;
+                MatDataObjects.CollectionChanged -= MatDataObjects_CollectionChanged;
+                MatDataObjects.CollectionChanged += MatDataObjects_CollectionChanged;
+            }
+
             RefreshCanvas();
         }
 
+        private void MatDataObjectsPresenter_Unloaded(object sender, RoutedEventArgs e)
+        {
+            MatDataObjects.CollectionChanged -= MatDataObjects_CollectionChanged;
+
+            foreach (MatDataObjectControl ctrl in ctrls)
+            {
+                ctrl.StateChanged -= Ctrl_StateChanged;
+            }
+        }
 
         private void PART_Canvas_DragEnter(object sender, DragEventArgs e)
         {
