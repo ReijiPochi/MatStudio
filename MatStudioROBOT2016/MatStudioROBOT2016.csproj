@@ -105,6 +105,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ControlPanels\InterfaceCP_Design.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ControlPanels\RobotCoreCP_Design.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +146,7 @@
     <Compile Include="Models\SerialPortsM.cs" />
     <Compile Include="ViewModels\ControlPanels\ApplicationLogVM.cs" />
     <Compile Include="ViewModels\ControlPanels\DataFlowVM.cs" />
+    <Compile Include="ViewModels\ControlPanels\InterfaceVM.cs" />
     <Compile Include="ViewModels\ControlPanels\RobotCoreMainVM.cs" />
     <Compile Include="ViewModels\ControlPanels\TerminalVM.cs" />
     <Compile Include="ViewModels\ControlPanelVM.cs" />
@@ -150,6 +155,7 @@
     <Compile Include="Views\ControlPanels\ApplicationLogCP.cs" />
     <Compile Include="Views\ControlPanels\DataFlowCP.cs" />
     <Compile Include="Views\ControlPanels\DataFlowCP_Behaviors.cs" />
+    <Compile Include="Views\ControlPanels\InterfaceCP.cs" />
     <Compile Include="Views\ControlPanels\RobotCoreCP.cs" />
     <Compile Include="Views\ControlPanels\RobotCoreMainCP.cs" />
     <Compile Include="Views\ControlPanels\TerminalCP.cs" />

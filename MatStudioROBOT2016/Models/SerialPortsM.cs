@@ -76,7 +76,7 @@ namespace MatStudioROBOT2016.Models
 
                 if (!nameExist)
                 {
-                    Ports.Add(new SerialPortConnector(name, 9800, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One));
+                    Ports.Add(new SerialPortConnector(name, 1250000, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One));
                 }
             }
 

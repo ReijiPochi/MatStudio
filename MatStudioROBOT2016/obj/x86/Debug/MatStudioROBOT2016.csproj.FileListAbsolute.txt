@@ -96,3 +96,4 @@ F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\RobotCo
 F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\RobotCoreMainCP_Design.baml
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\DataFlowCP_Resources.baml
 F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\DataFlowCP_Resources.baml
+F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\InterfaceCP_Design.baml

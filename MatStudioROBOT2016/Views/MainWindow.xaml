@@ -53,6 +53,7 @@
                 <matgui:MatMenuItem Header="データフロー" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource DataFlow}"/>
                 <matgui:MatMenuItem Header="ロボットコア">
                     <matgui:MatMenuItem Header="設定" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource RobotCore}"/>
+                    <matgui:MatMenuItem Header="インターフェイス" Command="{Binding ShowControlPanelCommand, Mode=OneWay}" CommandParameter="{DynamicResource Interface}"/>
                     <matgui:MatMenuItem Header="ロボットコア コントロール" Command="{Binding ShowControlPanelCommand,Mode=OneWay}" CommandParameter="{DynamicResource RobotCoreMain}"/>
                 </matgui:MatMenuItem>
             </matgui:MatMenuItem>

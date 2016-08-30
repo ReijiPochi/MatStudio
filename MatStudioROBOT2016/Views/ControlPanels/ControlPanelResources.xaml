@@ -24,4 +24,8 @@
         <local:DataFlowCP/>
     </matgui:PhantasmagoriaTabItem>
 
+    <matgui:PhantasmagoriaTabItem x:Key="Interface" Header="インターフェイス">
+        <local:InterfaceCP/>
+    </matgui:PhantasmagoriaTabItem>
+
 </ResourceDictionary>

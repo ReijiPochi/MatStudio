@@ -74,11 +74,13 @@ namespace MatFramework.Connection
 
         public void WriteData(byte[] buffer)
         {
+            if (!IsOpen) return;
             myPort.Write(buffer, 0, buffer.Length);
         }
 
         public void WriteData(string data)
         {
+            if (!IsOpen) return;
             myPort.Write(data);
         }
 
