@@ -24,7 +24,7 @@ namespace MatFramework.Connection
         public StopBits StopBits { get; private set; }
         public bool IsOpen { get; private set; }
 
-        public delegate void DataReceivedHandler(byte[] data);
+        public delegate void DataReceivedHandler(MatObject sender, byte[] data);
         public event DataReceivedHandler DataReceived;
 
         public SerialPortConnector(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits)
@@ -107,7 +107,7 @@ namespace MatFramework.Connection
 
                     if (rbyte > 0)
                     {
-                        DataReceived(buffer);
+                        DataReceived(this, buffer);
                     }
                 }
                 catch (Exception ex)

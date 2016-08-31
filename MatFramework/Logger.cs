@@ -65,7 +65,7 @@ namespace MatFramework
             Log(new LogData(LogCondition.Action, "ロギングを開始しました", "", this));
         }
 
-        public ObservableCollection<LogData> LogList { get; private set; } = new ObservableCollection<LogData>();
+        public MatObservableSynchronizedCollection<LogData> LogList { get; private set; } = new MatObservableSynchronizedCollection<LogData>();
 
         public void Log(LogData log)
         {

@@ -35,24 +35,30 @@ namespace MatStudioROBOT2016.Models
                     return;
 
                 if (_CurrentSerialPort != null)
-                    _CurrentSerialPort.RecievedALine -= Value_RecievedALine;
+                    _CurrentSerialPort.RecievedLines.CollectionChanged -= RecievedLines_CollectionChanged;
 
                 _CurrentSerialPort = value;
 
-                value.RecievedALine += Value_RecievedALine;
+                value.RecievedLines.CollectionChanged += RecievedLines_CollectionChanged;
 
                 RaisePropertyChanged();
             }
         }
         #endregion
 
-        private void Value_RecievedALine(object sender, RecievedALineEventArgs e)
+        private void RecievedLines_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            while (CurrentSerialPort.RecievedDataLines.Count != 0)
+            if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
-                CurrentRobotCore.SetRecievedData(CurrentSerialPort.RecievedDataLines.Dequeue());
+                foreach(string line in e.NewItems)
+                {
+                    CurrentRobotCore.SetRecievedData(line);
+                    count++;
+                }
             }
         }
+
+        int count = 0;
 
         #region CurrentRobotCore変更通知プロパティ
         private IRobotCore _CurrentRobotCore;

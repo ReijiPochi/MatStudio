@@ -7,6 +7,7 @@ using Livet;
 
 using MatFramework.Connection;
 using System.Windows;
+using MatFramework;
 
 namespace MatStudioROBOT2016.Models
 {
@@ -41,9 +42,11 @@ namespace MatStudioROBOT2016.Models
 
         public SerialPortConnector CurrentPort { get; private set; }
 
-        public Queue<string> RecievedDataLines { get; private set; }
+        public Queue<string> RecievedDataLines { get; private set; } = new Queue<string>();
 
         public string RecievedData { get; private set; }
+
+        public MatObservableSynchronizedCollection<string> RecievedLines { get; set; } = new MatObservableSynchronizedCollection<string>();
 
         public event RecievedALineEventHandler RecievedALine;
         private void RaiseRecievedALineEvent(RecievedALineEventArgs e)
@@ -119,23 +122,29 @@ namespace MatStudioROBOT2016.Models
             CurrentPort.DataReceived += CurrentPort_DataReceived;
         }
 
-        private string line;
+        private string line = null;
 
-        private void CurrentPort_DataReceived(byte[] data)
+        private void CurrentPort_DataReceived(MatObject sender, byte[] data)
         {
             foreach(char d in data)
             {
                 line += d;
+                RecievedData += d;
 
-                if(d == '\n')
+                if (d == '\n')
                 {
-                    RecievedDataLines.Enqueue(line);
-                    RaiseRecievedALineEvent(new RecievedALineEventArgs() { NewLine = line });
+
+                    //sender.Dispatcher.BeginInvoke((Action)(() =>
+                    //{
+                    //    RecievedDataLines.Enqueue(line);
+                    //    RaiseRecievedALineEvent(new RecievedALineEventArgs() { NewLine = line });
+                    //}));
+
+                    RecievedLines.Add(line);
+
                     line = null;
                 }
             }
-
-            RecievedData += line;
 
             RaisePropertyChanged("RecievedData");
         }

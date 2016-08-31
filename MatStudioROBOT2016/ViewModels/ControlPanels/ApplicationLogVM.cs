@@ -33,9 +33,9 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
 
 
         #region Log変更通知プロパティ
-        private ObservableCollection<LogData> _Log;
+        private MatObservableSynchronizedCollection<LogData> _Log;
 
-        public ObservableCollection<LogData> Log
+        public MatObservableSynchronizedCollection<LogData> Log
         {
             get
             { return _Log; }
