@@ -128,5 +128,11 @@ namespace MatStudioROBOT2016.Models
             if (CurrentSerialPort != null || CurrentRobotCore.IsOpen)
                 CurrentSerialPort.Send(data);
         }
+
+        void IRobotCoreHost.SendToBoad(byte[] data)
+        {
+            if (CurrentSerialPort != null || CurrentRobotCore.IsOpen)
+                CurrentSerialPort.Send(data);
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace RobotCoreBase
     public interface IRobotCoreHost
     {
         void SendToBoad(string data);
+        void SendToBoad(byte[] data);
     }
 }

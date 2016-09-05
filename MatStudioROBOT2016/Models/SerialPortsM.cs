@@ -183,6 +183,15 @@ namespace MatStudioROBOT2016.Models
         }
 
         /// <summary>
+        /// データを送信します
+        /// </summary>
+        /// <param name="data"></param>
+        public void Send(byte[] data)
+        {
+            CurrentPort.WriteData(data);
+        }
+
+        /// <summary>
         /// 指定されたCOMポートを閉じます。
         /// </summary>
         /// <param name="portName"></param>

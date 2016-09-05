@@ -112,12 +112,16 @@ namespace RobotCore1.Modules
 
         private void SendCommand(MotorCommand command, int value)
         {
-            Host.SendToBoad("Mm" + ModuleNumber.ToString("X") + ";" + ((int)command).ToString("X") + ":" + value.ToString() + "\n");
+            Host.SendToBoad("Mm" + ModuleNumber.ToString("X") + ";" + ((int)command).ToString("X") + ":");
+            Host.SendToBoad(BitConverter.GetBytes(value));
+            Host.SendToBoad("\n");
         }
 
         private void SendCommand(MotorCommand command, double value)
         {
-            Host.SendToBoad("Mm" + ModuleNumber.ToString("X") + ";" + ((int)command).ToString("X") + ":" + value.ToString("f5") + "\n");
+            Host.SendToBoad("Mm" + ModuleNumber.ToString("X") + ";" + ((int)command).ToString("X") + ":");
+            Host.SendToBoad(BitConverter.GetBytes((float)value));
+            Host.SendToBoad("\n");
         }
 
     }
