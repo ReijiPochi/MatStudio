@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Controls\LogConditionIndicator.cs" />
+    <Compile Include="Converters\DataConverter.cs" />
     <Compile Include="Converters\BoolReverseConverter.cs" />
     <Compile Include="DataFlow\MatDataPort.cs" />
     <Compile Include="DataFlow\MatPortConnectEvent.cs" />

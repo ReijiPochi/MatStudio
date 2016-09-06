@@ -43,13 +43,13 @@ namespace RobotCore1
 
         void IRobotCore.RobotCoreStart()
         {
+            IsOpen = true;
+
             foreach (Module m in list)
             {
                 m.DownloadValues();
                 m.RequestUploadValues();
             }
-
-            IsOpen = true;
         }
 
         void IRobotCore.RobotCoreClose()

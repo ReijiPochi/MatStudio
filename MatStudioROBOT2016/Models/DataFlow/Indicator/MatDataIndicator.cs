@@ -22,7 +22,10 @@ namespace MatStudioROBOT2016.Models.DataFlow.Indicator
         public MatDataInputPort ValueIn = new MatDataInputPort(typeof(object), "Value");
         private void ValueIn_MatDataInput(object sender, MatDataInputEventArgs e)
         {
-            Name = e.NewValue.DataValue.ToString();
+            if (e.NewValue.DataType == typeof(double))
+                Name = ((double)e.NewValue.DataValue).ToString("f6");
+            else
+                Name = e.NewValue.DataValue.ToString();
         }
 
         public override MatDataObject GetNewInstance()
