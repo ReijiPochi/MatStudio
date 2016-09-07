@@ -234,7 +234,6 @@ namespace MatStudioROBOT2016.Controls
                     ctrls.Add(ctrl);
                     PART_Canvas.Children.Add(ctrl);
                 }
-
             }
 
             Utility.UpdateUI();
@@ -278,7 +277,11 @@ namespace MatStudioROBOT2016.Controls
                     foreach (MatDataInputPort inp in outp.SendTo)
                     {
                         Line line = new Line();
-                        line.Stroke = FindResource("MatForeGroundBrush") as SolidColorBrush;
+
+                        if (outp.IsHardwarePort && inp.IsHardwarePort)
+                            line.Stroke = new SolidColorBrush(Color.FromArgb(255, 250, 80, 100));
+                        else
+                            line.Stroke = FindResource("MatForeGroundBrush") as SolidColorBrush;
 
                         MatDataOutputPortControl outpc = SearchOutputPortControl(outp, ctrl);
                         MatDataInputPortControl inpc = SearchInputPortControl(inp);

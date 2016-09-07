@@ -11,18 +11,13 @@ namespace RobotCoreBase
 {
     public abstract class Module : MatDataObject
     {
-        public Module(string name) : base(name)
+        public Module(string name, string modSimbol) : base(name)
         {
             IsUsing = false;
+            ModuleSimbol = modSimbol;
         }
 
-        public Module(string name, int modNum) : base(name)
-        {
-            IsUsing = false;
-            ModuleNumber = modNum;
-        }
-
-        public int ModuleNumber { get; private set; }
+        public string ModuleSimbol { get; private set; }
 
         private bool _IsUsing;
         public bool IsUsing
@@ -52,6 +47,31 @@ namespace RobotCoreBase
         }
 
         public IRobotCoreHost Host { get; set; }
+
+        protected void SendCommand(int command)
+        {
+            if (Host == null) return;
+
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString("X") + ":" + "\n");
+        }
+
+        protected void SendCommand(int command, int value)
+        {
+            if (Host == null) return;
+
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString("X") + ":");
+            Host.SendToBoad(BitConverter.GetBytes(value));
+            Host.SendToBoad("\n");
+        }
+
+        protected void SendCommand(int command, double value)
+        {
+            if (Host == null) return;
+
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString("X") + ":");
+            Host.SendToBoad(BitConverter.GetBytes((float)value));
+            Host.SendToBoad("\n");
+        }
 
         public abstract void Activate();
 

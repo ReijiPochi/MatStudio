@@ -19,12 +19,13 @@ namespace RobotCore1.Modules
         DutyIn_DL_State         = 0x2,
         DutyIn_DL_Value         = 0x3,
         DutyOut_DL_State        = 0x4,
-        DutyOut_UP_Value        = 0x5
+        DutyOut_UP_Value        = 0x5,
+        DutyOut_DL_ConnectToHardwarePort = 0x6
     }
 
     public class Motor : Module
     {
-        public Motor(string name, int modNum) : base(name, modNum)
+        public Motor(string name, string modSimbol) : base(name, modSimbol)
         {
             inputs.Add(DutyIn);
             outputs.Add(DutyOut);
@@ -38,13 +39,13 @@ namespace RobotCore1.Modules
 
         public override void Activate()
         {
-            SendCommand(MotorCommand.Module_DL_Activation, (int)ModuleState.Active);
+            SendCommand((int)MotorCommand.Module_DL_Activation, (int)ModuleState.Active);
             IsHardwareActivated = true;
         }
 
         public override void Deactivate()
         {
-            SendCommand(MotorCommand.Module_DL_Activation, (int)ModuleState.Deactive);
+            SendCommand((int)MotorCommand.Module_DL_Activation, (int)ModuleState.Deactive);
             IsHardwareActivated = false;
         }
 
@@ -54,21 +55,34 @@ namespace RobotCore1.Modules
 
             if (DutyIn.IsConnecting)
             {
-                SendCommand(MotorCommand.DutyIn_DL_State, (int)ModulePortState.ForceByHost);
-                SendCommand(MotorCommand.DutyIn_DL_Value, (double)DutyIn.Value.DataValue);
+                SendCommand((int)MotorCommand.DutyIn_DL_State, (int)ModulePortState.ForceByHost);
+                SendCommand((int)MotorCommand.DutyIn_DL_Value, (double)DutyIn.Value.DataValue);
             }
             else
             {
-                SendCommand(MotorCommand.DutyIn_DL_State, (int)ModulePortState.Free);
+                SendCommand((int)MotorCommand.DutyIn_DL_State, (int)ModulePortState.Free);
             }
 
             if (DutyOut.IsConnecting)
             {
-                SendCommand(MotorCommand.DutyOut_DL_State, (int)ModulePortState.LookByHost);
+                SendCommand((int)MotorCommand.DutyOut_DL_State, (int)ModulePortState.LookByHost);
+                if (DutyOut.IsConnectingToHardwarePort)
+                {
+                    foreach (MatDataInputPort inp in DutyOut.SendTo)
+                    {
+                        if (inp.IsHardwarePort)
+                            SendCommand((int)MotorCommand.DutyOut_DL_ConnectToHardwarePort, inp.HardwarePortAdress);
+                    }
+                }
+                else
+                {
+                    SendCommand((int)MotorCommand.DutyOut_DL_ConnectToHardwarePort, 0);
+                }
             }
             else
             {
-                SendCommand(MotorCommand.DutyOut_DL_State, (int)ModulePortState.Free);
+                SendCommand((int)MotorCommand.DutyOut_DL_State, (int)ModulePortState.Free);
+                SendCommand((int)MotorCommand.DutyOut_DL_ConnectToHardwarePort, 0);
             }
         }
 
@@ -76,28 +90,34 @@ namespace RobotCore1.Modules
         {
             if (Host == null) return;
 
-            SendCommand(MotorCommand.Module_UP_Activation);
+            SendCommand((int)MotorCommand.Module_UP_Activation);
 
             if (DutyOut.IsConnecting)
             {
-                SendCommand(MotorCommand.DutyOut_UP_Value);
+                SendCommand((int)MotorCommand.DutyOut_UP_Value);
             }
         }
 
         public MatDataInputPort DutyIn { get; private set; } = new MatDataInputPort(typeof(double), "Duty") { IsHardwarePort = true };
         private void DutyIn_MatDataInput(object sender, MatDataInputEventArgs e)
         {
-            SendCommand(MotorCommand.DutyIn_DL_Value, (double)DutyIn.Value.DataValue);
+            SendCommand((int)MotorCommand.DutyIn_DL_Value, (double)DutyIn.Value.DataValue);
         }
 
-        public MatDataOutputPort DutyOut { get; private set; } = new MatDataOutputPort(typeof(double), "Duty") { IsHardwarePort = true };
+        public MatDataOutputPort DutyOut { get; private set; } = new MatDataOutputPort(typeof(double), "Duty") { IsHardwarePort = true, AllowHardwareConnection = true };
         private void DutyOut_MatPortConnect(object sender, MatPortConnectEventArgs e)
         {
-            SendCommand(MotorCommand.DutyOut_DL_State, (int)ModulePortState.LookByHost);
+            SendCommand((int)MotorCommand.DutyOut_DL_State, (int)ModulePortState.LookByHost);
+
+            if (e.ConnectTo.IsHardwarePort)
+                SendCommand((int)MotorCommand.DutyOut_DL_ConnectToHardwarePort, ((MatDataInputPort)e.ConnectTo).HardwarePortAdress);
         }
         private void DutyOut_MatPortDisconnect(object sender, MatPortDisconnectEventArgs e)
         {
-            SendCommand(MotorCommand.DutyOut_DL_State, (int)ModulePortState.Free);
+            SendCommand((int)MotorCommand.DutyOut_DL_State, (int)ModulePortState.Free);
+
+            if (e.DisconnectTo.IsHardwarePort)
+                SendCommand((int)MotorCommand.DutyOut_DL_ConnectToHardwarePort, 0);
         }
 
         public override MatDataObject GetNewInstance()
@@ -120,31 +140,5 @@ namespace RobotCore1.Modules
                     break;
             }
         }
-
-        private void SendCommand(MotorCommand command)
-        {
-            if (Host == null) return;
-
-            Host.SendToBoad("Mm" + ModuleNumber.ToString("X") + ";" + ((int)command).ToString("X") + ":" + "\n");
-        }
-
-        private void SendCommand(MotorCommand command, int value)
-        {
-            if (Host == null) return;
-
-            Host.SendToBoad("Mm" + ModuleNumber.ToString("X") + ";" + ((int)command).ToString("X") + ":");
-            Host.SendToBoad(BitConverter.GetBytes(value));
-            Host.SendToBoad("\n");
-        }
-
-        private void SendCommand(MotorCommand command, double value)
-        {
-            if (Host == null) return;
-
-            Host.SendToBoad("Mm" + ModuleNumber.ToString("X") + ";" + ((int)command).ToString("X") + ":");
-            Host.SendToBoad(BitConverter.GetBytes((float)value));
-            Host.SendToBoad("\n");
-        }
-
     }
 }

@@ -125,13 +125,13 @@ namespace MatStudioROBOT2016.Models
 
         void IRobotCoreHost.SendToBoad(string data)
         {
-            if (CurrentSerialPort != null || CurrentRobotCore.IsOpen)
+            if (CurrentSerialPort != null && CurrentRobotCore.IsOpen)
                 CurrentSerialPort.Send(data);
         }
 
         void IRobotCoreHost.SendToBoad(byte[] data)
         {
-            if (CurrentSerialPort != null || CurrentRobotCore.IsOpen)
+            if (CurrentSerialPort != null && CurrentRobotCore.IsOpen)
                 CurrentSerialPort.Send(data);
         }
     }

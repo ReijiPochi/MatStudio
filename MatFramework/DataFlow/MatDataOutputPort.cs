@@ -18,6 +18,8 @@ namespace MatFramework.DataFlow
             SendTo.CollectionChanged += SendTo_CollectionChanged;
         }
 
+        public bool IsConnectingToHardwarePort { get; set; }
+
         public ObservableCollection<MatDataInputPort> SendTo = new ObservableCollection<MatDataInputPort>();
 
         private void SendTo_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -25,10 +27,21 @@ namespace MatFramework.DataFlow
             if(e.Action == NotifyCollectionChangedAction.Add)
             {
                 RaiseMatPortConnectEvent(new MatPortConnectEventArgs() { ConnectTo = e.NewItems[0] as MatDataPort });
+
+                if (((MatDataInputPort)e.NewItems[0]).IsHardwarePort)
+                    IsConnectingToHardwarePort = true;
             }
             else if(e.Action == NotifyCollectionChangedAction.Remove)
             {
                 RaiseMatPortDisconnectEvent(new MatPortDisconnectEventArgs() { DisconnectTo = e.OldItems[0] as MatDataPort });
+
+                bool temp = false;
+                foreach(MatDataInputPort inp in SendTo)
+                {
+                    if (inp.IsHardwarePort)
+                        temp = true;
+                }
+                IsConnectingToHardwarePort = temp;
             }
         }
 
@@ -58,7 +71,10 @@ namespace MatFramework.DataFlow
             MatDataInputPort trg = port as MatDataInputPort;
             if (trg == null) return false;
 
-            if (IsHardwarePort && trg.IsHardwarePort && !trg.AllowHardwareConnection) return false;
+            if (IsHardwarePort && trg.IsHardwarePort)
+            {
+                return trg.AllowHardwareConnection & AllowHardwareConnection;
+            }
 
             return trg.CanConnectToAnything || trg.MatDataType == MatDataType;
         }

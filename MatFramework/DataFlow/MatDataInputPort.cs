@@ -16,7 +16,7 @@ namespace MatFramework.DataFlow
 
         public bool CanConnectToAnything { get; set; }
 
-        public bool AllowHardwareConnection { get; protected set; }
+        public int HardwarePortAdress { get; set; }
 
         private MatData _Value;
         public MatData Value
@@ -65,7 +65,10 @@ namespace MatFramework.DataFlow
             MatDataOutputPort trg = port as MatDataOutputPort;
             if (trg == null || SendFrom != null) return false;
 
-            if (IsHardwarePort && trg.IsHardwarePort && !AllowHardwareConnection) return false;
+            if (IsHardwarePort && trg.IsHardwarePort)
+            {
+                return AllowHardwareConnection & trg.AllowHardwareConnection;
+            }
 
             return CanConnectToAnything || trg.MatDataType == MatDataType;
         }

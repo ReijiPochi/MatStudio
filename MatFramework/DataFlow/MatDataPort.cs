@@ -26,6 +26,8 @@ namespace MatFramework.DataFlow
 
         public bool IsHardwarePort { get; set; }
 
+        public bool AllowHardwareConnection { get; set; }
+
         public bool IsConnecting { get; protected set; }
 
         public Type MatDataType { get; protected set; }
