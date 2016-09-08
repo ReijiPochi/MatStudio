@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainCP.cs" />
+    <Compile Include="Modules\Bluetooth.cs" />
     <Compile Include="Modules\DataLogger.cs" />
     <Compile Include="Modules\ModulePortState.cs" />
     <Compile Include="Modules\ModuleState.cs" />

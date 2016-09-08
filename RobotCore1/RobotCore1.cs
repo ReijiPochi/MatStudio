@@ -22,6 +22,7 @@ namespace RobotCore1
             list.Add(motor5);
             list.Add(motor6);
             list.Add(logger1);
+            list.Add(bluetooth);
         }
 
         Motor motor1 = new Motor("Motor1", "Mm1");
@@ -31,6 +32,7 @@ namespace RobotCore1
         Motor motor5 = new Motor("Motor5", "Mm5");
         Motor motor6 = new Motor("Motor6", "Mm6");
         DataLogger logger1 = new DataLogger("DataLogger1", "Md1", 1);
+        Bluetooth bluetooth = new Bluetooth("Bluetooth", "Mb0");
 
         public string Name
         {
@@ -111,6 +113,10 @@ namespace RobotCore1
 
                 case "Mm6":
                     motor6.SetRecievedData(s[1]);
+                    break;
+
+                case "Mb0":
+                    bluetooth.SetRecievedData(s[1]);
                     break;
 
                 default:
