@@ -81,6 +81,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Models\DataFlow\Generator\MatDataConstantControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -139,6 +143,9 @@
     <Compile Include="Controls\MatDataOutputPortControl.cs" />
     <Compile Include="Controls\StateChangedEvent.cs" />
     <Compile Include="Models\DataFlow\Generator\MatDataConstant.cs" />
+    <Compile Include="Models\DataFlow\Generator\MatDataConstantControl.xaml.cs">
+      <DependentUpon>MatDataConstantControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataFlow\Indicator\MatDataIndicator.cs" />
     <Compile Include="Models\GUILayoutM.cs" />
     <Compile Include="Models\ProjectM.cs" />

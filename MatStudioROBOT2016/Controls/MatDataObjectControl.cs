@@ -47,6 +47,7 @@ namespace MatStudioROBOT2016.Controls
             PART_Inputs = GetTemplateChild("PART_Inputs") as StackPanel;
 
             PART_Thumb.DragDelta += PART_Thumb_DragDelta;
+            PART_Thumb.MouseDoubleClick += PART_Thumb_MouseDoubleClick;
 
             PART_Inputs.Drop += Ports_Drop;
             PART_Outputs.Drop += Ports_Drop;
@@ -143,6 +144,24 @@ namespace MatStudioROBOT2016.Controls
         private void Ports_Drop(object sender, DragEventArgs e)
         {
             RaiseStateChanged(new StateChangedEventArgs());
+        }
+
+        private void PART_Thumb_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Control c = MyMatDataObject.GetInterfaceControl();
+            if (c == null) return;
+
+            Window w = new Window();
+
+            w.Content = c;
+            w.Topmost = true;
+            w.WindowStyle = WindowStyle.SingleBorderWindow;
+            w.Width = c.MinWidth + 18.0;
+            w.Height = c.MinHeight + 35.0;
+            w.MinWidth = w.Width;
+            w.MinHeight = w.Height;
+
+            w.Show();
         }
 
         public void SetDataValues()

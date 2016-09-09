@@ -86,6 +86,8 @@
     <Compile Include="MatButton_T.cs" />
     <Compile Include="MatControlPanelBase.cs" />
     <Compile Include="MatButton.cs" />
+    <Compile Include="MatDoubleBox.cs" />
+    <Compile Include="MatFocusableBG.cs" />
     <Compile Include="MatListBox.cs" />
     <Compile Include="MatListBoxItem.cs" />
     <Compile Include="MatMenuItem.cs" />

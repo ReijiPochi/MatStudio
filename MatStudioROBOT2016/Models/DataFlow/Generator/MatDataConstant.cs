@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace MatStudioROBOT2016.Models.DataFlow.Generator
 {
@@ -16,6 +17,11 @@ namespace MatStudioROBOT2016.Models.DataFlow.Generator
 
             outputs.Add(IntValue);
             outputs.Add(DoubleValue);
+        }
+
+        public override Control GetInterfaceControl()
+        {
+            return new MatDataConstantControl() { DataContext = this };
         }
 
         public MatDataOutputPort IntValue = new MatDataOutputPort(typeof(int), "Int");
@@ -42,7 +48,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Generator
                 _ConstantValue = value;
 
                 IntValue.Value = new MatData(typeof(int), (int)value);
-                IntValue.Value = new MatData(typeof(double), value);
+                DoubleValue.Value = new MatData(typeof(double), value);
 
                 RaisePropertyChanged("ConstantValue");
             }

@@ -56,6 +56,7 @@ namespace MatStudioROBOT2016.Views
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MatWindow.AllWindowClose();
+            Application.Current.Shutdown();
         }
 
 

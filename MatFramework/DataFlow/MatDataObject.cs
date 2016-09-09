@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace MatFramework.DataFlow
 {
@@ -27,6 +29,11 @@ namespace MatFramework.DataFlow
                 _Name = value;
                 RaisePropertyChanged("Name");
             }
+        }
+
+        public virtual Control GetInterfaceControl()
+        {
+            return null;
         }
 
         public ObservableCollection<MatDataInputPort> inputs = new ObservableCollection<MatDataInputPort>();
