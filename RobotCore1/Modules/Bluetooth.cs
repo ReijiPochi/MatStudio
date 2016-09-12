@@ -19,49 +19,6 @@ namespace RobotCore1.Modules
         CommandOut_DL_ConnectToHardwarePort = 0x7
     }
 
-    public class DUALSHOCK3
-    {
-        public DUALSHOCK3(string bytes)
-        {
-            if (bytes.Length != 7) return;
-
-            UpArrow = (bytes[0] & 0x01) != 0;
-            DownArrow = (bytes[0] & 0x02) != 0;
-            RightArrow = (bytes[0] & 0x04) != 0;
-            LeftArrow = (bytes[0] & 0x08) != 0;
-            Sankaku = (bytes[0] & 0x10) != 0;
-            Batsu = (bytes[0] & 0x20) != 0;
-            Maru = (bytes[0] & 0x40) != 0;
-            Shikaku = (bytes[1] & 0x01) != 0;
-            L1 = (bytes[1] & 0x02) != 0;
-            L2 = (bytes[1] & 0x04) != 0;
-            R1 = (bytes[1] & 0x08) != 0;
-            R2 = (bytes[1] & 0x10) != 0;
-            AnalogL_X = (sbyte)bytes[2];
-            AnalogL_Y = (sbyte)bytes[3];
-            AnalogR_X = (sbyte)bytes[4];
-            AnalogR_Y = (sbyte)bytes[5];
-        }
-        public bool UpArrow;
-        public bool DownArrow;
-        public bool RightArrow;
-        public bool LeftArrow;
-        public bool Sankaku;
-        public bool Batsu;
-        public bool Maru;
-        public bool Shikaku;
-        public bool L1;
-        public bool L2;
-        public bool R1;
-        public bool R2;
-        public bool Start;
-        public bool Select;
-        public sbyte AnalogL_X;
-        public sbyte AnalogL_Y;
-        public sbyte AnalogR_X;
-        public sbyte AnalogR_Y;
-    }
-
     public class Bluetooth : Module
     {
         public Bluetooth(string name, string modSimbol) : base(name, modSimbol)
@@ -135,6 +92,6 @@ namespace RobotCore1.Modules
         }
 
 
-        public MatDataOutputPort CommandOut = new MatDataOutputPort(typeof(DUALSHOCK3), "Command") { IsHardwarePort = true, AllowHardwareConnection = true };
+        public MatDataOutputPort CommandOut = new MatDataOutputPort(typeof(DUALSHOCK3), "Command") { IsHardwarePort = true };
     }
 }

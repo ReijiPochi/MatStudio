@@ -61,6 +61,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DUALSHOCK3.cs" />
     <Compile Include="IRobotCoreHost.cs" />
     <Compile Include="IRobotCore.cs" />
     <Compile Include="Module.cs" />

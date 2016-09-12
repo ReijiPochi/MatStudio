@@ -147,6 +147,7 @@
       <DependentUpon>MatDataConstantControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DataFlow\Indicator\MatDataIndicator.cs" />
+    <Compile Include="Models\DataFlow\Logger\RemoconLogger.cs" />
     <Compile Include="Models\GUILayoutM.cs" />
     <Compile Include="Models\ProjectM.cs" />
     <Compile Include="Models\RobotCoreM.cs" />

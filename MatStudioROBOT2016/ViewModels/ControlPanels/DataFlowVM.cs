@@ -17,6 +17,7 @@ using MatFramework.DataFlow;
 using RobotCoreBase;
 using MatStudioROBOT2016.Models.DataFlow.Indicator;
 using MatStudioROBOT2016.Models.DataFlow.Generator;
+using MatStudioROBOT2016.Models.DataFlow.Logger;
 using MatFramework;
 
 namespace MatStudioROBOT2016.ViewModels.ControlPanels
@@ -44,6 +45,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             Indicators = new ObservableCollection<MatDataObject>();
             Indicators.Add(new MatDataIndicator("Indicator"));
             Indicators.Add(new MatDataConstant("Constant"));
+            Indicators.Add(new RemoconLogger("BluetoothLogger"));
         }
 
         private void RobotCoreM_PropertyChanged(object sender, PropertyChangedEventArgs e)
