@@ -8,6 +8,11 @@ namespace RobotCoreBase
 {
     public class DUALSHOCK3
     {
+        public DUALSHOCK3()
+        {
+
+        }
+
         public DUALSHOCK3(string bytes)
         {
             if (bytes.Length != 11) return;
@@ -29,6 +34,32 @@ namespace RobotCoreBase
             AnalogL_Y = (sbyte)bytes[7];
             AnalogR_X = (sbyte)bytes[8];
             AnalogR_Y = (sbyte)bytes[9];
+        }
+
+        public byte[] GetBytes()
+        {
+            byte[] data = new byte[10];
+
+            data[0] = (byte)(Time & 0x000000FF);
+            data[1] = (byte)((Time & 0x0000FF00) >> 8);
+            data[2] = (byte)((Time & 0x00FF0000) >> 16);
+            data[3] = (byte)((Time & 0xFF000000) >> 24);
+            data[4] = (byte)(ToInt(UpArrow) | ToInt(DownArrow) << 1 | ToInt(RightArrow) << 2 | ToInt(LeftArrow) << 3 | ToInt(Sankaku) << 4 | ToInt(Batsu) << 5 | ToInt(Maru) << 6);
+            data[5] = (byte)(ToInt(Shikaku) | ToInt(L1) << 1 | ToInt(L2) << 2 | ToInt(R1) << 3 | ToInt(R2) << 4);
+            data[6] = (byte)AnalogL_X;
+            data[7] = (byte)AnalogL_Y;
+            data[8] = (byte)AnalogR_X;
+            data[9] = (byte)AnalogR_Y;
+
+            return data;
+        }
+
+        private int ToInt(bool value)
+        {
+            if (value)
+                return 1;
+            else
+                return 0;
         }
 
         public int Time;

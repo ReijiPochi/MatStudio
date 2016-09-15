@@ -52,14 +52,14 @@ namespace RobotCoreBase
         {
             if (Host == null) return;
 
-            Host.SendToBoad(ModuleSimbol + ";" + command.ToString("X") + ":" + "\n");
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":" + "\n");
         }
 
         protected void SendCommand(int command, int value)
         {
             if (Host == null) return;
 
-            Host.SendToBoad(ModuleSimbol + ";" + command.ToString("X") + ":");
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":");
             Host.SendToBoad(BitConverter.GetBytes(value));
             Host.SendToBoad("\n");
         }
@@ -68,8 +68,17 @@ namespace RobotCoreBase
         {
             if (Host == null) return;
 
-            Host.SendToBoad(ModuleSimbol + ";" + command.ToString("X") + ":");
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":");
             Host.SendToBoad(BitConverter.GetBytes((float)value));
+            Host.SendToBoad("\n");
+        }
+
+        protected void SendCommand(int command, DUALSHOCK3 value)
+        {
+            if (Host == null) return;
+
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":");
+            Host.SendToBoad(value.GetBytes());
             Host.SendToBoad("\n");
         }
 

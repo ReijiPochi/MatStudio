@@ -16,15 +16,18 @@ namespace RobotCore1.Modules
         CommandIn_DL_Value      = 0x04,
         CommandOut_DL_State     = 0x05,
         CommandOut_UP_Value     = 0x06,
-        CommandOut_DL_ConnectToHardwarePort = 0x7
     }
 
     public class Bluetooth : Module
     {
         public Bluetooth(string name, string modSimbol) : base(name, modSimbol)
         {
+            CommandIn.MatDataInput += CommandIn_MatDataInput;
+
+            inputs.Add(CommandIn);
             outputs.Add(CommandOut);
         }
+
 
         public override void Activate()
         {
@@ -42,26 +45,22 @@ namespace RobotCore1.Modules
         {
             if (Host == null) return;
 
+            if(CommandIn.IsConnecting)
+            {
+                SendCommand((int)BluetoothCommand.CommandIn_DL_State, (int)ModulePortState.ForceByHost);
+            }
+            else
+            {
+                SendCommand((int)BluetoothCommand.CommandIn_DL_State, (int)ModulePortState.Free);
+            }
+
             if (CommandOut.IsConnecting)
             {
                 SendCommand((int)BluetoothCommand.CommandOut_DL_State, (int)ModulePortState.LookByHost);
-                if (CommandOut.IsConnectingToHardwarePort)
-                {
-                    foreach (MatDataInputPort inp in CommandOut.SendTo)
-                    {
-                        if (inp.IsHardwarePort)
-                            SendCommand((int)BluetoothCommand.CommandOut_DL_ConnectToHardwarePort, inp.HardwarePortAdress);
-                    }
-                }
-                else
-                {
-                    SendCommand((int)BluetoothCommand.CommandOut_DL_ConnectToHardwarePort, 0);
-                }
             }
             else
             {
                 SendCommand((int)BluetoothCommand.CommandOut_DL_State, (int)ModulePortState.Free);
-                SendCommand((int)BluetoothCommand.CommandOut_DL_ConnectToHardwarePort, 0);
             }
         }
 
@@ -91,6 +90,11 @@ namespace RobotCore1.Modules
             }
         }
 
+        public MatDataInputPort CommandIn = new MatDataInputPort(typeof(DUALSHOCK3), "Command") { IsHardwarePort = true };
+        private void CommandIn_MatDataInput(object sender, MatDataInputEventArgs e)
+        {
+            SendCommand((int)BluetoothCommand.CommandIn_DL_Value, (DUALSHOCK3)CommandIn.Value.DataValue);
+        }
 
         public MatDataOutputPort CommandOut = new MatDataOutputPort(typeof(DUALSHOCK3), "Command") { IsHardwarePort = true };
     }

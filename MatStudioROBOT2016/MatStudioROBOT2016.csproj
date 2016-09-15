@@ -81,6 +81,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Models\DataFlow\Generator\DUALSHOCK3_SimulaterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Models\DataFlow\Generator\MatDataConstantControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +146,10 @@
     <Compile Include="Controls\MatDataObjectsPresenter.cs" />
     <Compile Include="Controls\MatDataOutputPortControl.cs" />
     <Compile Include="Controls\StateChangedEvent.cs" />
+    <Compile Include="Models\DataFlow\Generator\DUALSHOCK3_Simulater.cs" />
+    <Compile Include="Models\DataFlow\Generator\DUALSHOCK3_SimulaterControl.xaml.cs">
+      <DependentUpon>DUALSHOCK3_SimulaterControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataFlow\Generator\MatDataConstant.cs" />
     <Compile Include="Models\DataFlow\Generator\MatDataConstantControl.xaml.cs">
       <DependentUpon>MatDataConstantControl.xaml</DependentUpon>

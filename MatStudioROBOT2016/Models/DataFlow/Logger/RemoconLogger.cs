@@ -27,7 +27,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             Log.Add((DUALSHOCK3)e.NewValue.DataValue);
         }
 
-        MatDataOutputPort CommandOut = new MatDataOutputPort(typeof(DUALSHOCK3), "Command") { };
+        MatDataOutputPort CommandOut = new MatDataOutputPort(typeof(DUALSHOCK3), "Log") { };
 
         public override MatDataObject GetNewInstance()
         {

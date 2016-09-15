@@ -46,6 +46,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
             Indicators.Add(new MatDataIndicator("Indicator"));
             Indicators.Add(new MatDataConstant("Constant"));
             Indicators.Add(new RemoconLogger("BluetoothLogger"));
+            Indicators.Add(new DUALSHOCK3_Simulater("DUALSHOCK3"));
         }
 
         private void RobotCoreM_PropertyChanged(object sender, PropertyChangedEventArgs e)
