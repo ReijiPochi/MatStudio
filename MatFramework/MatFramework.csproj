@@ -86,6 +86,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="MatApp.cs" />
     <Compile Include="MatObservableSynchronizedCollection.cs" />
+    <Compile Include="MatTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

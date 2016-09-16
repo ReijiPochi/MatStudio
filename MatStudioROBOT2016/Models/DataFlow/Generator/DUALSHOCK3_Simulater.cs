@@ -1,4 +1,5 @@
-﻿using MatFramework.DataFlow;
+﻿using MatFramework;
+using MatFramework.DataFlow;
 using RobotCoreBase;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Generator
 
         public void OutputACommand(DUALSHOCK3 command)
         {
+            MatTimer timer = new MatTimer(1);
             Command.Value = new MatData(typeof(DUALSHOCK3), command);
         }
 

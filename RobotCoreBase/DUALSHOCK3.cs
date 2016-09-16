@@ -6,6 +6,28 @@ using System.Threading.Tasks;
 
 namespace RobotCoreBase
 {
+    public enum DUALSHOCK3Buttons
+    {
+        UpArrow,
+        DownArrow,
+        RightArrow,
+        LeftArrow,
+        Sankaku,
+        Batsu,
+        Maru,
+        Shikaku,
+        L1,
+        L2,
+        R1,
+        R2,
+        Start,
+        Select,
+        AnalogL_X,
+        AnalogL_Y,
+        AnalogR_X,
+        AnalogR_Y
+    }
+
     public class DUALSHOCK3
     {
         public DUALSHOCK3()

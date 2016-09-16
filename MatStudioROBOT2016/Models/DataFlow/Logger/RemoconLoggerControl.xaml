@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="MatStudioROBOT2016.Models.DataFlow.Logger.RemoconLoggerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MatStudioROBOT2016.Models.DataFlow.Logger"
+             MinHeight="200" MinWidth="300"
+             xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI">
+    <Grid>
+        <matgui:MatFocusableBG/>
+        <matgui:MatScrollViewer Margin="6,6,6,30" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <Canvas x:Name="GraphCanvas" Background="{DynamicResource MatWorkAreaBrush}" Height="200"/>
+        </matgui:MatScrollViewer>
+    </Grid>
+</UserControl>

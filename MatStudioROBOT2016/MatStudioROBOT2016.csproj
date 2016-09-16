@@ -89,6 +89,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Models\DataFlow\Logger\RemoconLoggerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -155,7 +159,11 @@
       <DependentUpon>MatDataConstantControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DataFlow\Indicator\MatDataIndicator.cs" />
+    <Compile Include="Models\DataFlow\Logger\RemoconButtonItem.cs" />
     <Compile Include="Models\DataFlow\Logger\RemoconLogger.cs" />
+    <Compile Include="Models\DataFlow\Logger\RemoconLoggerControl.xaml.cs">
+      <DependentUpon>RemoconLoggerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\GUILayoutM.cs" />
     <Compile Include="Models\ProjectM.cs" />
     <Compile Include="Models\RobotCoreM.cs" />

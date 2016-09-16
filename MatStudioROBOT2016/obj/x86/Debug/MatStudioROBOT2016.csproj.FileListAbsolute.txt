@@ -102,3 +102,5 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Models\DataFlow\Generator\MatDataConstantControl.baml
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Models\DataFlow\Generator\DUALSHOCK3_SimulaterControl.g.cs
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Models\DataFlow\Generator\DUALSHOCK3_SimulaterControl.baml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Models\DataFlow\Logger\RemoconLoggerControl.g.cs
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Models\DataFlow\Logger\RemoconLoggerControl.baml

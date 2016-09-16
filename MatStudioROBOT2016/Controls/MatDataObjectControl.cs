@@ -157,7 +157,7 @@ namespace MatStudioROBOT2016.Controls
             w.Topmost = true;
             w.WindowStyle = WindowStyle.SingleBorderWindow;
             w.Width = c.MinWidth + 18.0;
-            w.Height = c.MinHeight + 35.0;
+            w.Height = c.MinHeight + 38.0;
             w.MinWidth = w.Width;
             w.MinHeight = w.Height;
 
