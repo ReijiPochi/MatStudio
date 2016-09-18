@@ -8,8 +8,13 @@
              xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI">
     <Grid>
         <matgui:MatFocusableBG/>
-        <matgui:MatScrollViewer Margin="6,6,6,30" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-            <Canvas x:Name="GraphCanvas" Background="{DynamicResource MatWorkAreaBrush}" Height="200"/>
+        <matgui:MatScrollViewer x:Name="GraphScrollViewer" Background="{DynamicResource MatWorkAreaBrush}" 
+                                Margin="80,6,6,30" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <Canvas x:Name="GraphCanvas" Height="500"/>
+        </matgui:MatScrollViewer>
+        <matgui:MatScrollViewer x:Name="ListScrollViewer" HorizontalAlignment="Left" Width="75"
+                                Margin="5,6,6,30" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="ListStackPanel" TextBlock.Foreground="{DynamicResource MatForeGroundBrush}"/>
         </matgui:MatScrollViewer>
     </Grid>
 </UserControl>

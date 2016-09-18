@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobotCoreBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,40 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         public RemoconLoggerControl()
         {
             InitializeComponent();
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            GraphScrollViewer.ScrollChanged += GraphScrollViewer_ScrollChanged;
+
+            SetButton(DUALSHOCK3Buttons.Maru);
+
+            foreach(DUALSHOCK3Buttons btn in Enum.GetValues(typeof(DUALSHOCK3Buttons)))
+            {
+                TextBlock tb = new TextBlock()
+                {
+                    Text = Enum.GetName(typeof(DUALSHOCK3Buttons), btn),
+                    Height = 25,
+                    HorizontalAlignment = HorizontalAlignment.Right
+                };
+
+                ListStackPanel.Children.Add(tb);
+            }
+        }
+
+        private void GraphScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            ListScrollViewer.ScrollToVerticalOffset(e.VerticalOffset);
+        }
+
+        public void SetButton(DUALSHOCK3Buttons button)
+        {
+            RemoconButtonItem rbi = new RemoconButtonItem(button);
+            GraphCanvas.Children.Add(rbi);
+
+            GraphCanvas.Width = 500;
         }
     }
 }

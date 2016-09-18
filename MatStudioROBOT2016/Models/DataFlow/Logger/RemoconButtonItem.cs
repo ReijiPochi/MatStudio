@@ -26,6 +26,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         public RemoconButtonItem(DUALSHOCK3Buttons btn)
         {
             button = btn;
+            SetValue(Canvas.TopProperty, (double)btn * 25);
         }
 
         public override void OnApplyTemplate()
@@ -33,9 +34,14 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             base.OnApplyTemplate();
 
             Bd = GetTemplateChild("Bd") as Border;
+            Cp = GetTemplateChild("Cp") as ContentPresenter;
+
+            Cp.Content = "";
         }
 
         private DUALSHOCK3Buttons button;
+
         private Border Bd;
+        private ContentPresenter Cp;
     }
 }
