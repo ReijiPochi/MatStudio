@@ -30,7 +30,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         {
             base.OnApplyTemplate();
 
-            GraphScrollViewer.ScrollChanged += GraphScrollViewer_ScrollChanged;
+            ListScrollViewer.ScrollChanged += ListScrollViewer_ScrollChanged;
 
             SetButton(DUALSHOCK3Buttons.Maru);
 
@@ -47,9 +47,19 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             }
         }
 
-        private void GraphScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        //private void GraphScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        //{
+        //    if (e.Delta > 0)
+        //        GraphScrollViewer.ScrollToHorizontalOffset(GraphScrollViewer.HorizontalOffset - 20);
+        //    else
+        //        GraphScrollViewer.ScrollToHorizontalOffset(GraphScrollViewer.HorizontalOffset + 20);
+
+        //    e.Handled = true;
+        //}
+
+        private void ListScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            ListScrollViewer.ScrollToVerticalOffset(e.VerticalOffset);
+            GraphScrollViewer.ScrollToVerticalOffset(e.VerticalOffset);
         }
 
         public void SetButton(DUALSHOCK3Buttons button)
