@@ -9,8 +9,8 @@
     <Grid>
         <matgui:MatFocusableBG/>
         <matgui:MatScrollViewer x:Name="GraphScrollViewer" Background="{DynamicResource MatWorkAreaBrush}" 
-                                Margin="80,6,6,30" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-            <Canvas x:Name="GraphCanvas" Height="500"/>
+                                Margin="80,6,6,30" ScrollHorizontal="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <Canvas x:Name="GraphCanvas" Height="{Binding ActualHeight, ElementName=ListStackPanel, Mode=OneWay}"/>
         </matgui:MatScrollViewer>
         <matgui:MatScrollViewer x:Name="ListScrollViewer" HorizontalAlignment="Left" Width="75"
                                 Margin="5,6,6,30" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">

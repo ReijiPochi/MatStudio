@@ -41,9 +41,9 @@ namespace MatGUI
             double d;
 
             if (e.Delta > 0)
-                d = -20;
+                d = -25;
             else
-                d = 20;
+                d = 25;
 
             if(ScrollHorizontal)
                 ScrollToHorizontalOffset(HorizontalOffset + d);
@@ -66,9 +66,9 @@ namespace MatGUI
         private void V_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (e.Delta > 0)
-                ScrollToVerticalOffset(VerticalOffset - 20);
+                ScrollToVerticalOffset(VerticalOffset - 25);
             else
-                ScrollToVerticalOffset(VerticalOffset + 20);
+                ScrollToVerticalOffset(VerticalOffset + 25);
 
             e.Handled = true;
         }
@@ -76,9 +76,9 @@ namespace MatGUI
         private void H_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (e.Delta > 0)
-                ScrollToHorizontalOffset(HorizontalOffset - 10);
+                ScrollToHorizontalOffset(HorizontalOffset - 25);
             else
-                ScrollToHorizontalOffset(HorizontalOffset + 10);
+                ScrollToHorizontalOffset(HorizontalOffset + 25);
 
             e.Handled = true;
         }

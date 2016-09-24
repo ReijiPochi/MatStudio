@@ -29,6 +29,36 @@ namespace RobotCoreBase
         AnalogR_Y
     }
 
+    public class DUALSHOCK3Button
+    {
+        public DUALSHOCK3Button(DUALSHOCK3Buttons btn, int startTime)
+        {
+            Button = btn;
+            StartTime = startTime;
+        }
+
+        public DUALSHOCK3Buttons Button { get; private set; }
+
+        public int StartTime { get; private set; }
+
+        private int _EndTime;
+        public int EndTime
+        {
+            get { return _EndTime; }
+            set
+            {
+                if (_EndTime == value) return;
+
+                _EndTime = value;
+                EndTimeChanged?.Invoke(this);
+            }
+        }
+
+        public event EndTimeChangedEventHandler EndTimeChanged;
+    }
+
+    public delegate void EndTimeChangedEventHandler(object sender);
+
     public class DUALSHOCK3
     {
         public DUALSHOCK3()

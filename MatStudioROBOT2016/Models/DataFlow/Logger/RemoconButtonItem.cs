@@ -23,10 +23,12 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             DefaultStyleKeyProperty.OverrideMetadata(typeof(RemoconButtonItem), new FrameworkPropertyMetadata(typeof(RemoconButtonItem)));
         }
 
-        public RemoconButtonItem(DUALSHOCK3Buttons btn)
+        public RemoconButtonItem(DUALSHOCK3Button btn)
         {
             button = btn;
-            SetValue(Canvas.TopProperty, (double)btn * 25);
+            button.EndTimeChanged += Button_EndTimeChanged;
+            SetValue(Canvas.TopProperty, (double)btn.Button * 25.0);
+            SetValue(Canvas.LeftProperty, (double)btn.StartTime);
         }
 
         public override void OnApplyTemplate()
@@ -39,9 +41,20 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             Cp.Content = "";
         }
 
-        private DUALSHOCK3Buttons button;
+        private DUALSHOCK3Button button;
 
         private Border Bd;
         private ContentPresenter Cp;
+
+        private void Button_EndTimeChanged(object sender)
+        {
+            double span = button.EndTime - button.StartTime;
+
+            if (span > 23)
+            {
+                Width = span;
+            }
+        }
+
     }
 }
