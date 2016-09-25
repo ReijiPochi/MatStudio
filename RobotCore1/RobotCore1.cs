@@ -120,12 +120,10 @@ namespace RobotCore1
                 {
                     trgRecieved = true;
                 }
-
                 else if (data[lastIndex] == ':')
                 {
                     commandRecieved = true;
                 }
-
                 else if (data[lastIndex] == ')')
                 {
                     valueLengthRecieved = true;
@@ -164,31 +162,31 @@ namespace RobotCore1
                     switch (trg)
                     {
                         case "Mm1":
-                            motor1.SetRecievedData(s[1]);
+                            motor1.SetRecievedData(command, value);
                             break;
 
                         case "Mm2":
-                            motor2.SetRecievedData(s[1]);
+                            motor2.SetRecievedData(command, value);
                             break;
 
                         case "Mm3":
-                            motor3.SetRecievedData(s[1]);
+                            motor3.SetRecievedData(command, value);
                             break;
 
                         case "Mm4":
-                            motor4.SetRecievedData(s[1]);
+                            motor4.SetRecievedData(command, value);
                             break;
 
                         case "Mm5":
-                            motor5.SetRecievedData(s[1]);
+                            motor5.SetRecievedData(command, value);
                             break;
 
                         case "Mm6":
-                            motor6.SetRecievedData(s[1]);
+                            motor6.SetRecievedData(command, value);
                             break;
 
                         case "Mb0":
-                            bluetooth.SetRecievedData(s[1]);
+                            bluetooth.SetRecievedData(command, value);
                             break;
 
                         default:
