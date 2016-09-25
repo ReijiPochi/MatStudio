@@ -34,6 +34,8 @@ namespace RobotCore1
         DataLogger logger1 = new DataLogger("DataLogger1", "Md1", 1);
         Bluetooth bluetooth = new Bluetooth("Bluetooth", "Mb0");
 
+        IRobotCoreHost currnetHost;
+
         public string Name
         {
             get { return "RobotCore1"; }
@@ -46,7 +48,11 @@ namespace RobotCore1
 
         void IRobotCore.RobotCoreStart()
         {
+            if (currnetHost == null) return;
+
             IsOpen = true;
+
+            currnetHost.SendToBoad("S;1:1\n");
 
             foreach (Module m in list)
             {
@@ -57,6 +63,8 @@ namespace RobotCore1
 
         void IRobotCore.RobotCoreClose()
         {
+            currnetHost.SendToBoad("S;1:0\n");
+
             IsOpen = false;
         }
 
@@ -77,51 +85,120 @@ namespace RobotCore1
 
         void IRobotCore.SetHost(IRobotCoreHost host)
         {
+            currnetHost = host;
+
             foreach(Module m in list)
             {
                 m.Host = host;
             }
         }
 
+
+        private int lastIndex = 0;
+
+        private string trg = null;
+        private bool trgRecieved = false;
+
+        private string command = null;
+        private bool commandRecieved = false;
+
+        private string valueLength = null;
+        private bool valueLengthRecieved = false;
+
+        private string value = null;
+        private bool valueRecieved = false;
+        private int valueIndex = 0;
+        private int lengthOfValue = 0;
+
         void IRobotCore.SetRecievedData(string data)
         {
-            if (!IsOpen) return;
+            //if (!IsOpen) return;
 
-            string[] s = data.Split(';');
-
-            switch (s[0])
+            while (lastIndex <= data.Length)
             {
-                case "Mm1":
-                    motor1.SetRecievedData(s[1]);
-                    break;
+                if (data[lastIndex] == ';')
+                {
+                    trgRecieved = true;
+                }
 
-                case "Mm2":
-                    motor2.SetRecievedData(s[1]);
-                    break;
+                else if (data[lastIndex] == ':')
+                {
+                    commandRecieved = true;
+                }
 
-                case "Mm3":
-                    motor3.SetRecievedData(s[1]);
-                    break;
+                else if (data[lastIndex] == ')')
+                {
+                    valueLengthRecieved = true;
+                    int.TryParse(valueLength, out lengthOfValue);
+                }
 
-                case "Mm4":
-                    motor4.SetRecievedData(s[1]);
-                    break;
+                if (!trgRecieved)
+                {
+                    trg += data[lastIndex];
+                }
+                else if (!commandRecieved && data[lastIndex] != ';')
+                {
+                    command += data[lastIndex];
+                }
+                else if (!valueLengthRecieved && data[lastIndex] != ':')
+                {
+                    valueLength += data[lastIndex];
+                }
+                else if (valueIndex != lengthOfValue - 1 && data[lastIndex] != ')')
+                {
+                    value += data[valueIndex];
+                    valueIndex++;
 
-                case "Mm5":
-                    motor5.SetRecievedData(s[1]);
-                    break;
+                    if (lastIndex == lengthOfValue)
+                        valueRecieved = true;
+                }
+                
+                if(valueRecieved && valueLengthRecieved && commandRecieved && trgRecieved)
+                {
+                    trgRecieved = false;
+                    commandRecieved = false;
+                    valueLengthRecieved = false;
+                    valueRecieved = false;
+                    valueIndex = 0;
 
-                case "Mm6":
-                    motor6.SetRecievedData(s[1]);
-                    break;
+                    switch (trg)
+                    {
+                        case "Mm1":
+                            motor1.SetRecievedData(s[1]);
+                            break;
 
-                case "Mb0":
-                    bluetooth.SetRecievedData(s[1]);
-                    break;
+                        case "Mm2":
+                            motor2.SetRecievedData(s[1]);
+                            break;
 
-                default:
-                    break;
+                        case "Mm3":
+                            motor3.SetRecievedData(s[1]);
+                            break;
+
+                        case "Mm4":
+                            motor4.SetRecievedData(s[1]);
+                            break;
+
+                        case "Mm5":
+                            motor5.SetRecievedData(s[1]);
+                            break;
+
+                        case "Mm6":
+                            motor6.SetRecievedData(s[1]);
+                            break;
+
+                        case "Mb0":
+                            bluetooth.SetRecievedData(s[1]);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+                lastIndex++;
             }
+
         }
     }
 }

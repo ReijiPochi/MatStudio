@@ -74,15 +74,12 @@ namespace RobotCore1.Modules
             
         }
 
-        public override void SetRecievedData(string data)
+        public override void SetRecievedData(string command, string value)
         {
-            string[] s = data.Split(':');
-            int command = int.Parse(s[0]);
-
-            switch(command)
+            switch(int.Parse(command))
             {
                 case (int)BluetoothCommand.CommandOut_UP_Value:
-                    CommandOut.Value = new MatData(typeof(DUALSHOCK3), new DUALSHOCK3(s[1]));
+                    CommandOut.Value = new MatData(typeof(DUALSHOCK3), new DUALSHOCK3(value));
                     break;
 
                 default:

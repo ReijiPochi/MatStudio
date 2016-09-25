@@ -19,6 +19,8 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             timer = new MatTimer(1);
             timer.MatTickEvent += Timer_MatTickEvent;
 
+            view = new RemoconLoggerControl() { DataContext = this };
+
             CommandIn.MatDataInput += CommandIn_MatDataInput;
 
             inputs.Add(CommandIn);
@@ -26,8 +28,10 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         }
 
         private MatTimer timer;
+        private RemoconLoggerControl view;
 
         List<DUALSHOCK3> Log = new List<DUALSHOCK3>();
+        List<DUALSHOCK3Button> pressingButtons = new List<DUALSHOCK3Button>();
 
         public int CurrentTime { get; private set; }
 
@@ -35,7 +39,66 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         MatDataInputPort CommandIn = new MatDataInputPort(typeof(DUALSHOCK3), "Command") { };
         private void CommandIn_MatDataInput(object sender, MatDataInputEventArgs e)
         {
-            Log.Add((DUALSHOCK3)e.NewValue.DataValue);
+            DUALSHOCK3 data = (DUALSHOCK3)e.NewValue.DataValue;
+            Log.Add(data);
+
+            List<DUALSHOCK3Buttons> list = data.GetPressedButtons();
+
+            if (Log.Count == 1)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    DUALSHOCK3Button btn = new DUALSHOCK3Button(list[i], data.Time);
+                    pressingButtons.Add(btn);
+                }
+            }
+            else
+            {
+                List<DUALSHOCK3Button> removeList = new List<DUALSHOCK3Button>();
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    bool exist = false;
+
+                    for(int c = 0; c < pressingButtons.Count; c++)
+                    {
+                        if (list[i] == pressingButtons[c].Button)
+                        {
+                            exist = true;
+                            pressingButtons[c].EndTime = data.Time;
+                            view.SetEndTime(data.Time);
+                        }
+                    }
+
+                    if (!exist)
+                    {
+                        DUALSHOCK3Button btn = new DUALSHOCK3Button(list[i], data.Time);
+                        pressingButtons.Add(btn);
+                        view.SetButton(btn);
+                    }
+                }
+
+                for (int i = 0; i < pressingButtons.Count; i++)
+                {
+                    bool exist = false;
+
+                    for (int c = 0; c < list.Count; c++)
+                    {
+                        if (pressingButtons[i].Button == list[c])
+                            exist = true;
+                    }
+
+                    if (!exist)
+                    {
+                        removeList.Add(pressingButtons[i]);
+                    }
+                }
+
+                for(int i = 0; i < removeList.Count; i++)
+                {
+                    pressingButtons.Remove(removeList[i]);
+                }
+            }
         }
 
         MatDataOutputPort CommandOut = new MatDataOutputPort(typeof(DUALSHOCK3), "Log") { };
@@ -57,7 +120,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
 
         public override Control GetInterfaceControl()
         {
-            return new RemoconLoggerControl() { DataContext = this };
+            return view;
         }
 
         public override MatDataObject GetNewInstance()

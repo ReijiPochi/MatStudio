@@ -35,28 +35,38 @@ namespace MatStudioROBOT2016.Models
                     return;
 
                 if (_CurrentSerialPort != null)
-                    _CurrentSerialPort.RecievedLines.CollectionChanged -= RecievedLines_CollectionChanged;
+                    _CurrentSerialPort.PropertyChanged -= _CurrentSerialPort_PropertyChanged;
+                    //_CurrentSerialPort.RecievedLines.CollectionChanged -= RecievedLines_CollectionChanged;
 
                 _CurrentSerialPort = value;
 
-                value.RecievedLines.CollectionChanged += RecievedLines_CollectionChanged;
+                value.PropertyChanged += _CurrentSerialPort_PropertyChanged;
+                //value.RecievedLines.CollectionChanged += RecievedLines_CollectionChanged;
 
                 RaisePropertyChanged();
             }
         }
-        #endregion
 
-        private void RecievedLines_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void _CurrentSerialPort_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            if (e.PropertyName == "RecievedData")
             {
-                foreach(string line in e.NewItems)
-                {
-                    CurrentRobotCore.SetRecievedData(line);
-                    count++;
-                }
+                CurrentRobotCore.SetRecievedData(CurrentSerialPort.RecievedData);
             }
         }
+        #endregion
+
+        //private void RecievedLines_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        //{
+        //    if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+        //    {
+        //        foreach(string line in e.NewItems)
+        //        {
+        //            CurrentRobotCore.SetRecievedData(line);
+        //            count++;
+        //        }
+        //    }
+        //}
 
         int count = 0;
 

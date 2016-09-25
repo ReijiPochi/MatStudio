@@ -86,7 +86,7 @@ namespace RobotCoreBase
 
         public abstract void Deactivate();
 
-        public abstract void SetRecievedData(string data);
+        public abstract void SetRecievedData(string command, string value);
 
         public abstract void DownloadValues();
 

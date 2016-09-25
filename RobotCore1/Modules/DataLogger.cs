@@ -68,11 +68,6 @@ namespace RobotCore1.Modules
             
         }
 
-        public override void SetRecievedData(string data)
-        {
-            
-        }
-
 
         public MatDataInputPort DataIn = new MatDataInputPort(typeof(object), "Data") { IsHardwarePort = true, AllowHardwareConnection = true };
         private void DataIn_MatDataInput(object sender, MatDataInputEventArgs e)

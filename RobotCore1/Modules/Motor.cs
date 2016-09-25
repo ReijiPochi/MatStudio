@@ -125,15 +125,12 @@ namespace RobotCore1.Modules
             return null;
         }
 
-        public override void SetRecievedData(string data)
+        public override void SetRecievedData(string command, string value)
         {
-            string[] s = data.Split(':');
-            int command = int.Parse(s[0]);
-
-            switch (command)
+            switch (int.Parse(command))
             {
                 case (int)MotorCommand.DutyOut_UP_Value:
-                    DutyOut.Value = new MatData(typeof(double), DataConverter.BitsStringToDouble(s[1]));
+                    DutyOut.Value = new MatData(typeof(double), DataConverter.BitsStringToDouble(value));
                     break;
 
                 default:

@@ -46,7 +46,7 @@ namespace MatStudioROBOT2016.Models
 
         public string RecievedData { get; private set; }
 
-        public MatObservableSynchronizedCollection<string> RecievedLines { get; set; } = new MatObservableSynchronizedCollection<string>();
+        //public MatObservableSynchronizedCollection<string> RecievedLines { get; set; } = new MatObservableSynchronizedCollection<string>();
 
         public event RecievedALineEventHandler RecievedALine;
         private void RaiseRecievedALineEvent(RecievedALineEventArgs e)
@@ -129,21 +129,22 @@ namespace MatStudioROBOT2016.Models
             foreach(char d in data)
             {
                 line += d;
-                RecievedData += d;
 
-                if (d == '\n')
-                {
+                //RecievedData += d;
 
-                    //sender.Dispatcher.BeginInvoke((Action)(() =>
-                    //{
-                    //    RecievedDataLines.Enqueue(line);
-                    //    RaiseRecievedALineEvent(new RecievedALineEventArgs() { NewLine = line });
-                    //}));
+                //if (d == '\n')
+                //{
 
-                    RecievedLines.Add(line);
+                //    //sender.Dispatcher.BeginInvoke((Action)(() =>
+                //    //{
+                //    //    RecievedDataLines.Enqueue(line);
+                //    //    RaiseRecievedALineEvent(new RecievedALineEventArgs() { NewLine = line });
+                //    //}));
 
-                    line = null;
-                }
+                //    RecievedLines.Add(line);
+
+                //    line = null;
+                //}
             }
 
             RaisePropertyChanged("RecievedData");

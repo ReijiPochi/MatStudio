@@ -46,6 +46,8 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             }
         }
 
+        private int longestTime = 0;
+
         private void GraphScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             ListScrollViewer.ScrollToVerticalOffset(e.VerticalOffset);
@@ -61,7 +63,17 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             RemoconButtonItem rbi = new RemoconButtonItem(button);
             GraphCanvas.Children.Add(rbi);
 
-            GraphCanvas.Width = 500;
+            SetEndTime(button.EndTime);
+        }
+
+        public void SetEndTime(int endTime)
+        {
+            if (longestTime < endTime)
+                longestTime = endTime;
+
+            GraphCanvas.Width = longestTime + 100;
+
+            GraphScrollViewer.ScrollToRightEnd();
         }
     }
 }
