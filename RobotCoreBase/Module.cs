@@ -59,8 +59,10 @@ namespace RobotCoreBase
         {
             if (Host == null) return;
 
-            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":");
-            Host.SendToBoad(BitConverter.GetBytes(value));
+            byte[] data = BitConverter.GetBytes(value);
+
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":" + data.Length.ToString() + ")");
+            Host.SendToBoad(data);
             Host.SendToBoad("\n");
         }
 
@@ -68,8 +70,10 @@ namespace RobotCoreBase
         {
             if (Host == null) return;
 
-            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":");
-            Host.SendToBoad(BitConverter.GetBytes((float)value));
+            byte[] data = BitConverter.GetBytes((float)value);
+
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":" + data.Length.ToString() + ")");
+            Host.SendToBoad(data);
             Host.SendToBoad("\n");
         }
 
@@ -77,8 +81,10 @@ namespace RobotCoreBase
         {
             if (Host == null) return;
 
-            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":");
-            Host.SendToBoad(value.GetBytes());
+            byte[] data = value.GetBytes();
+
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":" + data.Length.ToString() + ")");
+            Host.SendToBoad(data);
             Host.SendToBoad("\n");
         }
 

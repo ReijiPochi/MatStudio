@@ -122,29 +122,11 @@ namespace MatStudioROBOT2016.Models
             CurrentPort.DataReceived += CurrentPort_DataReceived;
         }
 
-        private string line = null;
-
         private void CurrentPort_DataReceived(MatObject sender, byte[] data)
         {
             foreach(char d in data)
             {
-                line += d;
-
-                //RecievedData += d;
-
-                //if (d == '\n')
-                //{
-
-                //    //sender.Dispatcher.BeginInvoke((Action)(() =>
-                //    //{
-                //    //    RecievedDataLines.Enqueue(line);
-                //    //    RaiseRecievedALineEvent(new RecievedALineEventArgs() { NewLine = line });
-                //    //}));
-
-                //    RecievedLines.Add(line);
-
-                //    line = null;
-                //}
+                RecievedData += d;
             }
 
             RaisePropertyChanged("RecievedData");

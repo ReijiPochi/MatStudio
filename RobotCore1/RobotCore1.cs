@@ -8,6 +8,7 @@ using MatFramework.DataFlow;
 using MatGUI;
 using RobotCoreBase;
 using RobotCore1.Modules;
+using MatFramework;
 
 namespace RobotCore1
 {
@@ -110,54 +111,88 @@ namespace RobotCore1
         private int valueIndex = 0;
         private int lengthOfValue = 0;
 
+        private bool lineRecieved = false;
+
         void IRobotCore.SetRecievedData(string data)
         {
             //if (!IsOpen) return;
 
-            while (lastIndex <= data.Length)
+            if (data == null) return;
+
+            while (lastIndex < data.Length)
             {
                 if (data[lastIndex] == ';')
                 {
                     trgRecieved = true;
+                    lastIndex++;
+                    continue;
                 }
                 else if (data[lastIndex] == ':')
                 {
                     commandRecieved = true;
+                    lastIndex++;
+                    continue;
                 }
                 else if (data[lastIndex] == ')')
                 {
                     valueLengthRecieved = true;
                     int.TryParse(valueLength, out lengthOfValue);
+                    lastIndex++;
+                    continue;
                 }
 
                 if (!trgRecieved)
                 {
                     trg += data[lastIndex];
                 }
-                else if (!commandRecieved && data[lastIndex] != ';')
+                else if (!commandRecieved)
                 {
                     command += data[lastIndex];
                 }
-                else if (!valueLengthRecieved && data[lastIndex] != ':')
+                else if (!valueLengthRecieved)
                 {
                     valueLength += data[lastIndex];
                 }
-                else if (valueIndex != lengthOfValue - 1 && data[lastIndex] != ')')
+                else if (!valueRecieved)
                 {
-                    value += data[valueIndex];
+                    value += data[lastIndex];
+                    int l = value.Length;
                     valueIndex++;
 
-                    if (lastIndex == lengthOfValue)
+                    if (valueIndex >= lengthOfValue)
+                    {
                         valueRecieved = true;
+                        valueIndex = 0;
+                    }
+                }
+                else if(data[lastIndex] == '\n')
+                {
+                    lineRecieved = true;
+                }
+                else
+                {
+                    MatApp.ApplicationLog.Log(new LogData(LogCondition.Warning, "受信したデータに誤りがあります", "", this));
+
+                    trgRecieved = false;
+                    commandRecieved = false;
+                    valueLengthRecieved = false;
+                    valueRecieved = false;
+                    lineRecieved = false;
+
+                    trg = null;
+                    command = null;
+                    valueLength = null;
+                    value = null;
                 }
                 
-                if(valueRecieved && valueLengthRecieved && commandRecieved && trgRecieved)
+                if(lineRecieved && valueRecieved && valueLengthRecieved && commandRecieved && trgRecieved)
                 {
                     trgRecieved = false;
                     commandRecieved = false;
                     valueLengthRecieved = false;
                     valueRecieved = false;
-                    valueIndex = 0;
+                    lineRecieved = false;
+
 
                     switch (trg)
                     {
@@ -192,11 +227,15 @@ namespace RobotCore1
                         default:
                             break;
                     }
+
+                    trg = null;
+                    command = null;
+                    valueLength = null;
+                    value = null;
                 }
 
                 lastIndex++;
             }
-
         }
     }
 }

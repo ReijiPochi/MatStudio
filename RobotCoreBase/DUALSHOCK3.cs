@@ -68,7 +68,7 @@ namespace RobotCoreBase
 
         public DUALSHOCK3(string bytes)
         {
-            if (bytes.Length != 11) return;
+            if (bytes.Length != 10) return;
 
             Time = (byte)bytes[0] | (byte)bytes[1] << 8 | (byte)bytes[2] << 16 | (byte)bytes[3] << 24;
             UpArrow = (bytes[4] & 0x01) != 0;

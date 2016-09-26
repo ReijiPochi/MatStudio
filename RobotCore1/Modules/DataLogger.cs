@@ -75,5 +75,9 @@ namespace RobotCore1.Modules
             
         }
 
+        public override void SetRecievedData(string command, string value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

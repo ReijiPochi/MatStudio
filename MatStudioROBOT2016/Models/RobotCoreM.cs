@@ -36,12 +36,10 @@ namespace MatStudioROBOT2016.Models
 
                 if (_CurrentSerialPort != null)
                     _CurrentSerialPort.PropertyChanged -= _CurrentSerialPort_PropertyChanged;
-                    //_CurrentSerialPort.RecievedLines.CollectionChanged -= RecievedLines_CollectionChanged;
 
                 _CurrentSerialPort = value;
 
                 value.PropertyChanged += _CurrentSerialPort_PropertyChanged;
-                //value.RecievedLines.CollectionChanged += RecievedLines_CollectionChanged;
 
                 RaisePropertyChanged();
             }
@@ -55,20 +53,6 @@ namespace MatStudioROBOT2016.Models
             }
         }
         #endregion
-
-        //private void RecievedLines_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        //{
-        //    if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-        //    {
-        //        foreach(string line in e.NewItems)
-        //        {
-        //            CurrentRobotCore.SetRecievedData(line);
-        //            count++;
-        //        }
-        //    }
-        //}
-
-        int count = 0;
 
         #region CurrentRobotCore変更通知プロパティ
         private IRobotCore _CurrentRobotCore;
