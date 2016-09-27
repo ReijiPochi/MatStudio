@@ -30,7 +30,7 @@ namespace MatFramework.Converters
 
         public static double BitsStringToDouble(string bits)
         {
-            if (bits.Length != 5) return 0.0;
+            if (bits.Length != 4) return 0.0;
 
             IntFloat value = new IntFloat();
 

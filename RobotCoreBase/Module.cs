@@ -52,7 +52,7 @@ namespace RobotCoreBase
         {
             if (Host == null) return;
 
-            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":" + "\n");
+            Host.SendToBoad(ModuleSimbol + ";" + command.ToString() + ":" + "1)_" + "\n");
         }
 
         protected void SendCommand(int command, int value)

@@ -53,7 +53,7 @@ namespace RobotCore1
 
             IsOpen = true;
 
-            currnetHost.SendToBoad("S;1:1\n");
+            currnetHost.SendToBoad("S;1:1)1\n");
 
             foreach (Module m in list)
             {
@@ -64,7 +64,7 @@ namespace RobotCore1
 
         void IRobotCore.RobotCoreClose()
         {
-            currnetHost.SendToBoad("S;1:0\n");
+            currnetHost.SendToBoad("S;1:1)0\n");
 
             IsOpen = false;
         }
@@ -171,7 +171,7 @@ namespace RobotCore1
                 }
                 else
                 {
-                    MatApp.ApplicationLog.Log(new LogData(LogCondition.Warning, "受信したデータに誤りがあります", "", this));
+                    //MatApp.ApplicationLog.Log(new LogData(LogCondition.Warning, "受信したデータに誤りがあります", "", this));
 
                     trgRecieved = false;
                     commandRecieved = false;

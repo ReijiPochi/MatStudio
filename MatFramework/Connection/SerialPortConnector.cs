@@ -107,10 +107,7 @@ namespace MatFramework.Connection
 
                     if (rbyte > 0)
                     {
-                        this.Dispatcher.BeginInvoke((Action)(() =>
-                        {
-                            DataReceived(this, buffer);
-                        }));
+                        DataReceived(this, buffer);
                     }
                 }
                 catch (Exception ex)

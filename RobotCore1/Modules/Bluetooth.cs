@@ -12,7 +12,6 @@ namespace RobotCore1.Modules
     {
         Module_DL_Activation    = 0x01,
         Module_UP_Activation    = 0x02,
-        CommandIn_DL_State      = 0x03,
         CommandIn_DL_Value      = 0x04,
         CommandOut_DL_State     = 0x05,
         CommandOut_UP_Value     = 0x06,
@@ -44,15 +43,6 @@ namespace RobotCore1.Modules
         public override void DownloadValues()
         {
             if (Host == null) return;
-
-            if(CommandIn.IsConnecting)
-            {
-                SendCommand((int)BluetoothCommand.CommandIn_DL_State, (int)ModulePortState.ForceByHost);
-            }
-            else
-            {
-                SendCommand((int)BluetoothCommand.CommandIn_DL_State, (int)ModulePortState.Free);
-            }
 
             if (CommandOut.IsConnecting)
             {

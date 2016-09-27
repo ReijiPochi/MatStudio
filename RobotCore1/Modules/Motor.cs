@@ -16,7 +16,6 @@ namespace RobotCore1.Modules
     {
         Module_DL_Activation    = 0x0,
         Module_UP_Activation    = 0x1,
-        DutyIn_DL_State         = 0x2,
         DutyIn_DL_Value         = 0x3,
         DutyOut_DL_State        = 0x4,
         DutyOut_UP_Value        = 0x5,
@@ -55,12 +54,7 @@ namespace RobotCore1.Modules
 
             if (DutyIn.IsConnecting)
             {
-                SendCommand((int)MotorCommand.DutyIn_DL_State, (int)ModulePortState.ForceByHost);
                 SendCommand((int)MotorCommand.DutyIn_DL_Value, (double)DutyIn.Value.DataValue);
-            }
-            else
-            {
-                SendCommand((int)MotorCommand.DutyIn_DL_State, (int)ModulePortState.Free);
             }
 
             if (DutyOut.IsConnecting)
