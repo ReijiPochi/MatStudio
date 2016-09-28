@@ -44,8 +44,11 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
 
                 ListStackPanel.Children.Add(tb);
             }
+
+            owner = DataContext as RemoconLogger;
         }
 
+        public RemoconLogger owner;
         private int longestTime = 0;
 
         private void GraphScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
@@ -74,6 +77,19 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             GraphCanvas.Width = longestTime + 100;
 
             GraphScrollViewer.ScrollToRightEnd();
+        }
+
+        public void SetTimeBar(int time)
+        {
+            TimeBar.X1 = time;
+            TimeBar.X2 = time;
+
+            SetEndTime(time);
+        }
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            owner.StartPlay();
         }
     }
 }

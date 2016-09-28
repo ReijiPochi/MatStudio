@@ -5,16 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MatStudioROBOT2016.Models.DataFlow.Logger"
              MinHeight="200" MinWidth="300"
-             xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI">
+             xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI"
+             SnapsToDevicePixels="True">
     <Grid>
         <matgui:MatFocusableBG/>
         <matgui:MatScrollViewer x:Name="GraphScrollViewer" Background="{DynamicResource MatWorkAreaBrush}" 
                                 Margin="80,6,6,30" ScrollHorizontal="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-            <Canvas x:Name="GraphCanvas" Height="{Binding ActualHeight, ElementName=ListStackPanel, Mode=OneWay}"/>
+            <Canvas x:Name="GraphCanvas" ClipToBounds="False" Height="{Binding ActualHeight, ElementName=ListStackPanel, Mode=OneWay}">
+                <Line x:Name="TimeBar" Stroke="{DynamicResource MatThemeColorBrush}" Y2="1000"/>
+            </Canvas>
         </matgui:MatScrollViewer>
         <matgui:MatScrollViewer x:Name="ListScrollViewer" HorizontalAlignment="Left" Width="75"
                                 Margin="5,6,6,30" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
             <StackPanel x:Name="ListStackPanel" TextBlock.Foreground="{DynamicResource MatForeGroundBrush}"/>
         </matgui:MatScrollViewer>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="25" Margin="6" Orientation="Horizontal">
+            <matgui:MatButton x:Name="PlayButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                              Click="PlayButton_Click">
+                <matgui:MatButton.Content>
+                    <Image Source="{DynamicResource PlayIcon}" Width="25" Height="25"/>
+                </matgui:MatButton.Content>
+            </matgui:MatButton>
+            <matgui:MatButton x:Name="PauseButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                              Click="PlayButton_Click">
+                <matgui:MatButton.Content>
+                    <Image Source="{DynamicResource PauseIcon}" Width="25" Height="25"/>
+                </matgui:MatButton.Content>
+            </matgui:MatButton>
+        </StackPanel>
     </Grid>
 </UserControl>

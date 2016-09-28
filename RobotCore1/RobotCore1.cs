@@ -171,8 +171,6 @@ namespace RobotCore1
                 }
                 else
                 {
-                    //MatApp.ApplicationLog.Log(new LogData(LogCondition.Warning, "受信したデータに誤りがあります", "", this));
-
                     trgRecieved = false;
                     commandRecieved = false;
                     valueLengthRecieved = false;

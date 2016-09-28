@@ -129,7 +129,10 @@ namespace MatStudioROBOT2016.Models
                 RecievedData += d;
             }
 
-            RaisePropertyChanged("RecievedData");
+            App.Current.Dispatcher.BeginInvoke((Action)(() => 
+            {
+                RaisePropertyChanged("RecievedData");
+            }));
         }
 
         /// <summary>

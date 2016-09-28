@@ -50,6 +50,8 @@ namespace MatFramework.Connection
         public void Start()
         {
             myPort = new SerialPort(PortName, BaudRate, Parity, DataBits, StopBits);
+            myPort.ReadBufferSize = 114514;
+            myPort.WriteBufferSize = 114514;
 
             try
             {

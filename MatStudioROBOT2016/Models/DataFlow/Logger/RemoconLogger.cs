@@ -16,7 +16,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
     {
         public RemoconLogger(string name) : base(name)
         {
-            timer = new MatTimer(1);
+            timer = new MatTimer(10);
             timer.MatTickEvent += Timer_MatTickEvent;
 
             view = new RemoconLoggerControl() { DataContext = this };
@@ -25,6 +25,13 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
 
             inputs.Add(CommandIn);
             outputs.Add(CommandOut);
+
+            App.Current.Exit += Current_Exit;
+        }
+
+        private void Current_Exit(object sender, System.Windows.ExitEventArgs e)
+        {
+            timer.Dispose();
         }
 
         private MatTimer timer;
@@ -39,66 +46,69 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         MatDataInputPort CommandIn = new MatDataInputPort(typeof(DUALSHOCK3), "Command") { };
         private void CommandIn_MatDataInput(object sender, MatDataInputEventArgs e)
         {
-            DUALSHOCK3 data = (DUALSHOCK3)e.NewValue.DataValue;
-            Log.Add(data);
-
-            List<DUALSHOCK3Buttons> list = data.GetPressedButtons();
-
-            if (Log.Count == 1)
+            Dispatcher.BeginInvoke((Action)(() =>
             {
-                for (int i = 0; i < list.Count; i++)
+                DUALSHOCK3 data = (DUALSHOCK3)e.NewValue.DataValue;
+                Log.Add(data);
+
+                List<DUALSHOCK3Buttons> list = data.GetPressedButtons();
+
+                if (Log.Count == 1)
                 {
-                    DUALSHOCK3Button btn = new DUALSHOCK3Button(list[i], data.Time);
-                    pressingButtons.Add(btn);
-                }
-            }
-            else
-            {
-                List<DUALSHOCK3Button> removeList = new List<DUALSHOCK3Button>();
-
-                for (int i = 0; i < list.Count; i++)
-                {
-                    bool exist = false;
-
-                    for(int c = 0; c < pressingButtons.Count; c++)
-                    {
-                        if (list[i] == pressingButtons[c].Button)
-                        {
-                            exist = true;
-                            pressingButtons[c].EndTime = data.Time;
-                            view.SetEndTime(data.Time);
-                        }
-                    }
-
-                    if (!exist)
+                    for (int i = 0; i < list.Count; i++)
                     {
                         DUALSHOCK3Button btn = new DUALSHOCK3Button(list[i], data.Time);
                         pressingButtons.Add(btn);
-                        view.SetButton(btn);
                     }
                 }
-
-                for (int i = 0; i < pressingButtons.Count; i++)
+                else
                 {
-                    bool exist = false;
+                    List<DUALSHOCK3Button> removeList = new List<DUALSHOCK3Button>();
 
-                    for (int c = 0; c < list.Count; c++)
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        if (pressingButtons[i].Button == list[c])
-                            exist = true;
+                        bool exist = false;
+
+                        for (int c = 0; c < pressingButtons.Count; c++)
+                        {
+                            if (list[i] == pressingButtons[c].Button)
+                            {
+                                exist = true;
+                                pressingButtons[c].EndTime = data.Time;
+                                view.SetEndTime(data.Time);
+                            }
+                        }
+
+                        if (!exist)
+                        {
+                            DUALSHOCK3Button btn = new DUALSHOCK3Button(list[i], data.Time);
+                            pressingButtons.Add(btn);
+                            view.SetButton(btn);
+                        }
                     }
 
-                    if (!exist)
+                    for (int i = 0; i < pressingButtons.Count; i++)
                     {
-                        removeList.Add(pressingButtons[i]);
+                        bool exist = false;
+
+                        for (int c = 0; c < list.Count; c++)
+                        {
+                            if (pressingButtons[i].Button == list[c])
+                                exist = true;
+                        }
+
+                        if (!exist)
+                        {
+                            removeList.Add(pressingButtons[i]);
+                        }
+                    }
+
+                    for (int i = 0; i < removeList.Count; i++)
+                    {
+                        pressingButtons.Remove(removeList[i]);
                     }
                 }
-
-                for(int i = 0; i < removeList.Count; i++)
-                {
-                    pressingButtons.Remove(removeList[i]);
-                }
-            }
+            }));
         }
 
         MatDataOutputPort CommandOut = new MatDataOutputPort(typeof(DUALSHOCK3), "Log") { };
@@ -115,7 +125,11 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
 
         private void Timer_MatTickEvent(object sender)
         {
-            
+            Dispatcher.BeginInvoke((Action)(() =>
+            {
+                view.SetTimeBar(CurrentTime);
+                CurrentTime++;
+            }));
         }
 
         public override Control GetInterfaceControl()
