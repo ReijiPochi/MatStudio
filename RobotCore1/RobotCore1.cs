@@ -35,7 +35,7 @@ namespace RobotCore1
         DataLogger logger1 = new DataLogger("DataLogger1", "Md1", 1);
         Bluetooth bluetooth = new Bluetooth("Bluetooth", "Mb0");
 
-        IRobotCoreHost currnetHost;
+        IRobotCoreHost currentHost;
 
         public string Name
         {
@@ -49,11 +49,11 @@ namespace RobotCore1
 
         void IRobotCore.RobotCoreStart()
         {
-            if (currnetHost == null) return;
+            if (currentHost == null) return;
 
             IsOpen = true;
 
-            currnetHost.SendToBoad("S;1:1)1\n");
+            currentHost.SendToBoad("S;1:1)1\n");
 
             foreach (Module m in list)
             {
@@ -64,7 +64,7 @@ namespace RobotCore1
 
         void IRobotCore.RobotCoreClose()
         {
-            currnetHost.SendToBoad("S;1:1)0\n");
+            currentHost.SendToBoad("S;1:1)0\n");
 
             IsOpen = false;
         }
@@ -86,7 +86,7 @@ namespace RobotCore1
 
         void IRobotCore.SetHost(IRobotCoreHost host)
         {
-            currnetHost = host;
+            currentHost = host;
 
             foreach(Module m in list)
             {
@@ -234,6 +234,16 @@ namespace RobotCore1
 
                 lastIndex++;
             }
+        }
+
+        void IRobotCore.SetSystemTime(int time)
+        {
+            if (currentHost == null)
+                return;
+
+            currentHost.SendToBoad("S;2:4)");
+            currentHost.SendToBoad(BitConverter.GetBytes(time));
+            currentHost.SendToBoad("\n");
         }
     }
 }

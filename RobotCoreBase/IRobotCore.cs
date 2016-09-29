@@ -21,6 +21,7 @@ namespace RobotCoreBase
         ObservableCollection<Module> GetModules();
         void SetRecievedData(string data);
         void SetHost(IRobotCoreHost host);
+        void SetSystemTime(int time);
     }
 
     public class RobotCoreInfo

@@ -40,12 +40,17 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         List<DUALSHOCK3> Log = new List<DUALSHOCK3>();
         List<DUALSHOCK3Button> pressingButtons = new List<DUALSHOCK3Button>();
 
+        public bool IsLogging { get; private set; }
+
         public int CurrentTime { get; private set; }
 
 
         MatDataInputPort CommandIn = new MatDataInputPort(typeof(DUALSHOCK3), "Command") { };
         private void CommandIn_MatDataInput(object sender, MatDataInputEventArgs e)
         {
+            if (!IsLogging)
+                return;
+
             Dispatcher.BeginInvoke((Action)(() =>
             {
                 DUALSHOCK3 data = (DUALSHOCK3)e.NewValue.DataValue;
@@ -76,6 +81,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
                                 exist = true;
                                 pressingButtons[c].EndTime = data.Time;
                                 view.SetEndTime(data.Time);
+                                CurrentTime = data.Time;
                             }
                         }
 
@@ -84,7 +90,10 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
                             DUALSHOCK3Button btn = new DUALSHOCK3Button(list[i], data.Time);
                             pressingButtons.Add(btn);
                             view.SetButton(btn);
+                            CurrentTime = data.Time;
                         }
+
+                        view.SetTimeBar(CurrentTime);
                     }
 
                     for (int i = 0; i < pressingButtons.Count; i++)
@@ -115,12 +124,44 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
 
         public void StartRec()
         {
+            timer.Start();
+            IsLogging = true;
 
+            if (RobotCoreM.Current.CurrentRobotCore != null)
+                RobotCoreM.Current.CurrentRobotCore.SetSystemTime(CurrentTime);
         }
 
         public void StartPlay()
         {
             timer.Start();
+            IsLogging = false;
+        }
+
+        public void Pause()
+        {
+            IsLogging = false;
+            timer.Pause();
+
+            if (RobotCoreM.Current.CurrentRobotCore != null)
+                RobotCoreM.Current.CurrentRobotCore.SetSystemTime(-1);
+        }
+
+        public void Stop()
+        {
+            IsLogging = false;
+            timer.Stop();
+            CurrentTime = 0;
+            view.SetTimeBar(CurrentTime);
+            pressingButtons.Clear();
+
+            if (RobotCoreM.Current.CurrentRobotCore != null)
+                RobotCoreM.Current.CurrentRobotCore.SetSystemTime(-1);
+        }
+
+        public void SetCurrentTime(int time)
+        {
+            CurrentTime = time;
+            view.SetTimeBar(CurrentTime);
         }
 
         private void Timer_MatTickEvent(object sender)

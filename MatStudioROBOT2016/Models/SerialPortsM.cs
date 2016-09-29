@@ -28,7 +28,10 @@ namespace MatStudioROBOT2016.Models
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             Disconnect();
+            appExit = true;
         }
+
+        private bool appExit = false;
 
         /// <summary>
         /// 存在するCOMポートの名前のリスト（ RefreshPortsList()を呼ぶまではnullです ）
@@ -79,7 +82,7 @@ namespace MatStudioROBOT2016.Models
 
                 if (!nameExist)
                 {
-                    Ports.Add(new SerialPortConnector(name, 125000, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One));
+                    Ports.Add(new SerialPortConnector(name, 1250000, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One));
                 }
             }
 
@@ -122,15 +125,24 @@ namespace MatStudioROBOT2016.Models
             CurrentPort.DataReceived += CurrentPort_DataReceived;
         }
 
+        private string recievedData = null;
         private void CurrentPort_DataReceived(MatObject sender, byte[] data)
         {
-            foreach(char d in data)
+            while(recievedData != null)
             {
-                RecievedData += d;
+                if (appExit)
+                    return;
+            }
+
+            foreach (char d in data)
+            {
+                recievedData += d;
             }
 
             App.Current.Dispatcher.BeginInvoke((Action)(() => 
             {
+                RecievedData += recievedData;
+                recievedData = null;
                 RaisePropertyChanged("RecievedData");
             }));
         }

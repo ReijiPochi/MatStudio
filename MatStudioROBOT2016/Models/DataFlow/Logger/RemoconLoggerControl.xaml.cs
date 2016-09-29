@@ -30,6 +30,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         {
             base.OnApplyTemplate();
 
+            GraphCanvas.MouseDown += GraphCanvas_MouseDown;
             GraphScrollViewer.ScrollChanged += GraphScrollViewer_ScrollChanged;
             ListScrollViewer.ScrollChanged += ListScrollViewer_ScrollChanged;
 
@@ -50,6 +51,13 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
 
         public RemoconLogger owner;
         private int longestTime = 0;
+
+        private void GraphCanvas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point p = e.GetPosition(GraphCanvas);
+
+            owner.SetCurrentTime((int)p.X);
+        }
 
         private void GraphScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
@@ -72,11 +80,13 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         public void SetEndTime(int endTime)
         {
             if (longestTime < endTime)
+            {
                 longestTime = endTime;
 
-            GraphCanvas.Width = longestTime + 100;
+                GraphCanvas.Width = longestTime + 100;
 
-            GraphScrollViewer.ScrollToRightEnd();
+                GraphScrollViewer.ScrollToRightEnd();
+            }
         }
 
         public void SetTimeBar(int time)
@@ -85,11 +95,48 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             TimeBar.X2 = time;
 
             SetEndTime(time);
+
+            GraphScrollViewer.ScrollToHorizontalOffset(time - 150);
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            PlayButton.IsEnabled = false;
+            PauseButton.IsEnabled = true;
+            StopButton.IsEnabled = true;
+            RecButton.IsEnabled = false;
+
             owner.StartPlay();
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            PlayButton.IsEnabled = true;
+            PauseButton.IsEnabled = false;
+            StopButton.IsEnabled = true;
+            RecButton.IsEnabled = true;
+
+            owner.Pause();
+        }
+
+        private void RecButton_Click(object sender, RoutedEventArgs e)
+        {
+            PlayButton.IsEnabled = false;
+            PauseButton.IsEnabled = true;
+            StopButton.IsEnabled = true;
+            RecButton.IsEnabled = false;
+
+            owner.StartRec();
+        }
+
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            PlayButton.IsEnabled = true;
+            PauseButton.IsEnabled = false;
+            StopButton.IsEnabled = false;
+            RecButton.IsEnabled = true;
+
+            owner.Stop();
         }
     }
 }

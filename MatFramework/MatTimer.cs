@@ -22,6 +22,8 @@ namespace MatFramework
 
         public bool IsRunning { get; private set; }
 
+        public bool IsCounting { get; private set; }
+
         public int Interval { get; set; }
 
         public event MatTickEventHandler MatTickEvent;
@@ -38,13 +40,25 @@ namespace MatFramework
                 DateTime now = DateTime.Now;
                 startTime = now.Minute * 60000 + now.Second * 1000 + now.Millisecond;
                 IsRunning = true;
+                IsCounting = true;
                 thread.Start();
             }
+            else
+            {
+                IsCounting = true;
+            }
+        }
+
+        public void Pause()
+        {
+            IsCounting = false;
         }
 
         public void Stop()
         {
             IsRunning = false;
+            IsCounting = false;
+
             if (thread != null) thread.Join();
         }
 
@@ -52,6 +66,9 @@ namespace MatFramework
         {
             while (IsRunning)
             {
+                if (!IsCounting)
+                    continue;
+
                 DateTime now = DateTime.Now;
                 int current = now.Minute * 60000 + now.Second * 1000 + now.Millisecond;
 

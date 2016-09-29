@@ -5,5 +5,7 @@
     <BitmapImage x:Key="PauseIcon" UriSource="pause.png"/>
     <BitmapImage x:Key="PlayIcon" UriSource="play.png"/>
     <BitmapImage x:Key="DisconnectIcon" UriSource="disconnect.png"/>
+    <BitmapImage x:Key="RecIcon" UriSource="rec.png"/>
+    <BitmapImage x:Key="StopIcon" UriSource="stop.png"/>
 
 </ResourceDictionary>

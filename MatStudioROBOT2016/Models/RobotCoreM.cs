@@ -8,6 +8,7 @@ using Livet;
 using System.Collections.ObjectModel;
 using RobotCoreBase;
 using MatFramework.DataFlow;
+using MatFramework;
 
 namespace MatStudioROBOT2016.Models
 {
@@ -112,9 +113,30 @@ namespace MatStudioROBOT2016.Models
                 }
                 catch (Exception ex)
                 {
-                    MatFramework.MatApp.ApplicationLog.LogException("ロボットコアの読み込みに失敗しました", ex, typeof(RobotCoreM));
+                    MatApp.ApplicationLog.LogException("ロボットコアの読み込みに失敗しました", ex, typeof(RobotCoreM));
                 }
             }
+        }
+
+        public void Open()
+        {
+            CurrentRobotCore.RobotCoreStart();
+            CurrentRobotCoreIsOpen = true;
+            CurrentRobotCore.SetSystemTime(-1);
+
+            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action,
+                "設定をダウンロードしました",
+                CurrentRobotCore.Name + " は MatStudio と同期しています", this));
+        }
+
+        public void Close()
+        {
+            CurrentRobotCore.RobotCoreClose();
+            CurrentRobotCoreIsOpen = false;
+            CurrentRobotCore.SetSystemTime(0);
+
+            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "同期を切断しました",
+                CurrentRobotCore.Name + " は MatStudio から切断されました", this));
         }
 
         void IRobotCoreHost.SendToBoad(string data)

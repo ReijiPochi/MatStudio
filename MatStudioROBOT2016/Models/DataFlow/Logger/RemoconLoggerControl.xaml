@@ -9,9 +9,9 @@
              SnapsToDevicePixels="True">
     <Grid>
         <matgui:MatFocusableBG/>
-        <matgui:MatScrollViewer x:Name="GraphScrollViewer" Background="{DynamicResource MatWorkAreaBrush}" 
+        <matgui:MatScrollViewer x:Name="GraphScrollViewer" 
                                 Margin="80,6,6,30" ScrollHorizontal="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-            <Canvas x:Name="GraphCanvas" ClipToBounds="False" Height="{Binding ActualHeight, ElementName=ListStackPanel, Mode=OneWay}">
+            <Canvas x:Name="GraphCanvas" Background="{DynamicResource MatWorkAreaBrush}" ClipToBounds="False" Height="{Binding ActualHeight, ElementName=ListStackPanel, Mode=OneWay}">
                 <Line x:Name="TimeBar" Stroke="{DynamicResource MatThemeColorBrush}" Y2="1000"/>
             </Canvas>
         </matgui:MatScrollViewer>
@@ -27,9 +27,21 @@
                 </matgui:MatButton.Content>
             </matgui:MatButton>
             <matgui:MatButton x:Name="PauseButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                              Click="PlayButton_Click">
+                              Click="PauseButton_Click" IsEnabled="False">
                 <matgui:MatButton.Content>
                     <Image Source="{DynamicResource PauseIcon}" Width="25" Height="25"/>
+                </matgui:MatButton.Content>
+            </matgui:MatButton>
+            <matgui:MatButton x:Name="StopButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                              Click="StopButton_Click" IsEnabled="False">
+                <matgui:MatButton.Content>
+                    <Image Source="{DynamicResource StopIcon}" Width="25" Height="25"/>
+                </matgui:MatButton.Content>
+            </matgui:MatButton>
+            <matgui:MatButton x:Name="RecButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                              Click="RecButton_Click">
+                <matgui:MatButton.Content>
+                    <Image Source="{DynamicResource RecIcon}" Width="25" Height="25"/>
                 </matgui:MatButton.Content>
             </matgui:MatButton>
         </StackPanel>

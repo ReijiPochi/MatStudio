@@ -162,12 +162,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
 
         public void RobotCoreStart()
         {
-            RobotCoreM.Current.CurrentRobotCore.RobotCoreStart();
-            RobotCoreM.Current.CurrentRobotCoreIsOpen = true;
-
-            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action,
-                "設定をダウンロードしました",
-                RobotCoreM.Current.CurrentRobotCore.Name + " は MatStudio と同期しています", this));
+            RobotCoreM.Current.Open();
 
             RobotCoreStartCommand.RaiseCanExecuteChanged();
             RobotCoreCloseCommand.RaiseCanExecuteChanged();
@@ -198,11 +193,7 @@ namespace MatStudioROBOT2016.ViewModels.ControlPanels
 
         public void RobotCoreClose()
         {
-            RobotCoreM.Current.CurrentRobotCore.RobotCoreClose();
-            RobotCoreM.Current.CurrentRobotCoreIsOpen = false;
-
-            MatApp.ApplicationLog.Log(new LogData(LogCondition.Action, "同期を切断しました",
-                RobotCoreM.Current.CurrentRobotCore.Name + " は MatStudio から切断されました", this));
+            RobotCoreM.Current.Close();
 
             RobotCoreStartCommand.RaiseCanExecuteChanged();
             RobotCoreCloseCommand.RaiseCanExecuteChanged();
