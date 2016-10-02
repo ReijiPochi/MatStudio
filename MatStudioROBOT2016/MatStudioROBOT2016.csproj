@@ -218,6 +218,7 @@
     <Resource Include="Design\disconnect.png" />
     <Resource Include="Design\rec.png" />
     <Resource Include="Design\stop.png" />
+    <Resource Include="Design\shikaku.png" />
     <Content Include="InfrastructureAssemblies\Design\Livet.Design.dll" />
     <Content Include="InfrastructureAssemblies\Livet.dll" />
     <Content Include="InfrastructureAssemblies\Livet.XML" />

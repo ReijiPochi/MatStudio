@@ -135,7 +135,7 @@
                         <Border x:Name="Bd" Background="{DynamicResource MatBackGroundBrush}" BorderBrush="{DynamicResource MatBorderBrush}"
                                 BorderThickness="2" CornerRadius="9"/>
                         <ContentPresenter x:Name="Cp" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.FontFamily="Consolas"
-                                          TextBlock.Foreground="{DynamicResource MatForeGroundBrush}"/>
+                                          TextBlock.Foreground="{DynamicResource MatForeGroundBrush}" UseLayoutRounding="True"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

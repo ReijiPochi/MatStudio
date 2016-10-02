@@ -38,13 +38,17 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             Bd = GetTemplateChild("Bd") as Border;
             Cp = GetTemplateChild("Cp") as ContentPresenter;
 
-            Cp.Content = "";
+            BitmapImage bi = Application.Current.FindResource("Shikaku") as BitmapImage;
+            icon = new Image() { Source = bi, Width = 23, Height = 23};
+            Cp.Content = icon;
         }
 
         private DUALSHOCK3Button button;
+        private Image icon;
 
         private Border Bd;
         private ContentPresenter Cp;
+
 
         private void Button_EndTimeChanged(object sender)
         {

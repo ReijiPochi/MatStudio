@@ -7,5 +7,6 @@
     <BitmapImage x:Key="DisconnectIcon" UriSource="disconnect.png"/>
     <BitmapImage x:Key="RecIcon" UriSource="rec.png"/>
     <BitmapImage x:Key="StopIcon" UriSource="stop.png"/>
+    <BitmapImage x:Key="Shikaku" UriSource="shikaku.png"/>
 
 </ResourceDictionary>
