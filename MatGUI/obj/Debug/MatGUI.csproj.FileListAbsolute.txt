@@ -114,3 +114,8 @@ C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\zh-Hant\System.Window
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatWindow.g.cs
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\MatWindow.baml
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\Styles.baml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.GLControl.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.xml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.GLControl.xml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.dll.config

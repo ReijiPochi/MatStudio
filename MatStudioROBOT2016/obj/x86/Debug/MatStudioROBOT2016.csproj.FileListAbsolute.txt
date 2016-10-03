@@ -130,3 +130,7 @@ C:\Users\Reiji\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\RobotCoreCP_Resources.baml
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\RobotCoreMainCP_Design.baml
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\TerminalCP_Design.baml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\OpenTK.GLControl.xml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\OpenTK.xml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\OpenTK.GLControl.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\OpenTK.dll
