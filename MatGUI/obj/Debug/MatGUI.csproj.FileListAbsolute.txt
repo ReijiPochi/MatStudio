@@ -119,3 +119,6 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.GLControl
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.xml
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.GLControl.xml
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.dll.config
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.GLControl.dll
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.pdb
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.GLControl.xml
