@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\obj\Debug\
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\obj\Debug\
 MatGUI
 none
 false
@@ -12,9 +12,9 @@ DEBUG;TRACE
 
 5-280057373
 
-28-530168038
-141087860977
+29-1164290248
+16-1148457387
 ColorTheme.dark-pink.xaml;MatWindow.xaml;ResourceDictionaries.xaml;Styles.xaml;Themes\Generic.xaml;
 
-False
+True
 
