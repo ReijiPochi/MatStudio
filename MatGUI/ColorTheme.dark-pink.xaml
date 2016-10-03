@@ -22,6 +22,8 @@
     <SolidColorBrush x:Key="MatClickBrush" Color="#FFE330E7"/>
     <SolidColorBrush x:Key="MatSelectedBrush" Color="#FF27A7FF"/>
 
+    <Color x:Key="MatBackGroundColor" A="255" B="30" G="30" R="30"/>
+
     <ee:ColorToneEffect x:Key="MonoColorEffect" Desaturation="1" ToneAmount="1" DarkColor="#FFF0F0F0" LightColor="#FFF0F0F0"/>
     <ee:ColorToneEffect x:Key="InvalidMonoColorEffect" Desaturation="1" ToneAmount="1" DarkColor="#FF787878" LightColor="#FF787878"/>
 

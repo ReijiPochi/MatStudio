@@ -9,8 +9,8 @@
              SnapsToDevicePixels="True">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="295" MinHeight="295"/>
         </Grid.RowDefinitions>
         
         <matgui:MatFocusableBG Grid.RowSpan="2"/>
@@ -28,7 +28,18 @@
 
         <GridSplitter Background="{DynamicResource MatBorderBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="6"/>
 
-        <matgui:MatGraph Grid.Row="2" Margin="50"/>
+        <matgui:MatScrollViewer Grid.Row="2" Margin="0,0,0,35">
+            <Grid>
+                <StackPanel HorizontalAlignment="Left" Width="75">
+                    <TextBlock Text="Analog L" Height="20" Margin="0,55" Foreground="{DynamicResource MatForeGroundBrush}" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Analog R" Height="20" Margin="0,55" Foreground="{DynamicResource MatForeGroundBrush}" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <StackPanel Margin="80,0">
+                    <matgui:MatGraph BackgroundColor="{DynamicResource MatBackGroundColor}" Height="128" Margin="0,1" Width="{Binding ActualWidth, ElementName=GraphScrollViewer, Mode=OneWay}"/>
+                    <matgui:MatGraph BackgroundColor="{DynamicResource MatBackGroundColor}" Height="128" Margin="0,1" Width="{Binding ActualWidth, ElementName=GraphScrollViewer, Mode=OneWay}"/>
+                </StackPanel>
+            </Grid>
+        </matgui:MatScrollViewer>
 
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="25" Margin="6" Orientation="Horizontal" Grid.Row="1">
             <matgui:MatButton x:Name="PlayButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
