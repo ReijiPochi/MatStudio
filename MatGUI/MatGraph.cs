@@ -42,12 +42,18 @@ namespace MatGUI
         {
             base.OnApplyTemplate();
 
+            PresentationSource s = PresentationSource.FromVisual(this);
+            zoomDispX = s.CompositionTarget.TransformToDevice.M11;
+            zoomDispY = s.CompositionTarget.TransformToDevice.M22;
+
             WindowsFormsHost host = GetTemplateChild("Host") as WindowsFormsHost;
             host.Child = glc;
             host.SizeChanged += Host_SizeChanged;
         }
 
         private GLControl glc;
+        private double zoomDispX;
+        private double zoomDispY;
 
         public List<Coord2D> Data { get; private set; } = new List<Coord2D>();
 
@@ -74,8 +80,8 @@ namespace MatGUI
 
         private void Host_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            glc.Width = (int)ActualWidth;
-            glc.Height = (int)ActualHeight;
+            glc.Width = (int)(ActualWidth * zoomDispX);
+            glc.Height = (int)(ActualHeight * zoomDispY);
             SetCam();
             glc.Refresh();
         }
@@ -99,23 +105,23 @@ namespace MatGUI
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            GL.LineWidth(1.5f);
+            GL.LineWidth((float)(1.5 * zoomDispX));
 
             GL.Color4(1.0f, 0.2f, 0.4f, 0.7f);
             GL.Begin(PrimitiveType.LineStrip);
             {
-                GL.Vertex3(-10.0, -10.0, 0.0);
-                GL.Vertex3(10.0, 10.0, 0.0);
-                GL.Vertex3(100.0, 20.0, 0.0);
+                GL.Vertex3(-10.0 * zoomDispX, -10.0 * zoomDispY, 0.0);
+                GL.Vertex3(10.0 * zoomDispX, 10.0 * zoomDispY, 0.0);
+                GL.Vertex3(100.0 * zoomDispX, 20.0 * zoomDispY, 0.0);
             }
             GL.End();
 
             GL.Color4(0.2f, 0.6f, 1.0f, 0.7f);
             GL.Begin(PrimitiveType.LineStrip);
             {
-                GL.Vertex3(-10.0, -5.0, 1.0);
-                GL.Vertex3(20.0, 10.0, 1.0);
-                GL.Vertex3(110.0, 30.0, 1.0);
+                GL.Vertex3(-10.0 * zoomDispX, -5.0 * zoomDispY, 1.0);
+                GL.Vertex3(20.0 * zoomDispX, 10.0 * zoomDispY, 1.0);
+                GL.Vertex3(110.0 * zoomDispX, 30.0 * zoomDispY, 1.0);
             }
             GL.End();
 

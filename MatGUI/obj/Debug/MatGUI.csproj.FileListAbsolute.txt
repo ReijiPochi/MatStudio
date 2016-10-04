@@ -122,3 +122,5 @@ C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.GLControl.xml
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\OpenTK.pdb
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\MatFramework.dll
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatGUI\bin\Debug\MatFramework.pdb
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\MatFramework.dll
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatGUI\bin\Debug\MatFramework.pdb

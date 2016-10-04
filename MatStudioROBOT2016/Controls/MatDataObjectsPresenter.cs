@@ -32,6 +32,8 @@ namespace MatStudioROBOT2016.Controls
         private MatScrollViewer PART_Viewer;
         private Canvas PART_Canvas;
         private Line PART_Line;
+        private double zoomDispX;
+        private double zoomDispY;
 
         List<MatDataObjectControl> ctrls = new List<MatDataObjectControl>();
         private bool rockRefresh;
@@ -39,6 +41,10 @@ namespace MatStudioROBOT2016.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
+            PresentationSource s = PresentationSource.FromVisual(this);
+            zoomDispX = s.CompositionTarget.TransformToDevice.M11;
+            zoomDispY = s.CompositionTarget.TransformToDevice.M22;
 
             PART_Viewer = GetTemplateChild("PART_Viewer") as MatScrollViewer;
             PART_Canvas = GetTemplateChild("PART_Canvas") as Canvas;
@@ -136,12 +142,8 @@ namespace MatStudioROBOT2016.Controls
                 Point zero = PART_Canvas.PointToScreen(new Point(0, 0));
                 Point to = e.GetPosition(PART_Canvas);
 
-                PresentationSource s = PresentationSource.FromVisual(this);
-                double zoomX = s.CompositionTarget.TransformToDevice.M11;
-                double zoomY = s.CompositionTarget.TransformToDevice.M22;
-
-                PART_Line.X1 = (outp.PositionOfPART_Bd.X - zero.X) / zoomX;
-                PART_Line.Y1 = (outp.PositionOfPART_Bd.Y - zero.Y) / zoomY;
+                PART_Line.X1 = (outp.PositionOfPART_Bd.X - zero.X) / zoomDispX;
+                PART_Line.Y1 = (outp.PositionOfPART_Bd.Y - zero.Y) / zoomDispY;
                 PART_Line.X2 = to.X - 2;
                 PART_Line.Y2 = to.Y - 1;
             }
@@ -292,14 +294,10 @@ namespace MatStudioROBOT2016.Controls
 
                         if (outpc == null || inpc == null) break;
 
-                        PresentationSource s = PresentationSource.FromVisual(this);
-                        double zoomX = s.CompositionTarget.TransformToDevice.M11;
-                        double zoomY = s.CompositionTarget.TransformToDevice.M22;
-
-                        line.X1 = (outpc.PositionOfPART_Bd.X - zero.X) / zoomX;
-                        line.Y1 = (outpc.PositionOfPART_Bd.Y - zero.Y) / zoomY;
-                        line.X2 = (inpc.PositionOfPART_Bd.X - zero.X) / zoomX;
-                        line.Y2 = (inpc.PositionOfPART_Bd.Y - zero.Y) / zoomY;
+                        line.X1 = (outpc.PositionOfPART_Bd.X - zero.X) / zoomDispX;
+                        line.Y1 = (outpc.PositionOfPART_Bd.Y - zero.Y) / zoomDispY;
+                        line.X2 = (inpc.PositionOfPART_Bd.X - zero.X) / zoomDispX;
+                        line.Y2 = (inpc.PositionOfPART_Bd.Y - zero.Y) / zoomDispY;
 
                         PART_Canvas.Children.Add(line);
                     }
