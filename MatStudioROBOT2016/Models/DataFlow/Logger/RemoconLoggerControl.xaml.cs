@@ -62,6 +62,11 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
         private void GraphScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             ListScrollViewer.ScrollToVerticalOffset(e.VerticalOffset);
+
+            AnalogLGraph.OffsetX = e.HorizontalOffset;
+            AnalogLGraph.RefreshGraph();
+            AnalogRGraph.OffsetX = e.HorizontalOffset;
+            AnalogRGraph.RefreshGraph();
         }
 
         private void ListScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
@@ -97,6 +102,16 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             SetEndTime(time);
 
             GraphScrollViewer.ScrollToHorizontalOffset(time - 150);
+        }
+
+        public void SetAnalogStick(DUALSHOCK3 data)
+        {
+            AnalogLGraph.Data1.Add(new MatFramework.Coord2D(data.Time, data.AnalogL_X));
+            AnalogLGraph.Data2.Add(new MatFramework.Coord2D(data.Time, data.AnalogL_Y));
+            AnalogRGraph.Data1.Add(new MatFramework.Coord2D(data.Time, data.AnalogR_X));
+            AnalogRGraph.Data2.Add(new MatFramework.Coord2D(data.Time, data.AnalogR_Y));
+            AnalogLGraph.RefreshGraph();
+            AnalogRGraph.RefreshGraph();
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)

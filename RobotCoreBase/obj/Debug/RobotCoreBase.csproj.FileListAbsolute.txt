@@ -22,3 +22,8 @@ F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.Properties.Resources.r
 F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.csproj.GenerateResource.Cache
 F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.dll
 F:\GitHub\MatStudio\RobotCoreBase\obj\Debug\RobotCoreBase.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.GLControl.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.dll
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.GLControl.xml
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.pdb
+C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.xml

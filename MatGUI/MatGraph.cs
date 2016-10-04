@@ -55,7 +55,18 @@ namespace MatGUI
         private double zoomDispX;
         private double zoomDispY;
 
-        public List<Coord2D> Data { get; private set; } = new List<Coord2D>();
+        public List<Coord2D> Data1 { get; private set; } = new List<Coord2D>();
+        public List<Coord2D> Data2 { get; private set; } = new List<Coord2D>();
+
+        public double OffsetX { get; set; } = 0;
+
+        public double EndX
+        {
+            get
+            {
+                return OffsetX + ActualWidth;
+            }
+        }
 
         [Description("ドローイングエリアの背景色"), Category("IBFramework")]
         public Color BackgroundColor
@@ -78,6 +89,13 @@ namespace MatGUI
         }
 
 
+
+        public void RefreshGraph()
+        {
+            glc.Refresh();
+        }
+
+
         private void Host_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             glc.Width = (int)(ActualWidth * zoomDispX);
@@ -94,7 +112,7 @@ namespace MatGUI
 
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.Blend);
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.One);
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 
             SetCam();
         }
@@ -106,26 +124,75 @@ namespace MatGUI
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             GL.LineWidth((float)(1.5 * zoomDispX));
+            GL.PointSize((float)(4.0 * zoomDispX));
 
-            GL.Color4(1.0f, 0.2f, 0.4f, 0.7f);
-            GL.Begin(PrimitiveType.LineStrip);
-            {
-                GL.Vertex3(-10.0 * zoomDispX, -10.0 * zoomDispY, 0.0);
-                GL.Vertex3(10.0 * zoomDispX, 10.0 * zoomDispY, 0.0);
-                GL.Vertex3(100.0 * zoomDispX, 20.0 * zoomDispY, 0.0);
-            }
-            GL.End();
+            GL.Color4(0.3f, 0.6f, 1.0f, 0.7f);
+            RenderDataLines(Data1, 0.0);
+            //RenderDataPoints(Data1, 0.1);
 
-            GL.Color4(0.2f, 0.6f, 1.0f, 0.7f);
-            GL.Begin(PrimitiveType.LineStrip);
-            {
-                GL.Vertex3(-10.0 * zoomDispX, -5.0 * zoomDispY, 1.0);
-                GL.Vertex3(20.0 * zoomDispX, 10.0 * zoomDispY, 1.0);
-                GL.Vertex3(110.0 * zoomDispX, 30.0 * zoomDispY, 1.0);
-            }
-            GL.End();
+            GL.Color4(1.0f, 0.3f, 0.5f, 0.7f);
+            RenderDataLines(Data2, 1.0);
+            //RenderDataPoints(Data2, 1.1);
 
             glc.SwapBuffers();
+        }
+
+        private void RenderDataPoints(List<Coord2D> dataSet, double layer)
+        {
+            bool started = false;
+
+
+            GL.Begin(PrimitiveType.Points);
+
+            for(int i = 0; i < dataSet.Count; i++)
+            {
+                if (!started && i + 1 < dataSet.Count && dataSet[i + 1].X >= OffsetX)
+                {
+                    GL.Vertex3(dataSet[i].X - OffsetX, dataSet[i].Y, layer);
+                    started = true;
+                }
+                else
+                {
+                    GL.Vertex3(dataSet[i].X - OffsetX, dataSet[i].Y, layer);
+
+                    if (dataSet[i].X > EndX)
+                    {
+                        GL.End();
+                        return;
+                    }
+                }
+            }
+
+            GL.End();
+        }
+
+        private void RenderDataLines(List<Coord2D> dataSet, double layer)
+        {
+            bool started = false;
+
+
+            GL.Begin(PrimitiveType.LineStrip);
+
+            for (int i = 0; i < dataSet.Count; i++)
+            {
+                if (!started && i + 1 < dataSet.Count && dataSet[i + 1].X >= OffsetX)
+                {
+                    GL.Vertex3(dataSet[i].X - OffsetX, dataSet[i].Y, layer);
+                    started = true;
+                }
+                else
+                {
+                    GL.Vertex3(dataSet[i].X - OffsetX, dataSet[i].Y, layer);
+
+                    if (dataSet[i].X > EndX)
+                    {
+                        GL.End();
+                        return;
+                    }
+                }
+            }
+
+            GL.End();
         }
 
         private void SetCam()

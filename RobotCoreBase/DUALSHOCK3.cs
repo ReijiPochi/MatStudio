@@ -39,6 +39,8 @@ namespace RobotCoreBase
 
         public DUALSHOCK3Buttons Button { get; private set; }
 
+        public double Value { get; set; }
+
         public int StartTime { get; private set; }
 
         private int _EndTime;

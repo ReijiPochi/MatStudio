@@ -35,8 +35,8 @@
                     <TextBlock Text="Analog R" Height="20" Margin="0,55" Foreground="{DynamicResource MatForeGroundBrush}" HorizontalAlignment="Right"/>
                 </StackPanel>
                 <StackPanel Margin="80,0">
-                    <matgui:MatGraph BackgroundColor="{DynamicResource MatBackGroundColor}" Height="128" Margin="0,1" Width="{Binding ActualWidth, ElementName=GraphScrollViewer, Mode=OneWay}"/>
-                    <matgui:MatGraph BackgroundColor="{DynamicResource MatBackGroundColor}" Height="128" Margin="0,1" Width="{Binding ActualWidth, ElementName=GraphScrollViewer, Mode=OneWay}"/>
+                    <matgui:MatGraph x:Name="AnalogLGraph" BackgroundColor="{DynamicResource MatBackGroundColor}" Height="128" Margin="0,1" Width="{Binding ActualWidth, ElementName=GraphScrollViewer, Mode=OneWay}"/>
+                    <matgui:MatGraph x:Name="AnalogRGraph" BackgroundColor="{DynamicResource MatBackGroundColor}" Height="128" Margin="0,1" Width="{Binding ActualWidth, ElementName=GraphScrollViewer, Mode=OneWay}"/>
                 </StackPanel>
             </Grid>
         </matgui:MatScrollViewer>

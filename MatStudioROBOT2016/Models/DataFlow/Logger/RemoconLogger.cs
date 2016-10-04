@@ -55,6 +55,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
             {
                 DUALSHOCK3 data = (DUALSHOCK3)e.NewValue.DataValue;
                 Log.Add(data);
+                view.SetAnalogStick(data);
 
                 List<DUALSHOCK3Buttons> list = data.GetPressedButtons();
 
@@ -73,6 +74,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
                     for (int i = 0; i < list.Count; i++)
                     {
                         bool exist = false;
+                        DUALSHOCK3Button btn = new DUALSHOCK3Button(list[i], data.Time);
 
                         for (int c = 0; c < pressingButtons.Count; c++)
                         {
@@ -87,7 +89,6 @@ namespace MatStudioROBOT2016.Models.DataFlow.Logger
 
                         if (!exist)
                         {
-                            DUALSHOCK3Button btn = new DUALSHOCK3Button(list[i], data.Time);
                             pressingButtons.Add(btn);
                             view.SetButton(btn);
                             CurrentTime = data.Time;
