@@ -36,7 +36,7 @@ namespace MatStudioROBOT2016.Models.DataFlow.Generator
             DoubleValue.Value = new MatData(typeof(double), ConstantValue);
         }
 
-        private double _ConstantValue = 2.35;
+        private double _ConstantValue = 0.0;
         public double ConstantValue
         {
             get { return _ConstantValue; }

@@ -42,6 +42,27 @@
         </matgui:MatScrollViewer>
 
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="25" Margin="6" Orientation="Horizontal" Grid.Row="1">
+            <ComboBox x:Name="DataList" Width="200"/>
+            <matgui:MatButton x:Name="NewButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <matgui:MatButton.Content>
+                    <Image Source="{DynamicResource PlayIcon}" Width="25" Height="25"/>
+                </matgui:MatButton.Content>
+            </matgui:MatButton>
+            <matgui:MatButton x:Name="InportButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <matgui:MatButton.Content>
+                    <Image Source="{DynamicResource PlayIcon}" Width="25" Height="25"/>
+                </matgui:MatButton.Content>
+            </matgui:MatButton>
+            <matgui:MatButton x:Name="SaveAsButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <matgui:MatButton.Content>
+                    <Image Source="{DynamicResource PlayIcon}" Width="25" Height="25"/>
+                </matgui:MatButton.Content>
+            </matgui:MatButton>
+            <matgui:MatButton x:Name="DeleteButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <matgui:MatButton.Content>
+                    <Image Source="{DynamicResource PlayIcon}" Width="25" Height="25"/>
+                </matgui:MatButton.Content>
+            </matgui:MatButton>
             <matgui:MatButton x:Name="PlayButton" Height="25" Width="25" MonoColorIcon="False" VerticalAlignment="Bottom" HorizontalAlignment="Left"
                               Click="PlayButton_Click">
                 <matgui:MatButton.Content>
