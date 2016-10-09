@@ -128,11 +128,11 @@ namespace MatGUI
 
             GL.Color4(0.3f, 0.6f, 1.0f, 0.7f);
             RenderDataLines(Data1, 0.0);
-            //RenderDataPoints(Data1, 0.1);
+            RenderDataPoints(Data1, 0.1);
 
             GL.Color4(1.0f, 0.3f, 0.5f, 0.7f);
             RenderDataLines(Data2, 1.0);
-            //RenderDataPoints(Data2, 1.1);
+            RenderDataPoints(Data2, 1.1);
 
             glc.SwapBuffers();
         }
@@ -148,12 +148,12 @@ namespace MatGUI
             {
                 if (!started && i + 1 < dataSet.Count && dataSet[i + 1].X >= OffsetX)
                 {
-                    GL.Vertex3(dataSet[i].X - OffsetX, dataSet[i].Y, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * zoomDispX, dataSet[i].Y * zoomDispY, layer);
                     started = true;
                 }
                 else
                 {
-                    GL.Vertex3(dataSet[i].X - OffsetX, dataSet[i].Y, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * zoomDispX, dataSet[i].Y * zoomDispY, layer);
 
                     if (dataSet[i].X > EndX)
                     {
@@ -177,12 +177,12 @@ namespace MatGUI
             {
                 if (!started && i + 1 < dataSet.Count && dataSet[i + 1].X >= OffsetX)
                 {
-                    GL.Vertex3(dataSet[i].X - OffsetX, dataSet[i].Y, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * zoomDispX, dataSet[i].Y * zoomDispY, layer);
                     started = true;
                 }
                 else
                 {
-                    GL.Vertex3(dataSet[i].X - OffsetX, dataSet[i].Y, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * zoomDispX, dataSet[i].Y * zoomDispY, layer);
 
                     if (dataSet[i].X > EndX)
                     {
@@ -197,6 +197,8 @@ namespace MatGUI
 
         private void SetCam()
         {
+            glc.MakeCurrent();
+
             GL.Viewport(0, 0, glc.Width, glc.Height);
 
             GL.MatrixMode(MatrixMode.Projection);
