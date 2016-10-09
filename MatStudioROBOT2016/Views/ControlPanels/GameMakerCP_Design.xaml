@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MatStudioROBOT2016.Views.ControlPanels"
+                    xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI"
+                    xmlns:vm="clr-namespace:MatStudioROBOT2016.ViewModels.ControlPanels">
+
+    <Style TargetType="{x:Type local:GameMakerCP}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:GameMakerCP}">
+                    <Grid>
+                        <Grid.DataContext>
+                            <vm:GameMakerVM/>
+                        </Grid.DataContext>
+                        
+                        <WrapPanel Margin="0,30,0,0">
+                            <matgui:MatButton Content="応援実況１" Width="200" Height="100" FontSize="20" Command="{Binding PlaySoundCommand}" CommandParameter="応援実況１"/>
+                            <matgui:MatButton Content="あー（残念）" Width="200" Height="100" FontSize="20" Command="{Binding PlaySoundCommand}" CommandParameter="あー"/>
+                            <matgui:MatButton Content="わあー（歓喜）" Width="200" Height="100" FontSize="20" Command="{Binding PlaySoundCommand}" CommandParameter="わあー"/>
+                            <matgui:MatButton Content="えー↑すごい！" Width="200" Height="100" FontSize="20" Command="{Binding PlaySoundCommand}" CommandParameter="すごい"/>
+                            <matgui:MatButton Content="おうっっ" Width="200" Height="100" FontSize="20" Command="{Binding PlaySoundCommand}" CommandParameter="おうっっ"/>
+                            <matgui:MatButton Content="きゃー" Width="200" Height="100" FontSize="20" Command="{Binding PlaySoundCommand}" CommandParameter="きゃー"/>
+                            <matgui:MatButton Content="ひらめいた！" Width="200" Height="100" FontSize="20" Command="{Binding PlaySoundCommand}" CommandParameter="ひらめき"/>
+                            <matgui:MatButton Width="200" Height="200" MonoColorIcon="False" Command="{Binding StopCommand}">
+                                <matgui:MatButton.Content>
+                                    <Image Source="{DynamicResource StopIcon}" Width="25" Height="25"/>
+                                </matgui:MatButton.Content>
+                            </matgui:MatButton>
+                        </WrapPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

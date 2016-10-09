@@ -25,6 +25,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -49,6 +51,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>InfrastructureAssemblies\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL" />
     <Reference Include="RobotCoreBase">
       <HintPath>..\RobotCoreBase\bin\Debug\RobotCoreBase.dll</HintPath>
     </Reference>
@@ -117,6 +120,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ControlPanels\GameMakerCP_Design.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ControlPanels\InterfaceCP_Design.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,8 +175,11 @@
     <Compile Include="Models\ProjectM.cs" />
     <Compile Include="Models\RobotCoreM.cs" />
     <Compile Include="Models\SerialPortsM.cs" />
+    <Compile Include="Models\Sound.cs" />
+    <Compile Include="Models\SoundM.cs" />
     <Compile Include="ViewModels\ControlPanels\ApplicationLogVM.cs" />
     <Compile Include="ViewModels\ControlPanels\DataFlowVM.cs" />
+    <Compile Include="ViewModels\ControlPanels\GameMakerVM.cs" />
     <Compile Include="ViewModels\ControlPanels\InterfaceVM.cs" />
     <Compile Include="ViewModels\ControlPanels\RobotCoreMainVM.cs" />
     <Compile Include="ViewModels\ControlPanels\TerminalVM.cs" />
@@ -179,6 +189,7 @@
     <Compile Include="Views\ControlPanels\ApplicationLogCP.cs" />
     <Compile Include="Views\ControlPanels\DataFlowCP.cs" />
     <Compile Include="Views\ControlPanels\DataFlowCP_Behaviors.cs" />
+    <Compile Include="Views\ControlPanels\GameMakerCP.cs" />
     <Compile Include="Views\ControlPanels\InterfaceCP.cs" />
     <Compile Include="Views\ControlPanels\RobotCoreCP.cs" />
     <Compile Include="Views\ControlPanels\RobotCoreMainCP.cs" />

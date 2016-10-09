@@ -27,3 +27,8 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.dl
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.GLControl.xml
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.pdb
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.xml
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.GLControl.dll
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.dll
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.GLControl.xml
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.pdb
+F:\GitHub\MatStudio\RobotCoreBase\bin\Debug\OpenTK.xml

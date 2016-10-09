@@ -13,6 +13,7 @@
         <ResourceDictionary Source="/MatStudioROBOT2016;component/Views/ControlPanels/RobotCoreMainCP_Design.xaml"/>
         <ResourceDictionary Source="/MatStudioROBOT2016;component/Views/ControlPanels/DataFlowCP_Design.xaml"/>
         <ResourceDictionary Source="/MatStudioROBOT2016;component/Views/ControlPanels/InterfaceCP_Design.xaml"/>
+        <ResourceDictionary Source="/MatStudioROBOT2016;component/Views/ControlPanels/GameMakerCP_Design.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 
@@ -141,4 +142,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

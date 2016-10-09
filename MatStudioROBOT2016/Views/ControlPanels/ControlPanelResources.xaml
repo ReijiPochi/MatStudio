@@ -28,4 +28,8 @@
         <local:InterfaceCP/>
     </matgui:PhantasmagoriaTabItem>
 
+    <matgui:PhantasmagoriaTabItem x:Key="GameMaker" Header="ゲームメーカー">
+        <local:GameMakerCP/>
+    </matgui:PhantasmagoriaTabItem>
+
 </ResourceDictionary>
