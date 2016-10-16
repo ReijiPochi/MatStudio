@@ -82,6 +82,7 @@
     <Compile Include="DataFlow\MatDataInputPort.cs" />
     <Compile Include="DataFlow\MatData.cs" />
     <Compile Include="DataFlow\MatDataOutputPort.cs" />
+    <Compile Include="Math\MatRandom.cs" />
     <Compile Include="MatNotificationObject.cs" />
     <Compile Include="MatObject.cs" />
     <Compile Include="Logger.cs" />

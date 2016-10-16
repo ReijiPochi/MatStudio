@@ -146,3 +146,6 @@ F:\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\OpenTK.xml
 F:\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\OpenTK.GLControl.xml
 F:\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\GameMakerCP_Design.baml
 F:\GitHub\MatStudio\MatStudioROBOT2016\bin\Debug\OpenTK.dll
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Views\ControlPanels\GameMakerCP_Design.baml
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Models\DataFlow\Math\RandomControl.g.cs
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatStudioROBOT2016\obj\x86\Debug\Models\DataFlow\Math\RandomControl.baml

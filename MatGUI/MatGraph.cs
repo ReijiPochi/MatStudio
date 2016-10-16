@@ -35,6 +35,16 @@ namespace MatGUI
                 glc = new GLControl(new GraphicsMode(GraphicsMode.Default.AccumulatorFormat, 24, 0, 4));
                 glc.Load += Glc_Load;
                 glc.Paint += Glc_Paint;
+                glc.MouseMove += Glc_MouseMove;
+                glc.MouseLeave += Glc_MouseLeave
+                    ;
+                tp.InitialDelay = 0;
+                tp.ReshowDelay = 0;
+                tp.AutoPopDelay = 60000;
+                tp.UseAnimation = false;
+                tp.ShowAlways = true;
+
+                tp.SetToolTip(glc, "test");
             }
         }
 
@@ -52,13 +62,17 @@ namespace MatGUI
         }
 
         private GLControl glc;
+        private System.Windows.Forms.ToolTip tp = new System.Windows.Forms.ToolTip();
         private double zoomDispX;
         private double zoomDispY;
+        private double mousePosX = double.NaN;
 
-        public List<Coord2D> Data1 { get; private set; } = new List<Coord2D>();
-        public List<Coord2D> Data2 { get; private set; } = new List<Coord2D>();
-
+        public List<Coord2D> Data1 { get; set; } = new List<Coord2D>();
+        public List<Coord2D> Data2 { get; set; } = new List<Coord2D>();
+        public double ZoomX { get; set; } = 1.0;
+        public double ZoomY { get; set; } = 1.0;
         public double OffsetX { get; set; } = 0;
+        public bool DrawPoints { get; set; } = true;
 
         public double EndX
         {
@@ -128,13 +142,80 @@ namespace MatGUI
 
             GL.Color4(0.3f, 0.6f, 1.0f, 0.7f);
             RenderDataLines(Data1, 0.0);
-            RenderDataPoints(Data1, 0.1);
+            if (DrawPoints) RenderDataPoints(Data1, 0.1);
 
             GL.Color4(1.0f, 0.3f, 0.5f, 0.7f);
             RenderDataLines(Data2, 1.0);
-            RenderDataPoints(Data2, 1.1);
+            if (DrawPoints) RenderDataPoints(Data2, 1.1);
+
+            GL.Color4(0.0f, 1.0f, 0.3f, 0.7f);
+            if (mousePosX != double.NaN)
+            {
+                GL.Begin(PrimitiveType.LineStrip);
+                GL.Vertex2(mousePosX * ZoomX * zoomDispX, 1000.0);
+                GL.Vertex2(mousePosX * ZoomX * zoomDispX, -1000.0);
+                GL.End();
+            }
 
             glc.SwapBuffers();
+        }
+
+        private void Glc_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            mousePosX = e.X / (ZoomX * zoomDispX);
+            glc.Refresh();
+
+            double trgX = mousePosX + OffsetX;
+
+            double x1_1 = 0.0, y1_1 = 0.0, x1_2 = 0.0, y1_2 = 0.0;
+            bool valueAct1 = false;
+
+            double x2_1 = 0.0, y2_1 = 0.0, x2_2 = 0.0, y2_2 = 0.0;
+            bool valueAct2 = false;
+
+            string y1 = "*", y2 = "*";
+
+            foreach (Coord2D d1 in Data1)
+            {
+                if(d1.X >= trgX)
+                {
+                    x1_2 = d1.X;
+                    y1_2 = d1.Y;
+                    valueAct1 = true;
+                    break;
+                }
+
+                x1_1 = d1.X;
+                y1_1 = d1.Y;
+            }
+
+            foreach (Coord2D d2 in Data2)
+            {
+                if (d2.X >= trgX)
+                {
+                    x2_2 = d2.X;
+                    y2_2 = d2.Y;
+                    valueAct2 = true;
+                    break;
+                }
+
+                x2_1 = d2.X;
+                y2_1 = d2.Y;
+            }
+
+            if (valueAct1)
+                y1 = (y1_1 + (y1_2 - y1_1) * ((trgX - x1_1) / (x1_2 - x1_1))).ToString("f4");
+
+            if (valueAct2)
+                y1 = (y2_1 + (y2_2 - y2_1) * ((trgX - x2_1) / (x2_2 - x2_1))).ToString("f4");
+
+            tp.SetToolTip(glc, "X: " + trgX.ToString() + "\nData1: " + y1 + "\nData2: " + y2);
+        }
+
+        private void Glc_MouseLeave(object sender, EventArgs e)
+        {
+            mousePosX = double.NaN;
+            glc.Refresh();
         }
 
         private void RenderDataPoints(List<Coord2D> dataSet, double layer)
@@ -148,12 +229,12 @@ namespace MatGUI
             {
                 if (!started && i + 1 < dataSet.Count && dataSet[i + 1].X >= OffsetX)
                 {
-                    GL.Vertex3((dataSet[i].X - OffsetX) * zoomDispX, dataSet[i].Y * zoomDispY, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, dataSet[i].Y * ZoomY * zoomDispY, layer);
                     started = true;
                 }
                 else
                 {
-                    GL.Vertex3((dataSet[i].X - OffsetX) * zoomDispX, dataSet[i].Y * zoomDispY, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, dataSet[i].Y * ZoomY * zoomDispY, layer);
 
                     if (dataSet[i].X > EndX)
                     {
@@ -177,12 +258,12 @@ namespace MatGUI
             {
                 if (!started && i + 1 < dataSet.Count && dataSet[i + 1].X >= OffsetX)
                 {
-                    GL.Vertex3((dataSet[i].X - OffsetX) * zoomDispX, dataSet[i].Y * zoomDispY, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, dataSet[i].Y * ZoomY * zoomDispY, layer);
                     started = true;
                 }
                 else
                 {
-                    GL.Vertex3((dataSet[i].X - OffsetX) * zoomDispX, dataSet[i].Y * zoomDispY, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, dataSet[i].Y * ZoomY * zoomDispY, layer);
 
                     if (dataSet[i].X > EndX)
                     {

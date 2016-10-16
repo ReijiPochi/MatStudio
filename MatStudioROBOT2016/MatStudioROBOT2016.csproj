@@ -96,6 +96,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Models\DataFlow\Math\RandomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,6 +174,10 @@
     <Compile Include="Models\DataFlow\Logger\RemoconLogger.cs" />
     <Compile Include="Models\DataFlow\Logger\RemoconLoggerControl.xaml.cs">
       <DependentUpon>RemoconLoggerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataFlow\Math\Random.cs" />
+    <Compile Include="Models\DataFlow\Math\RandomControl.xaml.cs">
+      <DependentUpon>RandomControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\GUILayoutM.cs" />
     <Compile Include="Models\ProjectM.cs" />

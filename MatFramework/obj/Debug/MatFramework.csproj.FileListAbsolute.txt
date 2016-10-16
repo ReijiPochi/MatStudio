@@ -33,3 +33,6 @@ C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\GeneratedI
 C:\Users\Matsutomo2\Documents\GitHub\MatStudio\MatFramework\obj\Debug\Themes\Generic.baml
 F:\GitHub\MatStudio\MatFramework\obj\Debug\GeneratedInternalTypeHelper.g.cs
 F:\GitHub\MatStudio\MatFramework\obj\Debug\Themes\Generic.baml
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.csprojResolveAssemblyReference.cache
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\Debug\Themes\Generic.baml
