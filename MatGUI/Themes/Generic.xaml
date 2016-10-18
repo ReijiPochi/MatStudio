@@ -611,6 +611,7 @@
         <Setter Property="Foreground" Value="{DynamicResource MatEditableForeGroundBruah}"/>
         <Setter Property="SelectionOpacity" Value="0.5"/>
         <Setter Property="CaretBrush" Value="{DynamicResource MatThemeColorBrush}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:MatDoubleBox}">

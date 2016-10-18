@@ -21,6 +21,13 @@ using MatFramework;
 
 namespace MatGUI
 {
+    public enum MatGraphMode
+    {
+        DistributionMap,
+        DistributionMapWithPoints,
+        Histgram
+    }
+
     public class MatGraph : Control
     {
         static MatGraph()
@@ -66,13 +73,13 @@ namespace MatGUI
         private double zoomDispX;
         private double zoomDispY;
         private double mousePosX = double.NaN;
+        private Coord2D hitPoint = new Coord2D(double.NaN, double.NaN);
 
         public List<Coord2D> Data1 { get; set; } = new List<Coord2D>();
         public List<Coord2D> Data2 { get; set; } = new List<Coord2D>();
         public double ZoomX { get; set; } = 1.0;
         public double ZoomY { get; set; } = 1.0;
         public double OffsetX { get; set; } = 0;
-        public bool DrawPoints { get; set; } = true;
 
         public double EndX
         {
@@ -101,6 +108,16 @@ namespace MatGUI
                 sender.glc.Refresh();
             }
         }
+
+
+        public MatGraphMode Mode
+        {
+            get { return (MatGraphMode)GetValue(ModeProperty); }
+            set { SetValue(ModeProperty, value); }
+        }
+        public static readonly DependencyProperty ModeProperty =
+            DependencyProperty.Register("Mode", typeof(MatGraphMode), typeof(MatGraph), new PropertyMetadata(MatGraphMode.DistributionMap));
+
 
 
 
@@ -137,24 +154,59 @@ namespace MatGUI
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            GL.LineWidth((float)(1.5 * zoomDispX));
-            GL.PointSize((float)(4.0 * zoomDispX));
-
-            GL.Color4(0.3f, 0.6f, 1.0f, 0.7f);
-            RenderDataLines(Data1, 0.0);
-            if (DrawPoints) RenderDataPoints(Data1, 0.1);
-
-            GL.Color4(1.0f, 0.3f, 0.5f, 0.7f);
-            RenderDataLines(Data2, 1.0);
-            if (DrawPoints) RenderDataPoints(Data2, 1.1);
-
-            GL.Color4(0.0f, 1.0f, 0.3f, 0.7f);
-            if (mousePosX != double.NaN)
+            switch(Mode)
             {
-                GL.Begin(PrimitiveType.LineStrip);
-                GL.Vertex2(mousePosX * ZoomX * zoomDispX, 1000.0);
-                GL.Vertex2(mousePosX * ZoomX * zoomDispX, -1000.0);
-                GL.End();
+                case MatGraphMode.DistributionMap:
+                case MatGraphMode.DistributionMapWithPoints:
+
+                    GL.LineWidth((float)(1.5 * zoomDispX));
+                    GL.PointSize((float)(4.0 * zoomDispX));
+
+                    GL.Color4(0.3f, 0.6f, 1.0f, 0.7f);
+                    RenderDataLines(Data1, 0.0);
+                    if (Mode == MatGraphMode.DistributionMapWithPoints)
+                        RenderDataPoints(Data1, 0.1);
+
+                    GL.Color4(1.0f, 0.3f, 0.5f, 0.7f);
+                    RenderDataLines(Data2, 1.0);
+                    if (Mode == MatGraphMode.DistributionMapWithPoints)
+                        RenderDataPoints(Data2, 0.1);
+
+                    GL.LineWidth((float)(1.5 * zoomDispX));
+                    GL.Color4(0.0f, 1.0f, 0.3f, 0.7f);
+                    if (mousePosX != double.NaN)
+                    {
+                        GL.Begin(PrimitiveType.LineStrip);
+                        GL.Vertex2(mousePosX * ZoomX * zoomDispX, 1000.0);
+                        GL.Vertex2(mousePosX * ZoomX * zoomDispX, -1000.0);
+                        GL.End();
+                    }
+                    break;
+
+                case MatGraphMode.Histgram:
+
+                    GL.LineWidth((float)(10.0 * zoomDispX));
+
+                    GL.Color4(0.3f, 0.6f, 1.0f, 0.7f);
+                    RenderDataBars(Data1, 0.0);
+
+                    GL.Color4(1.0f, 0.3f, 0.5f, 0.7f);
+                    RenderDataBars(Data2, 1.0);
+
+                    if(hitPoint.X != double.NaN && hitPoint.Y != double.NaN)
+                    {
+                        GL.LineWidth((float)(10.0 * zoomDispX));
+                        GL.Color4(0.0f, 1.0f, 0.3f, 0.7f);
+
+                        GL.Begin(PrimitiveType.LineStrip);
+                        GL.Vertex3((hitPoint.X - OffsetX) * ZoomX * zoomDispX, 0.0, 10.0);
+                        GL.Vertex3((hitPoint.X - OffsetX) * ZoomX * zoomDispX, hitPoint.Y * ZoomY * zoomDispY, 10.0);
+                        GL.End();
+                    }
+                    break;
+
+                default:
+                    break;
             }
 
             glc.SwapBuffers();
@@ -203,18 +255,37 @@ namespace MatGUI
                 y2_1 = d2.Y;
             }
 
+            hitPoint.X = x1_1;
+            hitPoint.Y = y1_1;
+
             if (valueAct1)
-                y1 = (y1_1 + (y1_2 - y1_1) * ((trgX - x1_1) / (x1_2 - x1_1))).ToString("f4");
+                y1 = (y1_1 + (y1_2 - y1_1) * ((trgX - x1_1) / (x1_2 - x1_1))).ToString("f6");
 
             if (valueAct2)
-                y1 = (y2_1 + (y2_2 - y2_1) * ((trgX - x2_1) / (x2_2 - x2_1))).ToString("f4");
+                y1 = (y2_1 + (y2_2 - y2_1) * ((trgX - x2_1) / (x2_2 - x2_1))).ToString("f6");
 
-            tp.SetToolTip(glc, "X: " + trgX.ToString() + "\nData1: " + y1 + "\nData2: " + y2);
+            switch (Mode)
+            {
+                case MatGraphMode.DistributionMap:
+                case MatGraphMode.DistributionMapWithPoints:
+                    tp.SetToolTip(glc, "X: " + trgX.ToString("f6") + "\nData1: " + y1 + "\nData2: " + y2);
+                    break;
+
+                case MatGraphMode.Histgram:
+                    tp.SetToolTip(glc, "X: " + x1_1.ToString("f6") + "\nData1: " + y1_1.ToString("f6") + "\nData2: " + y2_1.ToString("f6"));
+                    break;
+
+                default:
+                    break;
+            }
+
         }
 
         private void Glc_MouseLeave(object sender, EventArgs e)
         {
             mousePosX = double.NaN;
+            hitPoint.X = double.NaN;
+            hitPoint.Y = double.NaN;
             glc.Refresh();
         }
 
@@ -263,6 +334,37 @@ namespace MatGUI
                 }
                 else
                 {
+                    GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, dataSet[i].Y * ZoomY * zoomDispY, layer);
+
+                    if (dataSet[i].X > EndX)
+                    {
+                        GL.End();
+                        return;
+                    }
+                }
+            }
+
+            GL.End();
+        }
+
+        private void RenderDataBars(List<Coord2D> dataSet, double layer)
+        {
+            bool started = false;
+
+
+            GL.Begin(PrimitiveType.Lines);
+
+            for (int i = 0; i < dataSet.Count; i++)
+            {
+                if (!started && i + 1 < dataSet.Count && dataSet[i + 1].X >= OffsetX)
+                {
+                    GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, 0.0, layer);
+                    GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, dataSet[i].Y * ZoomY * zoomDispY, layer);
+                    started = true;
+                }
+                else
+                {
+                    GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, 0.0, layer);
                     GL.Vertex3((dataSet[i].X - OffsetX) * ZoomX * zoomDispX, dataSet[i].Y * ZoomY * zoomDispY, layer);
 
                     if (dataSet[i].X > EndX)

@@ -31,5 +31,20 @@ namespace MatStudioROBOT2016.Models.DataFlow.Math
             Histogram.Data1 = data;
             Histogram.RefreshGraph();
         }
+
+        public void SetResultString(string result)
+        {
+            ResultTb.Text = result;
+        }
+
+        private void Calc_Click(object sender, RoutedEventArgs e)
+        {
+            Random owner = DataContext as Random;
+
+            if(owner != null)
+            {
+                owner.Calc(sigma.DoubleValue);
+            }
+        }
     }
 }

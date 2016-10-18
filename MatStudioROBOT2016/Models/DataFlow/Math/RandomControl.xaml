@@ -10,6 +10,13 @@
              xmlns:matgui="clr-namespace:MatGUI;assembly=MatGUI">
     <Grid>
         <matgui:MatFocusableBG/>
-        <matgui:MatGraph x:Name="Histogram" ZoomX="50.0" ZoomY="0.03" OffsetX="-6.0" DrawPoints="False"/> 
+        <matgui:MatGraph x:Name="Histogram" BackgroundColor="{DynamicResource MatBackGroundColor}" Margin="0,0,0,30" 
+                         ZoomX="50.0" ZoomY="0.03" OffsetX="-6.0" Mode="Histgram"/>
+        <Label Content="分散" Foreground="{DynamicResource MatForeGroundBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="30" Width="50" HorizontalContentAlignment="Center"/>
+        <matgui:MatDoubleBox x:Name="sigma" Minimum="0.1" Maximum="1.0" DoubleValue="1.0" Format="f2" Delta="0.1"
+                             Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="50,0,0,0" Width="50"/>
+        <matgui:MatButton x:Name="Calc" Content="実行"
+                          Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="100,0,0,0" Width="50" Click="Calc_Click"/>
+        <TextBlock x:Name="ResultTb" VerticalAlignment="Bottom" Height="30" Foreground="{DynamicResource MatForeGroundBrush}" Margin="200,0,0,0"/>
     </Grid>
 </UserControl>
