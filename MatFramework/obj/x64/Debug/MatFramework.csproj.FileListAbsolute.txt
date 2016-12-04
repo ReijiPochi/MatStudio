@@ -1,0 +1,13 @@
+F:\GitHub\MatStudio\MatFramework\bin\x64\Debug\MatFramework.dll.config
+F:\GitHub\MatStudio\MatFramework\bin\x64\Debug\MatFramework.dll
+F:\GitHub\MatStudio\MatFramework\bin\x64\Debug\MatFramework.pdb
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.csprojResolveAssemblyReference.cache
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MainWindow.g.cs
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\GeneratedInternalTypeHelper.g.cs
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework_MarkupCompile.cache
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework_MarkupCompile.lref
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MainWindow.baml
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\Themes\Generic.baml
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.g.resources
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.dll
+F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.pdb

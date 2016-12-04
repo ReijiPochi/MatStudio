@@ -36,3 +36,8 @@ F:\GitHub\MatStudio\MatFramework\obj\Debug\Themes\Generic.baml
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.csprojResolveAssemblyReference.cache
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\Debug\Themes\Generic.baml
+F:\GitHub\MatStudio\MatFramework\bin\Debug\Microsoft.WindowsAPICodePack.dll
+F:\GitHub\MatStudio\MatFramework\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+F:\GitHub\MatStudio\MatFramework\bin\Debug\Microsoft.WindowsAPICodePack.xml
+F:\GitHub\MatStudio\MatFramework\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+F:\GitHub\MatStudio\MatFramework\obj\Debug\MatFramework.csprojResolveAssemblyReference.cache
