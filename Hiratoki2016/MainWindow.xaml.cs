@@ -47,6 +47,9 @@ namespace Hiratoki2016
         UdpClient client;
         bool clientConnected = false;
 
+        Window consoleWindow = new Window() { Width = 300.0, Height = 100.0 };
+        TextBlock consoleTb = new TextBlock();
+
         /// <summary>
         /// 最上位ウインドウを作成
         /// </summary>
@@ -136,6 +139,15 @@ namespace Hiratoki2016
 
             animationClock.Tick += AnimationClock_Tick;
             animationClock.Start();
+
+            Application.Current.Exit += Current_Exit;
+        }
+
+        private void Current_Exit(object sender, ExitEventArgs e)
+        {
+            clientConnected = false;
+            disposeDevice();
+            client.Close();
         }
 
         private void MainWindow_KeyUp(object sender, KeyEventArgs e)
@@ -148,8 +160,9 @@ namespace Hiratoki2016
 
         private async void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Escape)
+            if(e.Key == Key.Q)
             {
+                if (client == null) return;
                 var returnMessage = Encoding.UTF8.GetBytes("Goodbye!");
                 await client.SendAsync(returnMessage, returnMessage.Length);
             }
@@ -177,13 +190,18 @@ namespace Hiratoki2016
                 initVertexBuffer();
                 UploadData();
             }
+
+            Draw();
         }
 
         private async void UploadData()
         {
             if (client == null) return;
 
-            var returnMessage = Encoding.UTF8.GetBytes("X" + posX.ToString("f3") + "Y" + posY.ToString("f3"));
+            string x = posX >= 0.0 ? posX.ToString("f3") : posX.ToString("f2");
+            string y = posY >= 0.0 ? posY.ToString("f3") : posY.ToString("f2");
+
+            var returnMessage = Encoding.UTF8.GetBytes("X" + x + "Y" + y);
             await client.SendAsync(returnMessage, returnMessage.Length);
         }
 
@@ -200,15 +218,16 @@ namespace Hiratoki2016
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            initDevice();
-            SlimDX.Windows.MessagePump.Run(Draw);
-            disposeDevice();
-
             client = new UdpClient(AddressFamily.InterNetwork);
             client.Connect("reiji-matlab.mydns.jp", 810);
             clientConnected = true;
 
             ListenMessage();
+
+            initDevice();
+
+            consoleWindow.Content = consoleTb;
+            consoleWindow.Show();
         }
 
         public async void ListenMessage()
@@ -220,6 +239,8 @@ namespace Hiratoki2016
 
                 // 受信したデータを変換
                 var data = Encoding.UTF8.GetString(result.Buffer);
+
+                consoleWindow.Content = data;
 
                 switch (data)
                 {

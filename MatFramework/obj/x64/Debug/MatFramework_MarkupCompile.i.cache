@@ -4,7 +4,7 @@
 library
 C#
 .cs
-F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\
 MatFramework
 none
 false
@@ -16,5 +16,5 @@ DEBUG;TRACE
 13-1142990016
 MainWindow.xaml;Themes\Generic.xaml;
 
-False
+True
 

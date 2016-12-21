@@ -11,3 +11,16 @@ F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\Themes\Generic.baml
 F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.g.resources
 F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.dll
 F:\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.pdb
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\bin\x64\Debug\MatFramework.dll.config
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\bin\x64\Debug\MatFramework.dll
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\bin\x64\Debug\MatFramework.pdb
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.csprojResolveAssemblyReference.cache
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MainWindow.g.cs
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework_MarkupCompile.cache
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework_MarkupCompile.lref
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MainWindow.baml
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\Themes\Generic.baml
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.g.resources
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.dll
+C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.pdb
