@@ -1,0 +1,12 @@
+F:\GitHub\MatStudio\MatFramework\bin\x64\Release\MatFramework.dll.config
+F:\GitHub\MatStudio\MatFramework\bin\x64\Release\MatFramework.dll
+F:\GitHub\MatStudio\MatFramework\bin\x64\Release\MatFramework.pdb
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\MainWindow.g.cs
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\GeneratedInternalTypeHelper.g.cs
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\MatFramework_MarkupCompile.cache
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\MatFramework_MarkupCompile.lref
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\MainWindow.baml
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\Themes\Generic.baml
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\MatFramework.g.resources
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\MatFramework.dll
+F:\GitHub\MatStudio\MatFramework\obj\x64\Release\MatFramework.pdb
