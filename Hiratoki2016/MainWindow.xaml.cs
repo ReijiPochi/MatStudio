@@ -42,13 +42,14 @@ namespace Hiratoki2016
         double moveY = 0.0;
         float posY = 0.0f;
 
-        DispatcherTimer animationClock = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 10) };
+        //DispatcherTimer animationClock = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 10) };
+        MatFramework.MatTimer clock = new MatFramework.MatTimer(1000.0 / 60.0);
 
-        UdpClient client;
-        bool clientConnected = false;
+        //UdpClient client;
+        //bool clientConnected = false;
 
-        Window consoleWindow = new Window() { Width = 300.0, Height = 100.0 };
-        TextBlock consoleTb = new TextBlock();
+        //Window consoleWindow = new Window() { Width = 300.0, Height = 100.0 };
+        //TextBlock consoleTb = new TextBlock();
 
         /// <summary>
         /// 最上位ウインドウを作成
@@ -137,17 +138,35 @@ namespace Hiratoki2016
             KeyDown += MainWindow_KeyDown;
             KeyUp += MainWindow_KeyUp;
 
-            animationClock.Tick += AnimationClock_Tick;
-            animationClock.Start();
+            //animationClock.Tick += AnimationClock_Tick;
+            //animationClock.Start();
+            clock.MatTickEvent += Cloack_MatTickEvent;
+            clock.Start();
 
             Application.Current.Exit += Current_Exit;
         }
 
+        private void Cloack_MatTickEvent(object sender)
+        {
+            if (moveX != 0)
+                posX += (float)moveX;
+            if (moveY != 0)
+                posY += (float)moveY;
+
+            if (moveX != 0 || moveY != 0)
+            {
+                initVertexBuffer();
+                //UploadData();
+            }
+
+            Draw();
+        }
+
         private void Current_Exit(object sender, ExitEventArgs e)
         {
-            clientConnected = false;
+            //clientConnected = false;
             disposeDevice();
-            client.Close();
+            //client.Close();
         }
 
         private void MainWindow_KeyUp(object sender, KeyEventArgs e)
@@ -158,14 +177,14 @@ namespace Hiratoki2016
                 moveY = 0.0;
         }
 
-        private async void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Q)
-            {
-                if (client == null) return;
-                var returnMessage = Encoding.UTF8.GetBytes("Goodbye!");
-                await client.SendAsync(returnMessage, returnMessage.Length);
-            }
+            //if(e.Key == Key.Q)
+            //{
+            //    if (client == null) return;
+            //    var returnMessage = Encoding.UTF8.GetBytes("Goodbye!");
+            //    await client.SendAsync(returnMessage, returnMessage.Length);
+            //}
 
             if (e.Key == Key.D)
                 moveX = 0.01;
@@ -188,22 +207,22 @@ namespace Hiratoki2016
             if (moveX != 0 || moveY != 0)
             {
                 initVertexBuffer();
-                UploadData();
+                //UploadData();
             }
 
             Draw();
         }
 
-        private async void UploadData()
-        {
-            if (client == null) return;
+        //private async void UploadData()
+        //{
+        //    if (client == null) return;
 
-            string x = posX >= 0.0 ? posX.ToString("f3") : posX.ToString("f2");
-            string y = posY >= 0.0 ? posY.ToString("f3") : posY.ToString("f2");
+        //    string x = posX >= 0.0 ? posX.ToString("f3") : posX.ToString("f2");
+        //    string y = posY >= 0.0 ? posY.ToString("f3") : posY.ToString("f2");
 
-            var returnMessage = Encoding.UTF8.GetBytes("X" + x + "Y" + y);
-            await client.SendAsync(returnMessage, returnMessage.Length);
-        }
+        //    var returnMessage = Encoding.UTF8.GetBytes("X" + x + "Y" + y);
+        //    await client.SendAsync(returnMessage, returnMessage.Length);
+        //}
 
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -218,42 +237,42 @@ namespace Hiratoki2016
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            client = new UdpClient(AddressFamily.InterNetwork);
-            client.Connect("reiji-matlab.mydns.jp", 810);
-            clientConnected = true;
+            //client = new UdpClient(AddressFamily.InterNetwork);
+            //client.Connect("reiji-matlab.mydns.jp", 810);
+            //clientConnected = true;
 
-            ListenMessage();
+            //ListenMessage();
 
             initDevice();
 
-            consoleWindow.Content = consoleTb;
-            consoleWindow.Show();
+            //consoleWindow.Content = consoleTb;
+            //consoleWindow.Show();
         }
 
-        public async void ListenMessage()
-        {
-            while (clientConnected)
-            {
-                // データ受信待機
-                var result = await client.ReceiveAsync();
+        //public async void ListenMessage()
+        //{
+        //    while (clientConnected)
+        //    {
+        //        // データ受信待機
+        //        var result = await client.ReceiveAsync();
 
-                // 受信したデータを変換
-                var data = Encoding.UTF8.GetString(result.Buffer);
+        //        // 受信したデータを変換
+        //        var data = Encoding.UTF8.GetString(result.Buffer);
 
-                consoleWindow.Content = data;
+        //        consoleWindow.Content = data;
 
-                switch (data)
-                {
-                    case "SeeYou!":
-                        Close();
-                        Application.Current.Shutdown();
-                        break;
+        //        switch (data)
+        //        {
+        //            case "SeeYou!":
+        //                Close();
+        //                Application.Current.Shutdown();
+        //                break;
 
-                    default:
-                        break;
-                }
-            }
-        }
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //}
 
         private void initDevice()
         {
@@ -295,6 +314,8 @@ namespace Hiratoki2016
 
         public void Draw()
         {
+            if (graphicsDevice == null || effect == null) return;
+
             graphicsDevice.ImmediateContext.ClearRenderTargetView(renderTarget, new SlimDX.Color4(1, 0, 0, 1));
 
             initTriangleInputAssembler();
@@ -361,7 +382,7 @@ namespace Hiratoki2016
             vertexBuffer = MyDirectXHelper.CreateVertexBuffer(
                 graphicsDevice,
                 new[] {
-                new SlimDX.Vector3(posX, posY + 0.5f, 0),
+                new SlimDX.Vector3(posX, posY + 0.1f, 0),
                 new SlimDX.Vector3(posX, posY, 0),
                 new SlimDX.Vector3(posX-0.5f, posY, 0),
                 });
@@ -384,12 +405,12 @@ namespace Hiratoki2016
 
             SlimDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, new SwapChainDescription
             {
-                BufferCount = 1,
+                BufferCount = 2,
                 OutputHandle = source.Handle,
                 IsWindowed = true,
                 SampleDescription = new SampleDescription
                 {
-                    Count = 1,
+                    Count = 2,
                     Quality = 0
                 },
 

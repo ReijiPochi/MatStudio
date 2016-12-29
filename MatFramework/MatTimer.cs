@@ -11,7 +11,7 @@ namespace MatFramework
 
     public class MatTimer : IDisposable
     {
-        public MatTimer(int interval)
+        public MatTimer(double interval)
         {
             Interval = interval;
         }
@@ -24,7 +24,7 @@ namespace MatFramework
 
         public bool IsCounting { get; private set; }
 
-        public int Interval { get; set; }
+        public double Interval { get; set; }
 
         public event MatTickEventHandler MatTickEvent;
         protected void RaiseMatTick()
@@ -64,6 +64,8 @@ namespace MatFramework
 
         private void Work()
         {
+            double nextTick = 0;
+
             while (IsRunning)
             {
                 if (!IsCounting)
@@ -72,11 +74,16 @@ namespace MatFramework
                 DateTime now = DateTime.Now;
                 int current = now.Minute * 60000 + now.Second * 1000 + now.Millisecond;
 
-                if((current - startTime) >= Interval)
+                if (nextTick == 0)
+                    nextTick = current + Interval;
+
+                if(current >= nextTick)
                 {
-                    startTime = current;
+                    nextTick += Interval;
                     RaiseMatTick();
                 }
+
+                Thread.Sleep(1);
             }
         }
 

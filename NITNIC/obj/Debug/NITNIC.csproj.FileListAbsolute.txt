@@ -1,0 +1,16 @@
+F:\GitHub\MatStudio\NITNIC\bin\Debug\NITNIC.exe.config
+F:\GitHub\MatStudio\NITNIC\bin\Debug\NITNIC.exe
+F:\GitHub\MatStudio\NITNIC\bin\Debug\NITNIC.pdb
+F:\GitHub\MatStudio\NITNIC\bin\Debug\MatFramework.dll
+F:\GitHub\MatStudio\NITNIC\bin\Debug\MatFramework.pdb
+F:\GitHub\MatStudio\NITNIC\obj\Debug\NITNIC.csprojResolveAssemblyReference.cache
+F:\GitHub\MatStudio\NITNIC\obj\Debug\MainWindow.g.cs
+F:\GitHub\MatStudio\NITNIC\obj\Debug\App.g.cs
+F:\GitHub\MatStudio\NITNIC\obj\Debug\NITNIC_MarkupCompile.cache
+F:\GitHub\MatStudio\NITNIC\obj\Debug\NITNIC_MarkupCompile.lref
+F:\GitHub\MatStudio\NITNIC\obj\Debug\MainWindow.baml
+F:\GitHub\MatStudio\NITNIC\obj\Debug\NITNIC.g.resources
+F:\GitHub\MatStudio\NITNIC\obj\Debug\NITNIC.Properties.Resources.resources
+F:\GitHub\MatStudio\NITNIC\obj\Debug\NITNIC.csproj.GenerateResource.Cache
+F:\GitHub\MatStudio\NITNIC\obj\Debug\NITNIC.exe
+F:\GitHub\MatStudio\NITNIC\obj\Debug\NITNIC.pdb

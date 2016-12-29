@@ -59,6 +59,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_64\SlimDX\v4.0_4.0.13.43__b1b0c32fd1ffe4f9\SlimDX.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -87,6 +91,19 @@
     <Compile Include="DataFlow\MatDataPort.cs" />
     <Compile Include="DataFlow\MatPortConnectEvent.cs" />
     <Compile Include="DataFlow\MatPortDisconnectEvent.cs" />
+    <Compile Include="Graphics\_3D\Effects\MatTextureOnlyFx.cs" />
+    <Compile Include="Graphics\_3D\Effects\MatSingleColorFx.cs" />
+    <Compile Include="Graphics\_3D\Mat3DView.cs" />
+    <Compile Include="Graphics\_3D\MatCamera.cs" />
+    <Compile Include="Graphics\_3D\MatVertexDataPNT.cs" />
+    <Compile Include="Graphics\_3D\MatWorld.cs" />
+    <Compile Include="Graphics\_3D\Objects\Mat3DObject.cs" />
+    <Compile Include="Graphics\_3D\Objects\MatMeshFloor.cs" />
+    <Compile Include="Graphics\_3D\Objects\MatSolid3DObject.cs" />
+    <Compile Include="Graphics\_3D\Objects\MatTriangle.cs" />
+    <Compile Include="Graphics\_3D\Effects\MatDefaultFx.cs" />
+    <Compile Include="Graphics\_3D\Effects\MatEffectPack.cs" />
+    <Compile Include="Graphics\_3D\Objects\ObjLoader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -119,7 +136,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Graphics\3D\" />
+    <EmbeddedResource Include="Graphics\_3D\Effects\default.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Graphics\_3D\Effects\singleColor.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Graphics\_3D\Effects\textureOnly.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\WindowsAPICodePack-DirectX.1.1.2\build\WindowsAPICodePack-DirectX.targets" Condition="Exists('..\packages\WindowsAPICodePack-DirectX.1.1.2\build\WindowsAPICodePack-DirectX.targets')" />

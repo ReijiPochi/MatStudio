@@ -1,0 +1,17 @@
+F:\GitHub\MatStudio\Hiratoki2016\bin\x64\Release\Hiratoki2016.exe.config
+F:\GitHub\MatStudio\Hiratoki2016\bin\x64\Release\Hiratoki2016.exe
+F:\GitHub\MatStudio\Hiratoki2016\bin\x64\Release\Hiratoki2016.pdb
+F:\GitHub\MatStudio\Hiratoki2016\bin\x64\Release\MatFramework.dll
+F:\GitHub\MatStudio\Hiratoki2016\bin\x64\Release\SlimDX.dll
+F:\GitHub\MatStudio\Hiratoki2016\bin\x64\Release\MatFramework.pdb
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\Hiratoki2016.csprojResolveAssemblyReference.cache
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\MainWindow.g.cs
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\App.g.cs
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\Hiratoki2016_MarkupCompile.cache
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\Hiratoki2016_MarkupCompile.lref
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\MainWindow.baml
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\Hiratoki2016.g.resources
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\Hiratoki2016.Properties.Resources.resources
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\Hiratoki2016.csproj.GenerateResource.Cache
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\Hiratoki2016.exe
+F:\GitHub\MatStudio\Hiratoki2016\obj\x64\Release\Hiratoki2016.pdb

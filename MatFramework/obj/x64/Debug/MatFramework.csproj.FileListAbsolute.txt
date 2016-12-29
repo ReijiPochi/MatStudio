@@ -24,3 +24,4 @@ C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\Themes\Gene
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.g.resources
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.dll
 C:\Users\Reiji\Documents\GitHub\MatStudio\MatFramework\obj\x64\Debug\MatFramework.pdb
+F:\GitHub\MatStudio\MatFramework\bin\x64\Debug\SlimDX.dll
