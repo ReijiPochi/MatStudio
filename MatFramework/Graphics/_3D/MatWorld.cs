@@ -9,7 +9,7 @@ using MatFramework.Graphics._3D;
 
 namespace MatFramework.Graphics
 {
-    public abstract class MatWorld : MatObject, IDisposable
+    public abstract class MatWorld : IDisposable
     {
         public MatWorld()
         {
@@ -32,12 +32,7 @@ namespace MatFramework.Graphics
                 ActiveCamera.ViewPortWidth = viewWidth;
                 ActiveCamera.ViewPortHeight = viewHeight;
 
-                ActiveCamera.CameraUpdate();
-            }
-
-            foreach(Mat3DObject obj in Objects)
-            {
-                obj.Draw(this);
+                ActiveCamera.Render(this);
             }
         }
 

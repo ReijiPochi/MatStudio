@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26014.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatStudioROBOT2016", "MatStudioROBOT2016\MatStudioROBOT2016.csproj", "{0FEDFD30-A0C6-457B-83F1-C778876D0608}"
 EndProject
@@ -126,5 +126,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A4E329A1-28B6-402B-AAB5-6F02AB201647} = {85E28579-38D4-4AF8-996B-9410041AA5C5}
 		{16DB3300-A345-4016-84F9-C86663F371FF} = {85E28579-38D4-4AF8-996B-9410041AA5C5}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

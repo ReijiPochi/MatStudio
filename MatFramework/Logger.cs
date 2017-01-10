@@ -12,7 +12,7 @@ namespace MatFramework
     /// <summary>
     /// 様々な情報を格納します
     /// </summary>
-    public class LogData : MatObject
+    public class LogData
     {
         public LogData(LogCondition condition, string message, string description, object source)
         {
@@ -58,7 +58,7 @@ namespace MatFramework
     /// <summary>
     /// ログを記録します。
     /// </summary>
-    public class Logger : MatObject
+    public class Logger
     {
         public Logger()
         {

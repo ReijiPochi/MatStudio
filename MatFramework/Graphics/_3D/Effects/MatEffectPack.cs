@@ -15,7 +15,7 @@ using MatFramework.Graphics._3D.Objects;
 
 namespace MatFramework.Graphics._3D.Effects
 {
-    public abstract class MatEffectPack : MatObject, IDisposable
+    public abstract class MatEffectPack : IDisposable
     {
         public MatEffectPack(Mat3DObject target)
         {
@@ -43,7 +43,7 @@ namespace MatFramework.Graphics._3D.Effects
             InitVertexLayout();
         }
 
-        public virtual void PrepareToDraw(Matrix cam)
+        public virtual void PrepareToDraw(RenderingContext context)
         {
         }
 
@@ -68,7 +68,20 @@ namespace MatFramework.Graphics._3D.Effects
             }
         }
 
-        protected abstract void InitVertexLayout();
+        protected virtual void InitVertexLayout()
+        {
+            if (Effect == null) return;
+
+            _VertexLayout = new InputLayout(
+                Mat3DView.GraphicsDevice,
+                Effect.GetTechniqueByIndex(0).GetPassByIndex(0).Description.Signature,
+                new[] {
+                                new InputElement { SemanticName = "SV_Position", Format = Format.R32G32B32_Float },
+                                new InputElement { SemanticName = "NORMAL", Format = Format.R32G32B32_Float, AlignedByteOffset = InputElement.AppendAligned },
+                                new InputElement { SemanticName = "TEXCOORD", Format = Format.R32G32_Float, AlignedByteOffset = InputElement.AppendAligned }
+                }
+                );
+        }
 
         public virtual void Dispose()
         {

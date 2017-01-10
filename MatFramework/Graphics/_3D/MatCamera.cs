@@ -7,58 +7,61 @@ using System.Threading.Tasks;
 using SlimDX;
 using SlimDX.Direct3D11;
 using SlimDX.DXGI;
+using MatFramework.Graphics._3D.Objects;
 
 namespace MatFramework.Graphics._3D
 {
-    public class MatCamera : MatObject
+    public class MatCamera
     {
         public RenderTargetView RenderTarget { get; set; }
 
-        private double _ViewPortWidth;
+        protected double _ViewPortWidth;
         public double ViewPortWidth
         {
             get { return _ViewPortWidth; }
             set { _ViewPortWidth = value; ValueChanged = true; }
         }
 
-        private double _ViewPortHeight;
+        protected double _ViewPortHeight;
         public double ViewPortHeight
         {
             get { return _ViewPortHeight; }
             set { _ViewPortHeight = value; ValueChanged = true; }
         }
 
-        public bool ValueChanged { get; private set; }
+        public bool ValueChanged { get; protected set; }
 
-        private Vector3 _Eye;
+        protected Vector3 _Eye;
         public Vector3 Eye
         {
             get { return _Eye; }
             set { _Eye = value; ValueChanged = true; }
         }
 
-        private Vector3 _Target;
+        protected Vector3 _Target;
         public Vector3 Target
         {
             get { return _Target; }
             set { _Target = value; ValueChanged = true; }
         }
 
-        private Vector3 _Up;
+        protected Vector3 _Up;
         public Vector3 Up
         {
             get { return _Up; }
             set { _Up = value; ValueChanged = true; }
         }
 
-        private double _FieldOfView;
+        protected double _FieldOfView;
         public double FieldOfView
         {
             get { return _FieldOfView; }
             set { _FieldOfView = value; ValueChanged = true; }
         }
 
-        public void CameraUpdate()
+        public Matrix CameraMatrix { get; protected set; }
+
+        protected virtual void CameraUpdate()
         {
             if (!ValueChanged || Mat3DView.GraphicsDevice == null) return;
 
@@ -76,6 +79,20 @@ namespace MatFramework.Graphics._3D
             ValueChanged = false;
         }
 
-        public Matrix CameraMatrix { get; private set; }
+        public virtual void Render(MatWorld world)
+        {
+            CameraUpdate();
+
+            RenderingContext context = new RenderingContext()
+            {
+                camMatrix = CameraMatrix
+            };
+
+            foreach (Mat3DObject obj in world.Objects)
+            {
+                obj.Draw(context);
+            }
+        }
+
     }
 }

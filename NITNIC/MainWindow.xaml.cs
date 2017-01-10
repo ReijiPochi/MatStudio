@@ -57,7 +57,7 @@ namespace NITNIC
             world1 = new TestWorld();
             view.CurrentWorld = world1;
 
-            inputClock = new MatTimer(1000.0 / 119.0);
+            inputClock = new MatTimer(1000.0 / 60.0);
             inputClock.MatTickEvent += InputClock_MatTickEvent;
             inputClock.Start();
 

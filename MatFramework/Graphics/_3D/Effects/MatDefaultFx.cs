@@ -62,30 +62,17 @@ namespace MatFramework.Graphics._3D.Effects
             _DiffuseTexture = Effect.GetVariableByName("DiffuseTexture").AsResource();
         }
 
-        public override void PrepareToDraw(Matrix cam)
+        public override void PrepareToDraw(RenderingContext context)
         {
             if (!textureSent && Target.Texture != null)
                 DiffuseTexture = Target.Texture;
 
-            CameraMatrix = cam;
+            CameraMatrix = context.camMatrix;
             World = Matrix.Translation((float)Target.PositionX, (float)Target.PositionY, (float)Target.PositionZ);
             Color = Target.Color;
 
             Effect.GetTechniqueByIndex(0).GetPassByIndex(0).Apply(Mat3DView.GraphicsDevice.ImmediateContext);
             Mat3DView.GraphicsDevice.ImmediateContext.InputAssembler.InputLayout = VertexLayout;
-        }
-
-        protected override void InitVertexLayout()
-        {
-            _VertexLayout = new InputLayout(
-                Mat3DView.GraphicsDevice,
-                Effect.GetTechniqueByIndex(0).GetPassByIndex(0).Description.Signature,
-                new[] {
-                    new InputElement { SemanticName = "SV_Position", Format = Format.R32G32B32_Float },
-                    new InputElement { SemanticName = "NORMAL", Format = Format.R32G32B32_Float, AlignedByteOffset = InputElement.AppendAligned },
-                    new InputElement { SemanticName = "TEXCOORD", Format = Format.R32G32_Float, AlignedByteOffset = InputElement.AppendAligned }
-                }
-                );
         }
     }
 }

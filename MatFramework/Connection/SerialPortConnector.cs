@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using System.IO;
 using System.IO.Ports;
 using System.Threading;
+using System.Windows;
 
 namespace MatFramework.Connection
 {
     /// <summary>
     /// シリアルポートでの通信を別スレッドで行います。
     /// </summary>
-    public class SerialPortConnector : MatObject
+    public class SerialPortConnector : DependencyObject
     {
         private SerialPort myPort = null;
         private Thread receiveThread = null;
@@ -24,7 +25,7 @@ namespace MatFramework.Connection
         public StopBits StopBits { get; private set; }
         public bool IsOpen { get; private set; }
 
-        public delegate void DataReceivedHandler(MatObject sender, byte[] data);
+        public delegate void DataReceivedHandler(DependencyObject sender, byte[] data);
         public event DataReceivedHandler DataReceived;
 
         public SerialPortConnector(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits)

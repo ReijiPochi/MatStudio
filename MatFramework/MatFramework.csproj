@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MatFramework</RootNamespace>
     <AssemblyName>MatFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -48,6 +48,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -95,6 +96,7 @@
     <Compile Include="Graphics\_3D\Effects\MatSingleColorFx.cs" />
     <Compile Include="Graphics\_3D\Mat3DView.cs" />
     <Compile Include="Graphics\_3D\MatCamera.cs" />
+    <Compile Include="Graphics\_3D\MatCamera3D.cs" />
     <Compile Include="Graphics\_3D\MatVertexDataPNT.cs" />
     <Compile Include="Graphics\_3D\MatWorld.cs" />
     <Compile Include="Graphics\_3D\Objects\Mat3DObject.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Graphics\_3D\Effects\MatDefaultFx.cs" />
     <Compile Include="Graphics\_3D\Effects\MatEffectPack.cs" />
     <Compile Include="Graphics\_3D\Objects\ObjLoader.cs" />
+    <Compile Include="Graphics\_3D\RenderingContext.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -121,7 +124,6 @@
     <Compile Include="DataFlow\MatDataOutputPort.cs" />
     <Compile Include="Math\MatRandom.cs" />
     <Compile Include="MatNotificationObject.cs" />
-    <Compile Include="MatObject.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MatApp.cs" />
     <Compile Include="MatObservableSynchronizedCollection.cs" />
@@ -133,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Graphics\_3D\Effects\default.fx" />

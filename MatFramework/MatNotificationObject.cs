@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MatFramework
 {
-    public class MatNotificationObject : MatObject, INotifyPropertyChanged
+    public class MatNotificationObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)

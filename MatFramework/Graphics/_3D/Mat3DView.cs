@@ -14,7 +14,7 @@ using System.Windows.Media;
 
 namespace MatFramework.Graphics._3D
 {
-    public class Mat3DView : MatObject, IDisposable
+    public class Mat3DView : IDisposable
     {
         private static SlimDX.Direct3D11.Device _GraphicsDevice;
         public static SlimDX.Direct3D11.Device GraphicsDevice
@@ -48,9 +48,6 @@ namespace MatFramework.Graphics._3D
             Host.SizeChanged += Host_SizeChanged;
             Host.Closing += Host_Closing;
 
-            Host.Width = 1000;
-            Host.Height = 600;
-
             Host.Show();
 
             CreateDeviceAndSwapChain(out _GraphicsDevice, out _SwapChain);
@@ -59,7 +56,7 @@ namespace MatFramework.Graphics._3D
             InitDepthStencil();
             GraphicsDevice.ImmediateContext.OutputMerger.SetTargets(DepthStencil, RenderTarget);
 
-            AnimationClock = new MatTimer(1000.0 / 60.1);
+            AnimationClock = new MatTimer(1000.0 / 60.0);
             AnimationClock.MatTickEvent += Clock_MatTickEvent;
             AnimationClock.Start();
         }
@@ -74,7 +71,7 @@ namespace MatFramework.Graphics._3D
             AnimationClock.Dispose();
         }
 
-        private void CreateDeviceAndSwapChain(out SlimDX.Direct3D11.Device device, out SlimDX.DXGI.SwapChain swapChain)
+        private void CreateDeviceAndSwapChain(out SlimDX.Direct3D11.Device device, out SwapChain swapChain)
         {
             HwndSource source = (HwndSource)HwndSource.FromVisual(Host);
 
@@ -88,7 +85,7 @@ namespace MatFramework.Graphics._3D
                     IsWindowed = true,
                     SampleDescription = new SampleDescription
                     {
-                        Count = 2,
+                        Count = 8,
                         Quality = 0
                     },
                     ModeDescription = new ModeDescription
@@ -122,7 +119,7 @@ namespace MatFramework.Graphics._3D
                 Width = (int)(ViewArea.ActualWidth),
                 Height = (int)(ViewArea.ActualHeight),
                 MipLevels = 1,
-                SampleDescription = new SampleDescription(2, 0)
+                SampleDescription = new SampleDescription(8, 0)
             };
 
             using (Texture2D depthBuffer = new Texture2D(GraphicsDevice, depthBufferDesc))

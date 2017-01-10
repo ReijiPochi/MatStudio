@@ -17,13 +17,11 @@ struct MatVertexDataPNT
 
 MatVertexDataPNT MyVertexShader(MatVertexDataPNT input)
 {
-	MatVertexDataPNT output = input;
+	input.position = mul(input.position, World);
+	input.normal = mul(input.normal, World);
 
-	output.position = mul(output.position, World);
-	output.normal = mul(output.normal, World);
-
-	output.position = mul(output.position, ViewProjection);
-	return output;
+	input.position = mul(input.position, ViewProjection);
+	return input;
 }
 
 float4 MyPixelShader(MatVertexDataPNT input) : SV_Target

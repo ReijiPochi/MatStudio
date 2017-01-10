@@ -25,7 +25,7 @@ namespace NITNIC
             for(int i = 0; i < pointCount; i += 3)
             {
                 int i1 = Map.Indices[i], i2 = Map.Indices[i + 1], i3 = Map.Indices[i + 2];
-                bool hit = true;
+                bool cross = false;
 
                 if (Map.Vertices[i1].position.Y > point.Y - 0.5) continue;
 
@@ -39,23 +39,23 @@ namespace NITNIC
                 l2.a = point;
                 l2.b = centor;
                 if (HitTestLine(l1, l2))
-                    hit = false;
+                    cross = true;
 
                 l1.a = Map.Vertices[i1].position;
                 l1.b = Map.Vertices[i3].position;
                 l2.a = point;
                 l2.b = centor;
                 if (HitTestLine(l1, l2))
-                    hit = false;
+                    cross = true;
 
                 l1.a = Map.Vertices[i2].position;
                 l1.b = Map.Vertices[i3].position;
                 l2.a = point;
                 l2.b = centor;
                 if (HitTestLine(l1, l2))
-                    hit = false;
+                    cross = true;
 
-                if (hit)
+                if (!cross)
                 {
                     result.mapOK = true;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MatFramework.DataFlow
 {
-    public class MatData : MatObject
+    public class MatData
     {
         public MatData(Type t, object value)
         {

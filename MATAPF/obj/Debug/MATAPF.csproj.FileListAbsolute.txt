@@ -1,0 +1,13 @@
+F:\GitHub\MatStudio\MATAPF\bin\Debug\MATAPF.dll.config
+F:\GitHub\MatStudio\MATAPF\bin\Debug\MATAPF.dll
+F:\GitHub\MatStudio\MATAPF\bin\Debug\MATAPF.pdb
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MATAPF.csprojResolveAssemblyReference.cache
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MainWindow.g.cs
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MATAPF_MarkupCompile.cache
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MATAPF_MarkupCompile.lref
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MainWindow.baml
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MATAPF.g.resources
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MATAPF.Properties.Resources.resources
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MATAPF.csproj.GenerateResource.Cache
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MATAPF.dll
+F:\GitHub\MatStudio\MATAPF\obj\Debug\MATAPF.pdb

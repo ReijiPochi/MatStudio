@@ -13,7 +13,7 @@ using MatFramework.Graphics._3D.Effects;
 
 namespace MatFramework.Graphics._3D.Objects
 {
-    public class Mat3DObject : MatObject, IDisposable
+    public class Mat3DObject : IDisposable
     {
         public Mat3DObject()
         {
@@ -84,14 +84,14 @@ namespace MatFramework.Graphics._3D.Objects
             SetEffectPacks(new MatDefaultFx(this));
         }
 
-        public virtual void Draw(MatWorld world)
+        public virtual void Draw(RenderingContext context)
         {
             if (!Visible) return;
 
             Mat3DView.GraphicsDevice.ImmediateContext.InputAssembler.SetVertexBuffers(0, new VertexBufferBinding(VertexBuffer, MatVertexDataPNT.SizeInBytes, 0));
             Mat3DView.GraphicsDevice.ImmediateContext.InputAssembler.PrimitiveTopology = DrawMode;
 
-            if (EffectPack != null) EffectPack.PrepareToDraw(world.ActiveCamera.CameraMatrix);
+            if (EffectPack != null) EffectPack.PrepareToDraw(context);
 
             if (Indices == null)
             {

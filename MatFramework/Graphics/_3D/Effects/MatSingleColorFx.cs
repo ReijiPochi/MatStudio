@@ -39,26 +39,13 @@ namespace MatFramework.Graphics._3D.Effects
             color = Effect.GetVariableByName("Color").AsVector();
         }
 
-        public override void PrepareToDraw(Matrix cam)
+        public override void PrepareToDraw(RenderingContext context)
         {
-            CameraMatrix = cam;
+            CameraMatrix = context.camMatrix;
             Color = Target.Color;
 
             Effect.GetTechniqueByIndex(0).GetPassByIndex(0).Apply(Mat3DView.GraphicsDevice.ImmediateContext);
             Mat3DView.GraphicsDevice.ImmediateContext.InputAssembler.InputLayout = VertexLayout;
-        }
-
-        protected override void InitVertexLayout()
-        {
-            _VertexLayout = new InputLayout(
-                Mat3DView.GraphicsDevice,
-                Effect.GetTechniqueByIndex(0).GetPassByIndex(0).Description.Signature,
-                new[] {
-                    new InputElement { SemanticName = "SV_Position", Format = Format.R32G32B32_Float },
-                    new InputElement { SemanticName = "NORMAL", Format = Format.R32G32B32_Float, AlignedByteOffset = InputElement.AppendAligned },
-                    new InputElement { SemanticName = "TEXCOORD", Format = Format.R32G32_Float, AlignedByteOffset = InputElement.AppendAligned }
-                }
-                );
         }
     }
 }
